@@ -403,6 +403,7 @@ func getToken(response: ((_ success: Bool, _ token: String) -> Void)?) {
     
     if let data = UD.data(forKey: "token"), let token = try? PDecoder.decode(TokenResponse.self, from: data){
         let nowT = US.getTimeInterval()
+        //let tokenT = nowT - 1
         let tokenT = US.decodeTokenTime(token: token.token)
         let reTokenT = token.refreshTokenExpiryTime
         if (tokenT > nowT) {

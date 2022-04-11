@@ -15,6 +15,7 @@ class SecurityVC: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "Security"
+        self.navigationItem.backButtonTitle = ""
         // Do any additional setup after loading the view.
         setData()
         initTV()
@@ -152,11 +153,21 @@ extension SecurityVC : UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.section == 1 && indexPath.row == 1 {
-//            return 120
-//        }
-//        return 60
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.section == 0) {
+            switch indexPath.row {
+            case 0:
+                let ChangeMobileVC = UIStoryboard(name: "ChangeMobileVC", bundle: nil).instantiateViewController(withIdentifier: "ChangeMobileVC") as! ChangeMobileVC
+                ChangeMobileVC.mobileNumber = (memberInfo?.mobileNumber)!
+                self.navigationController?.show(ChangeMobileVC, sender: nil)
+            case 1:
+                break
+            case 2:
+                break
+            default:
+                break
+            }
+        }
+    }
     
 }

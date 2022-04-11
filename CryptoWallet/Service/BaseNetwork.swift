@@ -11,7 +11,7 @@ class BaseNetwork {
     static let shareNetWork = BaseNetwork()
     
     //取得登入token
-    func getToken(countryId: String, mobileNumber: String, password: String, verificationCode: String, verificationMethod: Int, response: ((_ statusCode: Int, _ dataObj: TokenResponse?, _ err: Error?) -> ())?){
+    func firstGetToken(countryId: String, mobileNumber: String, password: String, verificationCode: String, verificationMethod: Int, response: ((_ statusCode: Int, _ dataObj: TokenResponse?, _ err: Error?) -> ())?){
         
         var params: [String: Any] = [String: Any]()
         if (countryId.count > 0){
@@ -206,4 +206,52 @@ class BaseNetwork {
         }
     }
 
+    //舊手機請求驗證碼(使用token)
+    func getVerificationCode(token: String, verificationMethod: Int, verificationType: Int, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: Error?) -> ())?){
+        
+        var params: [String: Any] = [String: Any]()
+        
+        params["verificationMethod"] = verificationMethod
+        params["verificationType"] = verificationType
+        
+        if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/verification-code-with-token") {
+            
+            var request = URLRequest(url: url)
+            
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+            
+            do{
+                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions())
+            } catch {
+                
+            }
+            
+            let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                
+                var statusCode = 0
+
+                if let httpResponse = urlResponse as? HTTPURLResponse {
+                    statusCode = httpResponse.statusCode
+                }
+                
+                DispatchQueue.main.async {
+                    response?(statusCode, nil, error)
+                }
+            }
+            
+            task.resume()
+            
+        } else {
+            
+            DispatchQueue.main.async {
+                response?(0, nil, nil)
+            }
+        }
+        
+    }
+    
+    
+        
 }

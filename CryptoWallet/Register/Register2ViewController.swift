@@ -45,7 +45,6 @@ class Register2ViewController: UIViewController {
             }
             self.areaBtn.addTarget(self, action: #selector(self.showSelectAreaDialog), for: UIControl.Event.touchUpInside)
         }
-        
     }
     
     @objc func showSelectAreaDialog() {

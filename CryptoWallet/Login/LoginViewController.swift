@@ -140,7 +140,7 @@ class LoginViewController: UIViewController {
                                         let login2ViewController = UIStoryboard(name: "Login2", bundle: nil).instantiateViewController(withIdentifier: "login2ViewController")
                                         self.navigationController?.pushViewController(login2ViewController, animated: true)
                                     }else{
-                                        BN.getToken(countryId: self.countryCode?.countryId ?? "", mobileNumber: self.phoneTextField.text ?? "", password: self.passwordTextField.text ?? "", verificationCode: "", verificationMethod: 0) { statusCode, dataObj, err in
+                                        BN.firstGetToken(countryId: self.countryCode?.countryId ?? "", mobileNumber: self.phoneTextField.text ?? "", password: self.passwordTextField.text ?? "", verificationCode: "", verificationMethod: 0) { statusCode, dataObj, err in
                                                 if (statusCode == 200){
                                                     if let data = dataObj {
                                                         US.updateToken(token: data)

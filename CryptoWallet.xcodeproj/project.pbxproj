@@ -90,6 +90,10 @@
 		79C4457528001CDD00B6C170 /* SecurityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C4457428001CDD00B6C170 /* SecurityVC.swift */; };
 		79C44579280023A200B6C170 /* SecurityNextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C44577280023A200B6C170 /* SecurityNextCell.swift */; };
 		79C4457A280023A200B6C170 /* SecurityNextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C44578280023A200B6C170 /* SecurityNextCell.xib */; };
+		D429F10528042719006371AF /* ChangeMobile2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429F10428042719006371AF /* ChangeMobile2VC.swift */; };
+		D429F1072804273E006371AF /* ChangeMobile2VC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D429F1062804273E006371AF /* ChangeMobile2VC.storyboard */; };
+		D476A1152803D8FD00B054DC /* ChangeMobileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476A1142803D8FD00B054DC /* ChangeMobileVC.swift */; };
+		D476A1172803D91600B054DC /* ChangeMobileVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D476A1162803D91600B054DC /* ChangeMobileVC.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +183,10 @@
 		79C4457428001CDD00B6C170 /* SecurityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityVC.swift; sourceTree = "<group>"; };
 		79C44577280023A200B6C170 /* SecurityNextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityNextCell.swift; sourceTree = "<group>"; };
 		79C44578280023A200B6C170 /* SecurityNextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecurityNextCell.xib; sourceTree = "<group>"; };
+		D429F10428042719006371AF /* ChangeMobile2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMobile2VC.swift; sourceTree = "<group>"; };
+		D429F1062804273E006371AF /* ChangeMobile2VC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangeMobile2VC.storyboard; sourceTree = "<group>"; };
+		D476A1142803D8FD00B054DC /* ChangeMobileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMobileVC.swift; sourceTree = "<group>"; };
+		D476A1162803D91600B054DC /* ChangeMobileVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChangeMobileVC.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,13 +329,11 @@
 		795C3F1427FCD9C10056A6FF /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				79C445762800236E00B6C170 /* SecurityCell */,
+				D476A1132803D8AE00B054DC /* Security */,
 				7995FECE28000D1600D59C27 /* AccountCell */,
 				3DAA1DA427E084E300E096E4 /* Account.storyboard */,
 				3DAA1DA827E0850200E096E4 /* AccountViewController.swift */,
 				3DD9CAE927E8161A000DA160 /* AccountTableView.swift */,
-				79C4457228001B0E00B6C170 /* Security.storyboard */,
-				79C4457428001CDD00B6C170 /* SecurityVC.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -387,6 +393,20 @@
 				79B5B0802802E551000FAB9C /* SecuritySwitchCell.xib */,
 			);
 			path = SecurityCell;
+			sourceTree = "<group>";
+		};
+		D476A1132803D8AE00B054DC /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				79C445762800236E00B6C170 /* SecurityCell */,
+				79C4457228001B0E00B6C170 /* Security.storyboard */,
+				79C4457428001CDD00B6C170 /* SecurityVC.swift */,
+				D476A1142803D8FD00B054DC /* ChangeMobileVC.swift */,
+				D476A1162803D91600B054DC /* ChangeMobileVC.storyboard */,
+				D429F10428042719006371AF /* ChangeMobile2VC.swift */,
+				D429F1062804273E006371AF /* ChangeMobile2VC.storyboard */,
+			);
+			path = Security;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +470,7 @@
 				3DAEF74727E31ACF00D2DD82 /* NotifyDetail.storyboard in Resources */,
 				3DAEF73F27E3142900D2DD82 /* Notify.storyboard in Resources */,
 				3DAEF74B27E3209C00D2DD82 /* CandlestickChart.storyboard in Resources */,
+				D429F1072804273E006371AF /* ChangeMobile2VC.storyboard in Resources */,
 				3DAF667B27DF1DCB00F11509 /* Register2.storyboard in Resources */,
 				79C4457A280023A200B6C170 /* SecurityNextCell.xib in Resources */,
 				3DBC2EAF27D9A0A300847959 /* LaunchScreen.storyboard in Resources */,
@@ -458,6 +479,7 @@
 				3DDFDA4627E039A00012A2F2 /* Register4.storyboard in Resources */,
 				3DAA1D7F27E06F1200E096E4 /* Home.storyboard in Resources */,
 				3DBC2EC727D9E4C500847959 /* Welcome.storyboard in Resources */,
+				D476A1172803D91600B054DC /* ChangeMobileVC.storyboard in Resources */,
 				3DAA1D9F27E0844C00E096E4 /* Swap.storyboard in Resources */,
 				3DAA1D8327E0707900E096E4 /* Forgot.storyboard in Resources */,
 				3DDFDA4227E02E550012A2F2 /* Register3.storyboard in Resources */,
@@ -526,6 +548,7 @@
 				3DBC2EBF27D9D4A400847959 /* DemoPageViewContent1Controller.swift in Sources */,
 				795C3F1627FCE33B0056A6FF /* TokenResponse.swift in Sources */,
 				3DD9CAEC27E8162E000DA160 /* AccountTableViewCellTitle.swift in Sources */,
+				D476A1152803D8FD00B054DC /* ChangeMobileVC.swift in Sources */,
 				3DAA1D7927E0633800E096E4 /* LoginViewController.swift in Sources */,
 				3D6C4E8F27E1CB8300D64A16 /* HomeTableViewCellTitle.swift in Sources */,
 				3DAEF74327E3145500D2DD82 /* NotifyTableView.swift in Sources */,
@@ -536,6 +559,7 @@
 				3DDFDA4827E039AE0012A2F2 /* Register4ViewController.swift in Sources */,
 				3DAA1DA927E0850200E096E4 /* AccountViewController.swift in Sources */,
 				3DAF667327DEDE4800F11509 /* Register2ViewController.swift in Sources */,
+				D429F10528042719006371AF /* ChangeMobile2VC.swift in Sources */,
 				3DAA1DAB27E096C900E096E4 /* TabBarMainViewController.swift in Sources */,
 				79C44579280023A200B6C170 /* SecurityNextCell.swift in Sources */,
 				3DBC2EC327D9D4DB00847959 /* DemoPageViewContent3Controller.swift in Sources */,
