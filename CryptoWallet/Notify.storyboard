@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notifications-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController restorationIdentifier="notifyViewController" storyboardIdentifier="notifyViewController" id="Y6W-OH-hqX" customClass="NotifyViewController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="notifyTableView" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0c1-74-d9Q" customClass="NotifyTableView" customModule="CryptoWallet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="notifyTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="notifyTableViewCell" id="eIW-dD-SgT" customClass="NotifyTableViewCell" customModule="CryptoWallet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="82.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eIW-dD-SgT" id="UTx-98-PJ8">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="82.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKI-sj-n5l">
+                                                    <rect key="frame" x="15" y="5" width="384" height="72.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_notify" translatesAutoresizingMaskIntoConstraints="NO" id="c9i-nD-Eze">
+                                                            <rect key="frame" x="16" y="20.5" width="32" height="32"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="c9i-nD-Eze" secondAttribute="height" multiplier="1:1" id="OtA-PW-KJH"/>
+                                                                <constraint firstAttribute="width" constant="32" id="jx1-ZD-ZqV"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGG-fI-1Gz">
+                                                            <rect key="frame" x="56" y="16" width="312" height="40.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications testing title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDA-2i-rpw">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="312" height="19.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020-03-17 15:45:59" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMt-HK-KSr">
+                                                                    <rect key="frame" x="0.0" y="24.5" width="312" height="16"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="TMt-HK-KSr" firstAttribute="top" secondItem="rDA-2i-rpw" secondAttribute="bottom" constant="5" id="9OF-Q4-X5m"/>
+                                                                <constraint firstItem="rDA-2i-rpw" firstAttribute="top" secondItem="LGG-fI-1Gz" secondAttribute="top" id="NMF-l9-zLI"/>
+                                                                <constraint firstAttribute="trailing" secondItem="rDA-2i-rpw" secondAttribute="trailing" id="aia-ca-XCO"/>
+                                                                <constraint firstAttribute="bottom" secondItem="TMt-HK-KSr" secondAttribute="bottom" id="w9S-ES-HLl"/>
+                                                                <constraint firstItem="TMt-HK-KSr" firstAttribute="leading" secondItem="LGG-fI-1Gz" secondAttribute="leading" id="yje-hI-1Mn"/>
+                                                                <constraint firstAttribute="trailing" secondItem="TMt-HK-KSr" secondAttribute="trailing" id="yvf-Ib-nXo"/>
+                                                                <constraint firstItem="rDA-2i-rpw" firstAttribute="leading" secondItem="LGG-fI-1Gz" secondAttribute="leading" id="ziy-C8-Yge"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="c9i-nD-Eze" firstAttribute="top" secondItem="FKI-sj-n5l" secondAttribute="top" priority="199" constant="20" id="4bE-uI-FDj"/>
+                                                        <constraint firstItem="LGG-fI-1Gz" firstAttribute="centerY" secondItem="FKI-sj-n5l" secondAttribute="centerY" id="7ht-fa-j5y"/>
+                                                        <constraint firstItem="c9i-nD-Eze" firstAttribute="centerY" secondItem="FKI-sj-n5l" secondAttribute="centerY" id="GFZ-UN-5IS"/>
+                                                        <constraint firstItem="c9i-nD-Eze" firstAttribute="leading" secondItem="FKI-sj-n5l" secondAttribute="leading" constant="16" id="mv0-1U-QZZ"/>
+                                                        <constraint firstItem="LGG-fI-1Gz" firstAttribute="leading" secondItem="c9i-nD-Eze" secondAttribute="trailing" constant="8" id="rNt-wN-gBF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="LGG-fI-1Gz" secondAttribute="trailing" constant="16" id="rvr-TA-MDG"/>
+                                                        <constraint firstItem="LGG-fI-1Gz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FKI-sj-n5l" secondAttribute="top" priority="200" constant="16" id="vyp-oE-xvh"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="FKI-sj-n5l" secondAttribute="trailing" constant="15" id="GzD-T0-Aia"/>
+                                                <constraint firstItem="FKI-sj-n5l" firstAttribute="leading" secondItem="UTx-98-PJ8" secondAttribute="leading" constant="15" id="N0N-mA-Ik3"/>
+                                                <constraint firstItem="FKI-sj-n5l" firstAttribute="top" secondItem="UTx-98-PJ8" secondAttribute="top" constant="5" id="Slf-ES-eJH"/>
+                                                <constraint firstAttribute="bottom" secondItem="FKI-sj-n5l" secondAttribute="bottom" priority="50" constant="5" id="XDE-4P-LXo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="0c1-74-d9Q" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="1KW-Cp-aLn"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0c1-74-d9Q" secondAttribute="trailing" id="kYz-qL-hQS"/>
+                            <constraint firstItem="0c1-74-d9Q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="nYh-VM-2Ov"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="0c1-74-d9Q" secondAttribute="bottom" id="xJy-np-uFC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notifications" id="gY4-Vj-PDj"/>
+                    <connections>
+                        <outlet property="iNotifyTableView" destination="0c1-74-d9Q" id="Op7-re-c2f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1" y="52"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_notify" width="20" height="20"/>
+    </resources>
+</document>

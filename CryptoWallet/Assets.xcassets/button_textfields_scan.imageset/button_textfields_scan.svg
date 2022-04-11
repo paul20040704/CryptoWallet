@@ -1,0 +1,12 @@
+<svg id="button_textfields_scan" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_319" data-name="Group 319" transform="translate(485 -1986)">
+    <g id="Icon_ionic-md-qr-scanner" data-name="Icon ionic-md-qr-scanner" transform="translate(-488.375 1982.5)">
+      <path id="Path_389" data-name="Path 389" d="M6.144,7.973a.689.689,0,0,1,.7-.7H10.76V4.5H6.906A3.5,3.5,0,0,0,3.375,7.973v3.912H6.144Z" fill="#1f892b"/>
+      <path id="Path_390" data-name="Path 390" d="M27.525,4.5h-3.9V7.269H27.5a.718.718,0,0,1,.738.7v3.912H31.01V7.973A3.468,3.468,0,0,0,27.525,4.5Z" transform="translate(-3.635)" fill="#1f892b"/>
+      <path id="Path_391" data-name="Path 391" d="M28.24,26.354a.689.689,0,0,1-.7.7H23.625v2.827h3.912a3.5,3.5,0,0,0,3.473-3.531V22.5H28.24Z" transform="translate(-3.635 -3.231)" fill="#1f892b"/>
+      <path id="Path_392" data-name="Path 392" d="M6.848,27.058a.689.689,0,0,1-.7-.7V22.5H3.375v3.854a3.553,3.553,0,0,0,3.531,3.531H10.76V27.058Z" transform="translate(0 -3.231)" fill="#1f892b"/>
+    </g>
+    <rect id="Rectangle_84" data-name="Rectangle 84" width="24" height="24" transform="translate(-485 1986)" fill="#fff" opacity="0"/>
+  </g>
+  <rect id="Rectangle_2776" data-name="Rectangle 2776" width="24" height="24" fill="#fff" opacity="0"/>
+</svg>

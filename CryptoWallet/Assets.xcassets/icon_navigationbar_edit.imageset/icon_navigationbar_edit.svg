@@ -1,0 +1,7 @@
+<svg id="icon_navigationbar_edit" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="Icon_feather-edit" data-name="Icon feather-edit" transform="translate(-2 -1.818)">
+    <path id="Path_393" data-name="Path 393" d="M17.367,23.083H4.716A2.719,2.719,0,0,1,2,20.367V7.716A2.719,2.719,0,0,1,4.716,5h6.325a.909.909,0,0,1,0,1.818H4.716a.9.9,0,0,0-.9.9V20.367a.9.9,0,0,0,.9.9H17.367a.9.9,0,0,0,.9-.9V14.042a.909.909,0,0,1,1.818,0v6.325A2.719,2.719,0,0,1,17.367,23.083Z" transform="translate(0 -1.265)" fill="#fff"/>
+    <path id="Path_394" data-name="Path 394" d="M22.752,1.818a2.826,2.826,0,0,1,2,4.824l-8.584,8.584a.909.909,0,0,1-.422.239l-3.614.9a.909.909,0,0,1-1.1-1.1l.9-3.614a.909.909,0,0,1,.239-.422l8.584-8.584A2.807,2.807,0,0,1,22.752,1.818ZM15.059,13.763l8.406-8.406A1.008,1.008,0,1,0,22.04,3.931l-8.406,8.406-.475,1.9Z" transform="translate(-3.578 0)" fill="#fff"/>
+  </g>
+  <rect id="Rectangle_2780" data-name="Rectangle 2780" width="20" height="20" transform="translate(0 0)" fill="#fff" opacity="0"/>
+</svg>

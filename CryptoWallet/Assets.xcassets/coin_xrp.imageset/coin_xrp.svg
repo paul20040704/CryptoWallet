@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Group_324" data-name="Group 324" transform="translate(499 -2164)">
+    <g id="Layer_2" data-name="Layer 2" transform="translate(-499 2167)">
+      <g id="Layer_1" data-name="Layer 1">
+        <path id="Path_380" data-name="Path 380" d="M28.194,0h4.625L23.194,9.53a8.995,8.995,0,0,1-12.625,0L.94,0H5.569l7.313,7.239a5.694,5.694,0,0,0,7.994,0Z" transform="translate(-0.881)" fill="#fff"/>
+        <path id="Path_381" data-name="Path 381" d="M4.628,241.363H0l9.688-9.589a8.995,8.995,0,0,1,12.625,0L32,241.363H27.375L20,234.065a5.694,5.694,0,0,0-7.994,0Z" transform="translate(0 -214.863)" fill="#fff"/>
+      </g>
+    </g>
+    <rect id="Rectangle_89" data-name="Rectangle 89" width="32" height="32" transform="translate(-499 2164)" fill="#fff" opacity="0"/>
+  </g>
+</svg>

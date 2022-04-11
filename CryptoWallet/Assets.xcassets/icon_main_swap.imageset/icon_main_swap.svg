@@ -1,0 +1,10 @@
+<svg id="icon_main_swap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#1f892b"/>
+      <stop offset="1" stop-color="#11681b"/>
+    </linearGradient>
+  </defs>
+  <path id="Union_6" data-name="Union 6" d="M-142,16h28l-14,14Zm8,0V0h12V16Z" transform="translate(144 1)" fill="url(#linear-gradient)"/>
+  <rect id="Rectangle_2800" data-name="Rectangle 2800" width="32" height="32" fill="#fff" opacity="0"/>
+</svg>

@@ -1,0 +1,4 @@
+<svg id="icon_toolbar_twofactor" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <path id="Icon_open-lock-locked" data-name="Icon open-lock-locked" d="M8.5,0A5.707,5.707,0,0,0,2.833,5.714V8.571H0V20H17V8.571H14.167V5.714A5.707,5.707,0,0,0,8.5,0Zm0,2.857a2.818,2.818,0,0,1,2.833,2.857V8.571H5.667V5.714A2.818,2.818,0,0,1,8.5,2.857Z" transform="translate(1.5)" fill="#696969"/>
+  <rect id="Rectangle_2792" data-name="Rectangle 2792" width="20" height="20" fill="#fff" opacity="0"/>
+</svg>

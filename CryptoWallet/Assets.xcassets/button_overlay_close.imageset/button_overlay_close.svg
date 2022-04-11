@@ -1,0 +1,7 @@
+<svg id="button_overlay_close" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Group_304" data-name="Group 304" transform="translate(-359 -517)">
+    <circle id="Oval" cx="15" cy="15" r="15" transform="translate(359 517)" fill="rgba(118,118,128,0.24)"/>
+    <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M17.472,16.289l3.573-3.573a.837.837,0,1,0-1.184-1.184L16.288,15.1l-3.573-3.573a.837.837,0,1,0-1.184,1.184L15.1,16.289l-3.573,3.573a.837.837,0,0,0,1.184,1.184l3.573-3.573,3.573,3.573a.837.837,0,0,0,1.184-1.184Z" transform="translate(357.715 515.711)" fill="#9f9fa6"/>
+  </g>
+  <rect id="Rectangle_2772" data-name="Rectangle 2772" width="30" height="30" fill="#fff" opacity="0"/>
+</svg>

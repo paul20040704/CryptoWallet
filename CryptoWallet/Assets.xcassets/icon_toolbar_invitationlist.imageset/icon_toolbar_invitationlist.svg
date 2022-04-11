@@ -1,0 +1,7 @@
+<svg id="icon_toolbar_invitationlist" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="person-check-fill-svgrepo-com" transform="translate(0 1)">
+    <path id="Path_429" data-name="Path 429" d="M17.192,5.183a.625.625,0,0,1,0,.885l-3.75,3.75a.625.625,0,0,1-.885,0L10.683,7.943a.626.626,0,0,1,.885-.885L13,8.491l3.307-3.309a.625.625,0,0,1,.885,0Z" transform="translate(2.624 0.75)" fill="#696969" fill-rule="evenodd"/>
+    <path id="Path_430" data-name="Path 430" d="M1.25,17A1.224,1.224,0,0,1,0,15.749c0-1.25,1.25-5,7.5-5s7.5,3.75,7.5,5A1.224,1.224,0,0,1,13.749,17ZM7.5,9.5A3.75,3.75,0,1,0,3.75,5.75,3.75,3.75,0,0,0,7.5,9.5Z" fill="#696969"/>
+  </g>
+  <rect id="Rectangle_2794" data-name="Rectangle 2794" width="20" height="20" fill="#fff" opacity="0"/>
+</svg>

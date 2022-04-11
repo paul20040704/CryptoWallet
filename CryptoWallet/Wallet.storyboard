@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Wallet-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController restorationIdentifier="walletViewController" storyboardIdentifier="walletViewController" id="Y6W-OH-hqX" customClass="WalletViewController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo3" translatesAutoresizingMaskIntoConstraints="NO" id="fb7-Ia-Z15">
+                                <rect key="frame" x="123" y="64" width="168" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fb7-Ia-Z15" secondAttribute="height" multiplier="132:16" id="IXO-H1-rcn"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="fb7-Ia-Z15" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="AeM-gj-qHG"/>
+                            <constraint firstItem="fb7-Ia-Z15" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="pTI-P4-RWN"/>
+                            <constraint firstItem="fb7-Ia-Z15" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="1:44" id="yOJ-G8-uNh"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Wallet" image="navigation_wallet" id="FGW-3r-Cx6"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="704" y="35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo3" width="131.92100524902344" height="16"/>
+        <image name="navigation_wallet" width="20" height="20"/>
+    </resources>
+</document>

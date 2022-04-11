@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Group_321" data-name="Group 321" transform="translate(750 -2161)">
+    <g id="tether-usdt-logo" transform="translate(-750.005 2163)">
+      <path id="Path_378" data-name="Path 378" d="M5.864.137.029,12.393a.238.238,0,0,0,.051.277l15.759,15.1a.24.24,0,0,0,.333,0l15.759-15.1a.238.238,0,0,0,.051-.277L26.147.137A.236.236,0,0,0,25.932,0H6.081a.236.236,0,0,0-.217.137h0Z" transform="translate(0 0)" fill="#50af95" fill-rule="evenodd"/>
+      <path id="Path_379" data-name="Path 379" d="M76.091,50.089h0c-.113.008-.7.043-2,.043-1.037,0-1.773-.031-2.032-.043h0c-4.008-.176-7-.874-7-1.709s2.991-1.532,7-1.711v2.726c.262.019,1.013.063,2.05.063,1.244,0,1.868-.052,1.98-.062V46.67c4,.178,6.984.876,6.984,1.709s-2.984,1.531-6.984,1.708h0Zm0-3.7V43.949h5.581V40.23h-15.2v3.719h5.58v2.438c-4.536.208-7.947,1.107-7.947,2.183s3.411,1.974,7.947,2.183V58.57H76.09V50.752c4.525-.208,7.931-1.106,7.931-2.182s-3.4-1.973-7.931-2.183h0Zm0,0Z" transform="translate(-58.061 -36.437)" fill="#fff" fill-rule="evenodd"/>
+    </g>
+    <rect id="Rectangle_86" data-name="Rectangle 86" width="32" height="32" transform="translate(-750 2161)" fill="#fff" opacity="0"/>
+  </g>
+</svg>

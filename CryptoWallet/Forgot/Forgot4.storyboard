@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Password Changed!-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController restorationIdentifier="forgot4ViewController" storyboardIdentifier="forgot4ViewController" id="Y6W-OH-hqX" customClass="Forgot4ViewController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hE4-d6-lyQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NSJ-Ty-R8o">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_bg2" translatesAutoresizingMaskIntoConstraints="NO" id="G8z-3o-bwK">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="G8z-3o-bwK" secondAttribute="bottom" id="BLo-Bo-a4Q"/>
+                                    <constraint firstItem="G8z-3o-bwK" firstAttribute="top" secondItem="NSJ-Ty-R8o" secondAttribute="top" id="Z1R-B7-hdb"/>
+                                    <constraint firstItem="G8z-3o-bwK" firstAttribute="leading" secondItem="NSJ-Ty-R8o" secondAttribute="leading" id="oms-yT-cON"/>
+                                    <constraint firstAttribute="trailing" secondItem="G8z-3o-bwK" secondAttribute="trailing" id="rsO-Ga-Zkc"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sussess" translatesAutoresizingMaskIntoConstraints="NO" id="SqA-nT-uNk">
+                                <rect key="frame" x="138" y="344.5" width="138" height="149"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTF-XV-lWz">
+                                <rect key="frame" x="0.0" y="44" width="414" height="300.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password has been Changed!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6pp-P7-zVZ">
+                                        <rect key="frame" x="82.5" y="114" width="249.5" height="72"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6pp-P7-zVZ" firstAttribute="width" relation="lessThanOrEqual" secondItem="hTF-XV-lWz" secondAttribute="width" multiplier="0.75" id="5b5-tw-3Qb"/>
+                                    <constraint firstItem="6pp-P7-zVZ" firstAttribute="centerY" secondItem="hTF-XV-lWz" secondAttribute="centerY" id="KdX-nE-afg"/>
+                                    <constraint firstItem="6pp-P7-zVZ" firstAttribute="centerX" secondItem="hTF-XV-lWz" secondAttribute="centerX" id="adX-br-4cx"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5U-ng-T3e">
+                                <rect key="frame" x="52" y="794" width="310.5" height="48"/>
+                                <color key="backgroundColor" red="0.066666666669999999" green="0.40784313729999999" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="CmG-wc-YOY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Go to login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="82U-5D-ILc"/>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="hTF-XV-lWz" firstAttribute="leading" secondItem="82U-5D-ILc" secondAttribute="leading" id="DW6-iH-YsB"/>
+                            <constraint firstItem="NSJ-Ty-R8o" firstAttribute="leading" secondItem="hE4-d6-lyQ" secondAttribute="leading" id="IT3-eR-COh"/>
+                            <constraint firstItem="82U-5D-ILc" firstAttribute="bottom" secondItem="b5U-ng-T3e" secondAttribute="bottom" constant="20" id="L5c-tF-Xi0"/>
+                            <constraint firstItem="SqA-nT-uNk" firstAttribute="width" secondItem="hE4-d6-lyQ" secondAttribute="width" multiplier="1:3" id="RJw-c2-yg0"/>
+                            <constraint firstItem="SqA-nT-uNk" firstAttribute="height" secondItem="hE4-d6-lyQ" secondAttribute="height" multiplier="1:6" id="Sz7-7F-Kpi"/>
+                            <constraint firstItem="b5U-ng-T3e" firstAttribute="width" secondItem="hE4-d6-lyQ" secondAttribute="width" multiplier="0.75" id="ahf-st-BfJ"/>
+                            <constraint firstItem="hTF-XV-lWz" firstAttribute="top" secondItem="82U-5D-ILc" secondAttribute="top" id="cLa-Za-Kof"/>
+                            <constraint firstItem="b5U-ng-T3e" firstAttribute="centerX" secondItem="82U-5D-ILc" secondAttribute="centerX" id="eJQ-g1-b41"/>
+                            <constraint firstItem="NSJ-Ty-R8o" firstAttribute="trailing" secondItem="hE4-d6-lyQ" secondAttribute="trailing" id="goB-iV-Y3Y"/>
+                            <constraint firstItem="NSJ-Ty-R8o" firstAttribute="bottom" secondItem="hE4-d6-lyQ" secondAttribute="bottom" id="kw3-3D-BYS"/>
+                            <constraint firstItem="SqA-nT-uNk" firstAttribute="centerY" secondItem="82U-5D-ILc" secondAttribute="centerY" constant="-34" id="mjY-AH-euL"/>
+                            <constraint firstItem="82U-5D-ILc" firstAttribute="trailing" secondItem="hTF-XV-lWz" secondAttribute="trailing" id="pJF-MF-0sy"/>
+                            <constraint firstItem="SqA-nT-uNk" firstAttribute="centerX" secondItem="82U-5D-ILc" secondAttribute="centerX" id="qLb-6o-J6J"/>
+                            <constraint firstItem="SqA-nT-uNk" firstAttribute="top" secondItem="hTF-XV-lWz" secondAttribute="bottom" id="rN9-7d-pED"/>
+                            <constraint firstAttribute="top" secondItem="NSJ-Ty-R8o" secondAttribute="top" id="vzS-iu-VwO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Password Changed!" id="08E-Bk-SLu"/>
+                    <connections>
+                        <outlet property="closeBtn" destination="b5U-ng-T3e" id="JW2-wY-BeT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-20" y="20"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_sussess" width="140" height="140"/>
+        <image name="pic_bg2" width="2048" height="2732"/>
+    </resources>
+</document>

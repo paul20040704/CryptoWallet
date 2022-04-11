@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Register-->
+        <scene sceneID="XCr-Do-xka">
+            <objects>
+                <viewController restorationIdentifier="registerViewController" storyboardIdentifier="registerViewController" id="6ux-6F-tru" customClass="RegisterViewController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jaE-K3-9YX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zhx-gC-Vlx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_bg2" translatesAutoresizingMaskIntoConstraints="NO" id="vZu-MA-Fzn">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vZu-MA-Fzn" secondAttribute="trailing" id="9Ca-GN-fNT"/>
+                                    <constraint firstAttribute="bottom" secondItem="vZu-MA-Fzn" secondAttribute="bottom" id="ABV-Qe-9Xk"/>
+                                    <constraint firstItem="vZu-MA-Fzn" firstAttribute="top" secondItem="Zhx-gC-Vlx" secondAttribute="top" id="eaz-H4-lNs"/>
+                                    <constraint firstItem="vZu-MA-Fzn" firstAttribute="leading" secondItem="Zhx-gC-Vlx" secondAttribute="leading" id="foT-pj-dbh"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ux-rt-ysg">
+                                <rect key="frame" x="52" y="794" width="310.5" height="48"/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="u1d-BL-oQn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="HyW-lp-JT7">
+                                <rect key="frame" x="31" y="750" width="352" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" title="I’m already reading and agree privacy policy and user agreement." image="check_off">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brA-oj-0A6">
+                                <rect key="frame" x="20" y="64" width="374" height="666"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UD4-At-OwG"/>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="UD4-At-OwG" firstAttribute="trailing" secondItem="brA-oj-0A6" secondAttribute="trailing" constant="20" id="0KK-f6-YIk"/>
+                            <constraint firstItem="HyW-lp-JT7" firstAttribute="centerX" secondItem="UD4-At-OwG" secondAttribute="centerX" id="1LR-0A-GFE"/>
+                            <constraint firstItem="8Ux-rt-ysg" firstAttribute="width" secondItem="jaE-K3-9YX" secondAttribute="width" multiplier="0.75" id="4PJ-4C-XXK"/>
+                            <constraint firstItem="HyW-lp-JT7" firstAttribute="width" secondItem="jaE-K3-9YX" secondAttribute="width" multiplier="0.85" id="82W-4a-RJv"/>
+                            <constraint firstItem="8Ux-rt-ysg" firstAttribute="centerX" secondItem="UD4-At-OwG" secondAttribute="centerX" id="FSp-Sq-WYO"/>
+                            <constraint firstItem="Zhx-gC-Vlx" firstAttribute="leading" secondItem="jaE-K3-9YX" secondAttribute="leading" id="Kgi-dC-YNd"/>
+                            <constraint firstAttribute="bottom" secondItem="Zhx-gC-Vlx" secondAttribute="bottom" id="Rfd-bz-ifF"/>
+                            <constraint firstAttribute="trailing" secondItem="Zhx-gC-Vlx" secondAttribute="trailing" id="ZaV-MI-mf8"/>
+                            <constraint firstItem="UD4-At-OwG" firstAttribute="bottom" secondItem="8Ux-rt-ysg" secondAttribute="bottom" constant="20" id="csx-sV-ok5"/>
+                            <constraint firstItem="brA-oj-0A6" firstAttribute="leading" secondItem="UD4-At-OwG" secondAttribute="leading" constant="20" id="kgj-uF-zmL"/>
+                            <constraint firstItem="Zhx-gC-Vlx" firstAttribute="top" secondItem="jaE-K3-9YX" secondAttribute="top" id="pB3-UG-URX"/>
+                            <constraint firstItem="HyW-lp-JT7" firstAttribute="top" secondItem="brA-oj-0A6" secondAttribute="bottom" constant="20" id="v4w-8R-hY5"/>
+                            <constraint firstItem="brA-oj-0A6" firstAttribute="top" secondItem="UD4-At-OwG" secondAttribute="top" constant="20" id="z8t-gD-Xxn"/>
+                            <constraint firstItem="8Ux-rt-ysg" firstAttribute="top" secondItem="HyW-lp-JT7" secondAttribute="bottom" constant="20" id="zfP-ny-XHP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Register" id="uqN-GX-L2I"/>
+                    <connections>
+                        <outlet property="checkBtn" destination="HyW-lp-JT7" id="gjn-vp-YqN"/>
+                        <outlet property="nextBtn" destination="8Ux-rt-ysg" id="SkJ-Im-dV4"/>
+                        <outlet property="termsWeb" destination="brA-oj-0A6" id="Tou-PA-8pi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uv5-kH-iX8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1642" y="-19"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="check_off" width="24" height="24"/>
+        <image name="pic_bg2" width="2048" height="2732"/>
+    </resources>
+</document>

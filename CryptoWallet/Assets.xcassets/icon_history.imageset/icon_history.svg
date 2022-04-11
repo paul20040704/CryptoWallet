@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="Group_222" data-name="Group 222" transform="translate(-4499 -844)">
+    <g id="Icon_feather-file-text" data-name="Icon feather-file-text" transform="translate(4496 842)">
+      <path id="Path_383" data-name="Path 383" d="M7.727,2H15a.909.909,0,0,1,.643.266L21.1,7.721a.909.909,0,0,1,.266.643V19.273A2.73,2.73,0,0,1,18.636,22H7.727A2.73,2.73,0,0,1,5,19.273V4.727A2.73,2.73,0,0,1,7.727,2Zm6.9,1.818h-6.9a.91.91,0,0,0-.909.909V19.273a.91.91,0,0,0,.909.909H18.636a.91.91,0,0,0,.909-.909V8.74Z" fill="#fff"/>
+      <path id="Path_384" data-name="Path 384" d="M26.364,9.273H20.909A.909.909,0,0,1,20,8.364V2.909a.909.909,0,1,1,1.818,0V7.455h4.545a.909.909,0,0,1,0,1.818Z" transform="translate(-5.909)" fill="#fff"/>
+      <path id="Path_385" data-name="Path 385" d="M19.182,20.318H11.909a.909.909,0,1,1,0-1.818h7.273a.909.909,0,1,1,0,1.818Z" transform="translate(-2.364 -6.5)" fill="#fff"/>
+      <path id="Path_386" data-name="Path 386" d="M19.182,26.318H11.909a.909.909,0,1,1,0-1.818h7.273a.909.909,0,1,1,0,1.818Z" transform="translate(-2.364 -8.864)" fill="#fff"/>
+      <path id="Path_387" data-name="Path 387" d="M13.727,14.318H11.909a.909.909,0,1,1,0-1.818h1.818a.909.909,0,1,1,0,1.818Z" transform="translate(-2.364 -4.136)" fill="#fff"/>
+    </g>
+    <rect id="Rectangle_64" data-name="Rectangle 64" width="20" height="20" transform="translate(4499 844)" fill="#fff" opacity="0"/>
+  </g>
+</svg>
