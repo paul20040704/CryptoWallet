@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Navigation Controller-->
+        <scene sceneID="DBQ-zS-By9">
+            <objects>
+                <navigationController restorationIdentifier="tabBarNavigationController" storyboardIdentifier="tabBarNavigationController" id="cej-H4-ASf" customClass="TabBarNavigationController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NGB-Ng-jgp">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DNh-bA-xsH" kind="relationship" relationship="rootViewController" id="uZe-C0-TbY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lX3-3k-mhR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1429" y="35"/>
+        </scene>
+        <!--Tab Bar Main View Controller-->
+        <scene sceneID="Z6W-wd-bFm">
+            <objects>
+                <viewController restorationIdentifier="tabBarMainViewController" storyboardIdentifier="tabBarMainViewController" id="DNh-bA-xsH" customClass="TabBarMainViewController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7uN-Vu-Yxf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q18-rN-RnQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="zFn-rR-xqa" kind="embed" id="FtM-vB-nrf"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="1Ry-dN-9Hc">
+                                <rect key="frame" x="175" y="798" width="64" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="axg-kl-DTU"/>
+                                    <constraint firstAttribute="width" constant="64" id="dJX-fh-xKZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="tintColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Z6x-a5-QJf"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="q18-rN-RnQ" secondAttribute="bottom" id="0uz-0e-oYe"/>
+                            <constraint firstItem="q18-rN-RnQ" firstAttribute="top" secondItem="7uN-Vu-Yxf" secondAttribute="top" id="6J4-gH-nlb"/>
+                            <constraint firstItem="Z6x-a5-QJf" firstAttribute="bottom" secondItem="1Ry-dN-9Hc" secondAttribute="bottom" id="BRh-2l-4I8"/>
+                            <constraint firstItem="q18-rN-RnQ" firstAttribute="leading" secondItem="7uN-Vu-Yxf" secondAttribute="leading" id="Ntm-N5-rdO"/>
+                            <constraint firstAttribute="trailing" secondItem="q18-rN-RnQ" secondAttribute="trailing" id="wWh-nj-pea"/>
+                            <constraint firstItem="1Ry-dN-9Hc" firstAttribute="centerX" secondItem="Z6x-a5-QJf" secondAttribute="centerX" id="y8G-ST-0Ns"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vM4-fh-4ld">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="centerBtn" destination="1Ry-dN-9Hc" id="qc2-mW-SQc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTP-Ov-9gL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-720" y="35"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="mYX-xx-5Xw">
+            <objects>
+                <tabBarController restorationIdentifier="tabBarController" storyboardIdentifier="tabBarController" id="zFn-rR-xqa" customClass="TabBarController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="deP-1I-odj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5LT-jh-ffb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="191" y="34"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="cL2-oc-fNB">
+            <objects>
+                <tabBarController id="gq7-2W-chq" customClass="TabBarController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AgP-YH-N1O">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="93i-da-6rd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="64"/>
+        </scene>
+    </scenes>
+</document>

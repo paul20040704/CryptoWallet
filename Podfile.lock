@@ -1,0 +1,24 @@
+PODS:
+  - IQKeyboardManagerSwift (6.5.9)
+  - PKHUD (5.3.0)
+  - SnapKit (5.6.0)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - PKHUD (~> 5.0)
+  - SnapKit (~> 5.6.0)
+
+SPEC REPOS:
+  trunk:
+    - IQKeyboardManagerSwift
+    - PKHUD
+    - SnapKit
+
+SPEC CHECKSUMS:
+  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+
+PODFILE CHECKSUM: f0223b1f13524e39c9d93408b78958c045863e2f
+
+COCOAPODS: 1.11.3

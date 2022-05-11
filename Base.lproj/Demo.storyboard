@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qd3-28-59n">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Demo Page View Main Controller-->
+        <scene sceneID="mre-nH-dEp">
+            <objects>
+                <viewController restorationIdentifier="demoPageViewMainController" storyboardIdentifier="demoPageViewMainController" id="qd3-28-59n" customClass="DemoPageViewMainController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hMD-uq-cvK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuR-up-HNE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="cVt-Ce-MKn" kind="embed" id="NNR-vA-OeO"/>
+                                </connections>
+                            </containerView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="6Ck-Fw-CVM">
+                                <rect key="frame" x="149" y="821" width="116" height="26"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CR8-HB-Hnj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fuR-up-HNE" secondAttribute="bottom" id="8ul-Mi-cJb"/>
+                            <constraint firstItem="fuR-up-HNE" firstAttribute="leading" secondItem="hMD-uq-cvK" secondAttribute="leading" id="KY8-BP-dQ5"/>
+                            <constraint firstAttribute="trailing" secondItem="fuR-up-HNE" secondAttribute="trailing" id="RNQ-1X-Wgj"/>
+                            <constraint firstItem="fuR-up-HNE" firstAttribute="top" secondItem="hMD-uq-cvK" secondAttribute="top" id="ShD-1V-9fO"/>
+                            <constraint firstItem="6Ck-Fw-CVM" firstAttribute="centerX" secondItem="CR8-HB-Hnj" secondAttribute="centerX" id="bce-N4-9Vz"/>
+                            <constraint firstItem="CR8-HB-Hnj" firstAttribute="bottom" secondItem="6Ck-Fw-CVM" secondAttribute="bottom" constant="15" id="g16-H3-mWH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="5PH-2Y-oQg"/>
+                    <connections>
+                        <outlet property="pageControl" destination="6Ck-Fw-CVM" id="dOb-Cy-vcz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v22-D6-MqQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612" y="-17"/>
+        </scene>
+        <!--Demo Page View Container Controller-->
+        <scene sceneID="4wM-ec-OO7">
+            <objects>
+                <viewController restorationIdentifier="demoPageViewContainerController" storyboardIdentifier="demoPageViewContainerController" id="cVt-Ce-MKn" customClass="DemoPageViewContainerController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dCY-g6-Zgn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Ddp-Th-o8R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15c-Kl-1Bf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2045" y="60"/>
+        </scene>
+        <!--Demo Page View Content1 Controller-->
+        <scene sceneID="MXI-fG-m1S">
+            <objects>
+                <viewController restorationIdentifier="demoPageViewContent1Controller" storyboardIdentifier="demoPageViewContent1Controller" id="ENj-Zb-fPx" customClass="DemoPageViewContent1Controller" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OZd-jp-KRY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="4tv-gA-3DZ"/>
+                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jxs-SU-npi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2719" y="60"/>
+        </scene>
+        <!--Demo Page View Content2 Controller-->
+        <scene sceneID="FSL-RH-jDK">
+            <objects>
+                <viewController restorationIdentifier="demoPageViewContent2Controller" storyboardIdentifier="demoPageViewContent2Controller" id="3vh-3J-lZm" customClass="DemoPageViewContent2Controller" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iXL-xa-Mes">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="OI4-9l-Qad"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NeJ-HY-cpP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3406" y="60"/>
+        </scene>
+        <!--Demo Page View Content3 Controller-->
+        <scene sceneID="iIN-QA-i3i">
+            <objects>
+                <viewController restorationIdentifier="demoPageViewContent3Controller" storyboardIdentifier="demoPageViewContent3Controller" id="QOj-S1-7Vv" customClass="DemoPageViewContent3Controller" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sTQ-3t-UgD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="kRB-no-hAX"/>
+                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ag0-YY-Uyo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4088" y="60"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

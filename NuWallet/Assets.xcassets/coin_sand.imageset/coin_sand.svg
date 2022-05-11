@@ -1,0 +1,10 @@
+<svg id="coin_sand" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.504" y1="20.496" x2="0.517" y2="20.482" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#00adef"/>
+      <stop offset="1" stop-color="#0084ff"/>
+    </linearGradient>
+  </defs>
+  <circle id="Ellipse_26" data-name="Ellipse 26" cx="16" cy="16" r="16" fill="url(#linear-gradient)"/>
+  <path id="Path_1259" data-name="Path 1259" d="M15.628,11.764,13.9,13.492V20.34l1.728,1.728h6.848v3.456H19.084V23.8H13.9v3.456l1.728,1.728h10.3l1.728-1.728V20.34l-1.728-1.728H19.084V15.156H22.54v1.728h5.184V13.428L26,11.7H15.628Z" transform="translate(-5.004 -4.212)" fill="#fff"/>
+</svg>

@@ -1,0 +1,6 @@
+framework module Pods_NuWallet {
+  umbrella header "Pods-NuWallet-umbrella.h"
+
+  export *
+  module * { export * }
+}

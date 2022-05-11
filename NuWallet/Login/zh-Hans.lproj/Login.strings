@@ -1,0 +1,27 @@
+
+/* Class = "UITextField"; placeholder = "Please set your password."; ObjectID = "Ac3-HY-XsM"; */
+"Ac3-HY-XsM.placeholder" = "Please set your password.";
+
+/* Class = "UILabel"; text = "Phone Number"; ObjectID = "aah-mX-T2n"; */
+"aah-mX-T2n.text" = "Phone Number";
+
+/* Class = "UINavigationItem"; title = "Login"; ObjectID = "hqw-PY-PFe"; */
+"hqw-PY-PFe.title" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Next"; ObjectID = "kaJ-Sc-gpg"; */
+"kaJ-Sc-gpg.normalTitle" = "Next";
+
+/* Class = "UITextField"; placeholder = "Please input cell phone number"; ObjectID = "o7c-pW-Whp"; */
+"o7c-pW-Whp.placeholder" = "Please input cell phone number";
+
+/* Class = "UIButton"; configuration.title = "Forgot Password?"; ObjectID = "uTb-AL-Uuc"; */
+"uTb-AL-Uuc.configuration.title" = "Forgot Password?";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password?"; ObjectID = "uTb-AL-Uuc"; */
+"uTb-AL-Uuc.normalTitle" = "Forgot Password?";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "wn6-VK-hnv"; */
+"wn6-VK-hnv.text" = "Password";
+
+/* Class = "UILabel"; text = "Area Code"; ObjectID = "z4X-yM-lUe"; */
+"z4X-yM-lUe.text" = "Area Code";

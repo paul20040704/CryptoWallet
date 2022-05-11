@@ -1,0 +1,11 @@
+<svg id="coin_dot" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="polkadot-new-dot-logo" transform="translate(74.87 1)">
+    <ellipse id="Ellipse_17" data-name="Ellipse 17" cx="5.514" cy="3.207" rx="5.514" ry="3.207" transform="translate(-64.384 0)" fill="#e6007a"/>
+    <ellipse id="Ellipse_18" data-name="Ellipse 18" cx="5.514" cy="3.207" rx="5.514" ry="3.207" transform="translate(-64.384 24.166)" fill="#e6007a"/>
+    <ellipse id="Ellipse_19" data-name="Ellipse 19" cx="5.514" cy="3.209" rx="5.514" ry="3.209" transform="matrix(0.5, -0.866, 0.866, 0.5, -74.87, 12.42)" fill="#e6007a"/>
+    <ellipse id="Ellipse_20" data-name="Ellipse 20" cx="5.514" cy="3.207" rx="5.514" ry="3.207" transform="matrix(0.5, -0.866, 0.866, 0.5, -53.941, 24.503)" fill="#e6007a"/>
+    <ellipse id="Ellipse_21" data-name="Ellipse 21" cx="3.209" cy="5.514" rx="3.209" ry="5.514" transform="matrix(0.866, -0.5, 0.5, 0.866, -74.869, 18.16)" fill="#e6007a"/>
+    <ellipse id="Ellipse_22" data-name="Ellipse 22" cx="3.207" cy="5.514" rx="3.207" ry="5.514" transform="matrix(0.866, -0.5, 0.5, 0.866, -53.939, 6.078)" fill="#e6007a"/>
+  </g>
+  <rect id="Rectangle_2810" data-name="Rectangle 2810" width="32" height="32" fill="#fff" opacity="0"/>
+</svg>

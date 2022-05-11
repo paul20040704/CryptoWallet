@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogoutView" customModule="NuWallet" customModuleProvider="target">
+            <connections>
+                <outlet property="alertView" destination="NeG-tR-dYu" id="DRL-oR-iEg"/>
+                <outlet property="cancelBtn" destination="Btb-Tv-5ei" id="Snt-0r-HVv"/>
+                <outlet property="confirmBtn" destination="yOL-Xp-mf9" id="VnO-Zn-rho"/>
+                <outlet property="parentView" destination="arW-AG-ijr" id="oyC-TL-oDC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="arW-AG-ijr">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NeG-tR-dYu">
+                    <rect key="frame" x="14" y="184" width="386" height="500"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYd-qJ-1o9">
+                            <rect key="frame" x="158.5" y="50" width="69" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="3xb-QD-fCM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="logout"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure want to log out?" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yY8-ef-HKr">
+                            <rect key="frame" x="30" y="85" width="326" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Mtw-sW-zMJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="logout_text"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_state_logout" translatesAutoresizingMaskIntoConstraints="NO" id="VFY-aB-AdY">
+                            <rect key="frame" x="123" y="165" width="140" height="140"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="140" id="9mf-qs-pIB"/>
+                                <constraint firstAttribute="width" constant="140" id="D3T-JI-R2s"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btb-Tv-5ei">
+                            <rect key="frame" x="30" y="345" width="326" height="50"/>
+                            <color key="backgroundColor" red="0.039215686270000001" green="0.50196078430000002" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="gw8-MD-dC0"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="cancel"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOL-Xp-mf9">
+                            <rect key="frame" x="30" y="405" width="326" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="mey-z0-g27"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Confirm">
+                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="17"/>
+                            </buttonConfiguration>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" red="0.1215686275" green="0.53725490200000003" blue="0.16862745100000001" alpha="0.69803921570000005" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="confirm_btn"/>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="yOL-Xp-mf9" secondAttribute="trailing" constant="30" id="3IK-ZQ-Zbb"/>
+                        <constraint firstItem="yOL-Xp-mf9" firstAttribute="leading" secondItem="NeG-tR-dYu" secondAttribute="leading" constant="30" id="6WW-Ao-q47"/>
+                        <constraint firstItem="VFY-aB-AdY" firstAttribute="centerX" secondItem="NeG-tR-dYu" secondAttribute="centerX" id="9tC-Js-jyF"/>
+                        <constraint firstItem="yY8-ef-HKr" firstAttribute="centerX" secondItem="NeG-tR-dYu" secondAttribute="centerX" id="AFp-MF-oDy"/>
+                        <constraint firstItem="Btb-Tv-5ei" firstAttribute="leading" secondItem="NeG-tR-dYu" secondAttribute="leading" constant="30" id="M6P-YX-Urn"/>
+                        <constraint firstAttribute="trailing" secondItem="Btb-Tv-5ei" secondAttribute="trailing" constant="30" id="RFH-nD-b9D"/>
+                        <constraint firstItem="VFY-aB-AdY" firstAttribute="top" secondItem="yY8-ef-HKr" secondAttribute="bottom" constant="30" id="Rwz-us-WAQ"/>
+                        <constraint firstAttribute="trailing" secondItem="yY8-ef-HKr" secondAttribute="trailing" constant="30" id="WT7-lO-DP3"/>
+                        <constraint firstItem="yOL-Xp-mf9" firstAttribute="top" secondItem="Btb-Tv-5ei" secondAttribute="bottom" constant="10" id="aKt-fk-X56"/>
+                        <constraint firstItem="yY8-ef-HKr" firstAttribute="top" secondItem="EYd-qJ-1o9" secondAttribute="bottom" constant="10" id="fKO-6j-ORq"/>
+                        <constraint firstItem="yY8-ef-HKr" firstAttribute="leading" secondItem="NeG-tR-dYu" secondAttribute="leading" constant="30" id="gwd-q5-iRE"/>
+                        <constraint firstItem="EYd-qJ-1o9" firstAttribute="top" secondItem="NeG-tR-dYu" secondAttribute="top" constant="50" id="ihn-Jv-i6I"/>
+                        <constraint firstAttribute="height" constant="500" id="m3E-vI-4xc"/>
+                        <constraint firstItem="EYd-qJ-1o9" firstAttribute="centerX" secondItem="NeG-tR-dYu" secondAttribute="centerX" id="qCd-wD-wJ7"/>
+                        <constraint firstItem="Btb-Tv-5ei" firstAttribute="top" secondItem="VFY-aB-AdY" secondAttribute="bottom" constant="40" id="vCD-ZM-inV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="96i-ww-vAg"/>
+            <color key="backgroundColor" white="0.0" alpha="0.60373817500000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="NeG-tR-dYu" firstAttribute="top" secondItem="96i-ww-vAg" secondAttribute="top" constant="140" id="Tai-Qu-vgb"/>
+                <constraint firstItem="96i-ww-vAg" firstAttribute="trailing" secondItem="NeG-tR-dYu" secondAttribute="trailing" constant="14" id="Ycf-IC-z5h"/>
+                <constraint firstItem="NeG-tR-dYu" firstAttribute="leading" secondItem="96i-ww-vAg" secondAttribute="leading" constant="14" id="iQ2-b3-nXP"/>
+            </constraints>
+            <point key="canvasLocation" x="53.623188405797109" y="-569.19642857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pic_state_logout" width="140" height="140"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

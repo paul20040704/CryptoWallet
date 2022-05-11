@@ -1,0 +1,15 @@
+<svg id="coin_etc" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Layer_2" data-name="Layer 2" transform="translate(6)">
+    <g id="svg8">
+      <g id="layer5">
+        <g id="g1627">
+          <path id="path1599" d="M0,17.427c3.481,1.849,7.113,3.784,9.919,5.281l9.838-5.281c-3.562,5.292-6.53,9.7-9.838,14.573C6.605,27.135,2.946,21.767,0,17.427Zm.378-1.46,9.551-5.1,9.427,5.059-9.422,5.1Zm9.541-6.73L0,14.459,9.876,0l9.881,14.492Z" fill="#3ab83a"/>
+          <path id="path1593" d="M771.333,22.708l9.838-5.281C777.609,22.719,771.333,32,771.333,32Zm.011-11.837,9.427,5.059-9.422,5.1Zm-.011-1.633L771.29,0l9.881,14.492Z" transform="translate(-761.414)" fill="#0b8311"/>
+          <path id="path1603" d="M29.55,1244.563l9.552.784,9.427-.816-9.422,5.1Z" transform="translate(-29.172 -1228.595)" fill="#0b8311"/>
+          <path id="path1606" d="M775.51,1245.346l9.427-.816-9.422,5.1Z" transform="translate(-765.58 -1228.595)" fill="#146714"/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <rect id="Rectangle_2807" data-name="Rectangle 2807" width="32" height="32" fill="#fff" opacity="0"/>
+</svg>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Two Factor AuthVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="TwoFactorAuthVC" id="Y6W-OH-hqX" customClass="TwoFactorAuthVC" customModule="NuWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bmr-0G-4CT">
+                                <rect key="frame" x="15" y="64" width="384" height="176"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ra-Pa-1Wh">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="52"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_textfields_select" translatesAutoresizingMaskIntoConstraints="NO" id="8JZ-9N-S8t">
+                                                <rect key="frame" x="349" y="16" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="6cH-C5-O13"/>
+                                                    <constraint firstAttribute="width" constant="20" id="usN-Y6-UGg"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-qM-rvA">
+                                                <rect key="frame" x="20" y="0.0" width="329" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="52" id="O4H-MB-bVc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="SMS Authentication">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="sms_auth"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Tew-qM-rvA" secondAttribute="bottom" id="aJe-dG-zzt"/>
+                                            <constraint firstAttribute="trailing" secondItem="8JZ-9N-S8t" secondAttribute="trailing" constant="15" id="aa2-Iw-CFL"/>
+                                            <constraint firstItem="8JZ-9N-S8t" firstAttribute="centerY" secondItem="9ra-Pa-1Wh" secondAttribute="centerY" id="bwJ-NL-2iH"/>
+                                            <constraint firstItem="8JZ-9N-S8t" firstAttribute="leading" secondItem="Tew-qM-rvA" secondAttribute="trailing" id="hja-u5-pDg"/>
+                                            <constraint firstItem="Tew-qM-rvA" firstAttribute="leading" secondItem="9ra-Pa-1Wh" secondAttribute="leading" constant="20" id="uH6-fu-Qcc"/>
+                                            <constraint firstItem="Tew-qM-rvA" firstAttribute="top" secondItem="9ra-Pa-1Wh" secondAttribute="top" id="zgk-tY-hSq"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWU-sg-uSh">
+                                        <rect key="frame" x="0.0" y="62" width="384" height="52"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_textfields_select" translatesAutoresizingMaskIntoConstraints="NO" id="mXL-xI-TVg">
+                                                <rect key="frame" x="349" y="16" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="324-eW-cGP"/>
+                                                    <constraint firstAttribute="width" constant="20" id="zLE-4e-jaX"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiD-Io-mYU">
+                                                <rect key="frame" x="20" y="0.0" width="329" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="52" id="dC8-UR-Jz1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Email Authentication">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="email_auth"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="mXL-xI-TVg" secondAttribute="trailing" constant="15" id="7XO-py-eHK"/>
+                                            <constraint firstItem="mXL-xI-TVg" firstAttribute="leading" secondItem="SiD-Io-mYU" secondAttribute="trailing" id="DbL-JW-eYM"/>
+                                            <constraint firstItem="mXL-xI-TVg" firstAttribute="centerY" secondItem="BWU-sg-uSh" secondAttribute="centerY" id="PhG-rP-zHB"/>
+                                            <constraint firstAttribute="bottom" secondItem="SiD-Io-mYU" secondAttribute="bottom" id="VvW-di-bEJ"/>
+                                            <constraint firstItem="SiD-Io-mYU" firstAttribute="leading" secondItem="BWU-sg-uSh" secondAttribute="leading" constant="20" id="exk-R3-BSH"/>
+                                            <constraint firstItem="SiD-Io-mYU" firstAttribute="top" secondItem="BWU-sg-uSh" secondAttribute="top" id="p8e-GJ-Ekg"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RV8-sm-oES">
+                                        <rect key="frame" x="0.0" y="124" width="384" height="52"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button_textfields_select" translatesAutoresizingMaskIntoConstraints="NO" id="3Tg-Yc-agm">
+                                                <rect key="frame" x="349" y="16" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="Nbd-JW-sC6"/>
+                                                    <constraint firstAttribute="width" constant="20" id="RcK-e4-dhc"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7M4-ML-HhH">
+                                                <rect key="frame" x="20" y="0.0" width="329" height="52"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="52" id="y8d-MX-SXH"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Authenticator">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="authenticator"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="7M4-ML-HhH" firstAttribute="top" secondItem="RV8-sm-oES" secondAttribute="top" id="7bn-EM-4rY"/>
+                                            <constraint firstItem="3Tg-Yc-agm" firstAttribute="leading" secondItem="7M4-ML-HhH" secondAttribute="trailing" id="8Xs-Sv-H1v"/>
+                                            <constraint firstAttribute="bottom" secondItem="7M4-ML-HhH" secondAttribute="bottom" id="AcR-OU-ezG"/>
+                                            <constraint firstItem="3Tg-Yc-agm" firstAttribute="centerY" secondItem="RV8-sm-oES" secondAttribute="centerY" id="F4P-eE-YYW"/>
+                                            <constraint firstItem="7M4-ML-HhH" firstAttribute="leading" secondItem="RV8-sm-oES" secondAttribute="leading" constant="20" id="dCT-kA-acq"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Tg-Yc-agm" secondAttribute="trailing" constant="15" id="wF5-jg-jgA"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bmr-0G-4CT" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="0GL-QP-22y"/>
+                            <constraint firstItem="Bmr-0G-4CT" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="15" id="Iax-wH-4ID"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Bmr-0G-4CT" secondAttribute="trailing" constant="15" id="nEH-2w-KpM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="authBtn" destination="7M4-ML-HhH" id="gX9-90-yMr"/>
+                        <outlet property="authImage" destination="3Tg-Yc-agm" id="VXB-vl-jDP"/>
+                        <outlet property="authView" destination="RV8-sm-oES" id="MwQ-It-nDe"/>
+                        <outlet property="emailBtn" destination="SiD-Io-mYU" id="rCg-cw-TeC"/>
+                        <outlet property="emailImage" destination="mXL-xI-TVg" id="cnm-Qm-5GK"/>
+                        <outlet property="emailView" destination="BWU-sg-uSh" id="EXj-DD-yMW"/>
+                        <outlet property="smsBtn" destination="Tew-qM-rvA" id="muD-fk-YOy"/>
+                        <outlet property="smsImage" destination="8JZ-9N-S8t" id="EQ0-hF-6VI"/>
+                        <outlet property="smsView" destination="9ra-Pa-1Wh" id="ivl-BX-KRK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="66.964285714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="button_textfields_select" width="16" height="16"/>
+    </resources>
+</document>

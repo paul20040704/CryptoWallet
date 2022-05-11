@@ -1,0 +1,8 @@
+<svg id="coin_link" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Layer_2" data-name="Layer 2" transform="translate(2)">
+    <g id="Layer_1" data-name="Layer 1">
+      <path id="Path_1258" data-name="Path 1258" d="M13.872,0,10.936,1.688l-8,4.624L0,8V24l2.936,1.688,8.073,4.624L13.945,32l2.936-1.688,7.927-4.624L27.743,24V8L24.807,6.312l-8-4.624Zm-8,20.624V11.376l8-4.624,8,4.624v9.248l-8,4.624Z" fill="#2a5ada"/>
+    </g>
+  </g>
+  <rect id="Rectangle_2814" data-name="Rectangle 2814" width="32" height="32" fill="#fff" opacity="0"/>
+</svg>

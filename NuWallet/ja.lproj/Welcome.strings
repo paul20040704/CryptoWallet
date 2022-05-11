@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "REGISTER"; ObjectID = "kLL-bV-YtI"; */
+"kLL-bV-YtI.normalTitle" = "REGISTER";
+
+/* Class = "UIButton"; normalTitle = "English"; ObjectID = "nS2-vd-2Sz"; */
+"nS2-vd-2Sz.normalTitle" = "English";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "s2w-hs-cvf"; */
+"s2w-hs-cvf.normalTitle" = "LOGIN";
+
+/* Class = "UILabel"; text = "Hello!"; ObjectID = "yjZ-hR-csD"; */
+"yjZ-hR-csD.text" = "Hello!";
+
+/* Class = "UINavigationItem"; title = "Welcome"; ObjectID = "z1u-Sa-ZQn"; */
+"z1u-Sa-ZQn.title" = "Welcome";
