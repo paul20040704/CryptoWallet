@@ -136,9 +136,9 @@ class ChangeLoginPwVC: UIViewController {
                 if (statusCode == 200) {
                     self.counter = 120
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                    self.smsLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.mobileNumber ?? "your phone number"). " + "verification_code_placeholder".localized
+                    self.smsLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.mobileNumber ?? "your phone number").  " + "verification_code_placeholder".localized
                 }else{
-                    self.smsLabel.text = "Send verification code fail."
+                    self.smsLabel.text = err?.exception ?? "send_fail".localized
                 }
             }
         }
@@ -170,6 +170,7 @@ class ChangeLoginPwVC: UIViewController {
                     let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
                     FinishVC.changeLoginPwVC = self
                     FinishVC.tag = 4
+                    FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
                     self.present(FinishVC, animated: true, completion: nil)
                 }else{
                     HUD.hide()

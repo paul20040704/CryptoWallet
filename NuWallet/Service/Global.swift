@@ -7,10 +7,9 @@
 
 import Foundation
 import UIKit
+import Observable
 
 let BN = BaseNetwork.shareNetWork
-
-let TN = ThirdPartyNetwork.share
 
 let US = Util.shared
 
@@ -23,3 +22,6 @@ let PEncoder = PropertyListEncoder()
 let ScreenWidth = UIScreen.main.bounds.width
 let ScreenHeight = UIScreen.main.bounds.height
 
+var notificationStatus: Observable<NotificationStatusType?> = Observable(nil)
+
+let localVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String

@@ -33,16 +33,15 @@ struct Others: Codable {
 
 struct CryptoMarketResponse: Codable {
     
-    let marketTicker24hr: [marketTicker24hrs]?
+    let converts: [marketTicker24hrs]?
     
 }
 
 struct marketTicker24hrs: Codable {
     
     let coinId: String?
-    let symbol: String?
-    let priceChangePercent: String?
-    let lastPrice: String?
+    let price: Double?
+    let percentChange24h: Double?
     
 }
 

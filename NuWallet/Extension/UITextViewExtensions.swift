@@ -50,7 +50,7 @@ extension UITextView: UITextViewDelegate {
             //let labelHeight = placeholderLabel.frame.height
             
             let size = placeholderLabel.sizeThatFits(CGSize(width: labelWidth, height: 0))
-            placeholderLabel.frame = CGRect(x: labelX + 10, y: labelY + 10, width: size.width - 20 , height: size.height)
+            placeholderLabel.frame = CGRect(x: labelX + 10, y: labelY + 10, width: size.width , height: size.height)
         }
     }
         

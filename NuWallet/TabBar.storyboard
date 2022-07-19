@@ -11,7 +11,7 @@
         <!--Tab Bar Navigation Controller-->
         <scene sceneID="DBQ-zS-By9">
             <objects>
-                <navigationController restorationIdentifier="tabBarNavigationController" storyboardIdentifier="tabBarNavigationController" id="cej-H4-ASf" customClass="TabBarNavigationController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="tabBarNavigationController" storyboardIdentifier="tabBarNavigationController" id="cej-H4-ASf" customClass="TabBarNavigationController" customModule="NuWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NGB-Ng-jgp">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -34,7 +34,7 @@
         <!--Tab Bar Main View Controller-->
         <scene sceneID="Z6W-wd-bFm">
             <objects>
-                <viewController restorationIdentifier="tabBarMainViewController" storyboardIdentifier="tabBarMainViewController" id="DNh-bA-xsH" customClass="TabBarMainViewController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="tabBarMainViewController" storyboardIdentifier="tabBarMainViewController" id="DNh-bA-xsH" customClass="TabBarMainViewController" customModule="NuWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7uN-Vu-Yxf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,7 +84,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="mYX-xx-5Xw">
             <objects>
-                <tabBarController restorationIdentifier="tabBarController" storyboardIdentifier="tabBarController" id="zFn-rR-xqa" customClass="TabBarController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController restorationIdentifier="tabBarController" storyboardIdentifier="tabBarController" id="zFn-rR-xqa" customClass="TabBarController" customModule="NuWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="deP-1I-odj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -97,7 +97,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="cL2-oc-fNB">
             <objects>
-                <tabBarController id="gq7-2W-chq" customClass="TabBarController" customModule="CryptoWallet" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="gq7-2W-chq" customClass="TabBarController" customModule="NuWallet" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AgP-YH-N1O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

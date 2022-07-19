@@ -13,7 +13,6 @@ class DepositCell: UITableViewCell {
     @IBOutlet weak var shortLabel: UILabel!
     @IBOutlet weak var longLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var totalLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -26,5 +25,7 @@ class DepositCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+
 
 }

@@ -22,20 +22,20 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jea-nb-9h8">
-                    <rect key="frame" x="14" y="109" width="386" height="688"/>
+                    <rect key="frame" x="14" y="109" width="386" height="628.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example - Passport" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxN-yq-0lG">
-                            <rect key="frame" x="50" y="40" width="286" height="24"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <rect key="frame" x="50" y="40" width="286" height="21.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="example_license_title"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload your passport that the page with your information." textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25q-wH-6nq">
-                            <rect key="frame" x="35" y="74" width="316" height="43"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload your passport that the page with your information." textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25q-wH-6nq">
+                            <rect key="frame" x="35" y="71.5" width="316" height="38.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
@@ -43,13 +43,13 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKs-SY-vco">
-                            <rect key="frame" x="43" y="588" width="300" height="50"/>
+                            <rect key="frame" x="43" y="538.5" width="300" height="50"/>
                             <color key="backgroundColor" red="0.066666666669999999" green="0.40784313729999999" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="300" id="2YD-0O-Dl2"/>
                                 <constraint firstAttribute="height" constant="50" id="MJS-Qf-cxD"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="I see">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -59,20 +59,20 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_passport" translatesAutoresizingMaskIntoConstraints="NO" id="Qwy-pm-sIv">
-                            <rect key="frame" x="43" y="157" width="300" height="400"/>
+                            <rect key="frame" x="43" y="150" width="300" height="358.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="400" id="ddb-bg-0RX"/>
                                 <constraint firstAttribute="width" constant="300" id="ksK-jp-zyi"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemGreenColor"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="hKs-SY-vco" secondAttribute="bottom" constant="50" id="9xM-f1-0Ac"/>
+                        <constraint firstAttribute="bottom" secondItem="hKs-SY-vco" secondAttribute="bottom" constant="40" id="9xM-f1-0Ac"/>
                         <constraint firstItem="25q-wH-6nq" firstAttribute="top" secondItem="ZxN-yq-0lG" secondAttribute="bottom" constant="10" id="BfL-7U-qwl"/>
                         <constraint firstItem="Qwy-pm-sIv" firstAttribute="centerX" secondItem="jea-nb-9h8" secondAttribute="centerX" id="Ni3-dv-h7n"/>
                         <constraint firstItem="ZxN-yq-0lG" firstAttribute="leading" secondItem="jea-nb-9h8" secondAttribute="leading" constant="50" id="P0t-yV-A9b"/>
                         <constraint firstItem="25q-wH-6nq" firstAttribute="leading" secondItem="jea-nb-9h8" secondAttribute="leading" constant="35" id="Y6s-NE-8Hl"/>
+                        <constraint firstItem="hKs-SY-vco" firstAttribute="top" secondItem="Qwy-pm-sIv" secondAttribute="bottom" constant="30" id="Z0z-NE-7yA"/>
                         <constraint firstAttribute="trailing" secondItem="ZxN-yq-0lG" secondAttribute="trailing" constant="50" id="gaL-cc-hnq"/>
                         <constraint firstAttribute="trailing" secondItem="25q-wH-6nq" secondAttribute="trailing" constant="35" id="l1O-9l-5s0"/>
                         <constraint firstItem="Qwy-pm-sIv" firstAttribute="top" secondItem="25q-wH-6nq" secondAttribute="bottom" constant="40" id="ooe-eW-rUw"/>
@@ -91,7 +91,7 @@
             <constraints>
                 <constraint firstItem="jea-nb-9h8" firstAttribute="top" secondItem="l5M-0K-g2s" secondAttribute="top" constant="65" id="BAO-LK-sCQ"/>
                 <constraint firstItem="jea-nb-9h8" firstAttribute="leading" secondItem="l5M-0K-g2s" secondAttribute="leading" constant="14" id="C1n-8g-Vgj"/>
-                <constraint firstItem="l5M-0K-g2s" firstAttribute="bottom" secondItem="jea-nb-9h8" secondAttribute="bottom" constant="65" id="P2c-Hy-3nl"/>
+                <constraint firstItem="Qwy-pm-sIv" firstAttribute="height" secondItem="WZv-e3-f44" secondAttribute="height" multiplier="0.4" id="IkM-ew-6AF"/>
                 <constraint firstItem="l5M-0K-g2s" firstAttribute="trailing" secondItem="jea-nb-9h8" secondAttribute="trailing" constant="14" id="zaa-Iy-wIN"/>
             </constraints>
             <point key="canvasLocation" x="53.623188405797109" y="-569.19642857142856"/>

@@ -64,14 +64,12 @@ class TwoFactorAuthVC: UIViewController {
             HUD.show(.systemActivity)
             BN.changeTwoAuth(verificationMethod: btn.tag) { statusCode, dataObj, err in
                 if (statusCode == 200) {
-                    BN.getMember { statusCode, dataObj, err in
-                        HUD.hide()
-                        self.select = btn.tag
-                        self.changeImage()
-                    }
+                    HUD.hide()
+                    self.select = btn.tag
+                    self.changeImage()
                 }else{
                     HUD.hide()
-                    FailView.failView.showMe(error: err?.exception ?? "Change authentication fail.")
+                    FailView.failView.showMe(error: err?.exception ?? "network_fail".localized)
                 }
             }
         }

@@ -61,6 +61,8 @@ class LoginViewController: UIViewController {
         getCountryCodes(headers: nil) { statusCode, dataObj, err in
             if (statusCode == 200) {
                 self.countryCodesResponse = dataObj
+            }else{
+                FailView.failView.showMe(error: err?.exception ?? "network_fail".localized)
             }
             self.areaBtn.addTarget(self, action: #selector(self.showSelectAreaDialog), for: UIControl.Event.touchUpInside)
         }
@@ -78,6 +80,8 @@ class LoginViewController: UIViewController {
                     }
                 }
             }
+        }else{
+            downloadCountryCodesAndInitAreaBtn()
         }
         
         let selectVC = UIStoryboard(name: "SelectVC", bundle: nil).instantiateViewController(withIdentifier: "SelectVC") as! SelectVC
@@ -159,13 +163,12 @@ class LoginViewController: UIViewController {
                 if let data = dataObj {
                     US.updateToken(token: data)
                 }
-                BN.getMember { statusCode, dataObj, err in
-                    HUD.hide()
-                    goMain()
-                }
+                HUD.hide()
+                goMain()
             }else{
                 HUD.hide()
                 FailView.failView.showMe(error: err?.exception ?? "Fail to login")
+                //goMain()
             }
         }
     }

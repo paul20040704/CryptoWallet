@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  NuWallet
+
+  Created by paul.chen-mini on 2022/6/9.
+  
+*/
+
+NSCameraUsageDescription = "カメラ機能を使用してQrcodeをスキャンする必要があります。カメラの電源を入れてください";

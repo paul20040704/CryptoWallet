@@ -75,6 +75,8 @@ class ForgotViewController: UIViewController {
         getCountryCodes(headers: nil) { statusCode, dataObj, err in
             if (statusCode == 200) {
                 self.countryCodesResponse = dataObj
+            }else{
+                FailView.failView.showMe(error: err?.exception ?? "network_fail".localized)
             }
             self.areaBtn.addTarget(self, action: #selector(self.showSelectAreaDialog), for: UIControl.Event.touchUpInside)
         }
@@ -91,6 +93,8 @@ class ForgotViewController: UIViewController {
                     }
                 }
             }
+        }else{
+            downloadCountryCodesAndInitAreaBtn()
         }
         
         let selectVC = UIStoryboard(name: "SelectVC", bundle: nil).instantiateViewController(withIdentifier: "SelectVC") as! SelectVC
@@ -150,9 +154,9 @@ class ForgotViewController: UIViewController {
                 if (statusCode == 200) {
                     self.counter = 120
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                    self.smsLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.phoneTextField.text ?? "your phone number")." + "verification_code_placeholder".localized
+                    self.smsLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.phoneTextField.text ?? "your phone number"). " + "verification_code_placeholder".localized
                 }else{
-                    self.smsLabel.text = "Send verification code fail."
+                    self.smsLabel.text = err?.exception ?? "send_fail".localized
                 }
             }
         }

@@ -30,12 +30,14 @@ class SellingOrderVC: UIViewController {
         super.viewDidLoad()
 
         setUI()
+        setData()
         // Do any additional setup after loading the view.
     }
     
 
     func setUI() {
         self.navigationItem.title = "btm_order".localized
+        self.navigationItem.backButtonTitle = ""
         swapImage.transform()
         
         confirmBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: confirmBtn.frame.height / 2)
@@ -45,18 +47,30 @@ class SellingOrderVC: UIViewController {
         
     }
     
+    func setData() {
+        if let detail = sellingDetil {
+            self.coinImage.image = UIImage(named: "coin_\((detail.coinName ?? "").lowercased())")
+            self.coinName.text = detail.coinName ?? ""
+            self.coinFullName.text = detail.coinFullName ?? ""
+            
+            self.currencyImge.image = UIImage(named: "coin_\((detail.currencyName ?? "").lowercased())")
+            self.currencyName.text = detail.currencyName ?? ""
+            self.currencyFullName.text = detail.currencyFullName ?? ""
+            
+            self.orderLabel.text = detail.orderId ?? ""
+            self.coinLabel.text = detail.coinName ?? ""
+            self.amountLabel.text = String(detail.currencyAmount ?? 0)
+            self.dateLabel.text = detail.date ?? ""
+        }
+    }
+    
     @objc func confirmClick() {
-        HUD.show(.systemActivity)
-        BN.setSellingOrder(orderId: sellingDetil?.orderId ?? "") { statusCode, dataObj, err in
-            HUD.hide()
-            if (statusCode == 200) {
-                let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
-                FinishVC.sellingOrderVC = self
-                FinishVC.tag = 9
-                self.present(FinishVC, animated: true, completion: nil)
-            }else{
-                FailView.failView.showMe(error: err?.exception ?? "Fail To Selling Order.")
-            }
+        if let orderId = sellingDetil?.orderId {
+            let mainSmsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainSmsVC") as! MainSmsVC
+            mainSmsVC.orderId = orderId
+            self.navigationController?.show(mainSmsVC, sender: nil)
+        }else{
+            FailView.failView.showMe(error: "Get orderId fail.")
         }
     }
     

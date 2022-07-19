@@ -18,11 +18,13 @@ class TabBarController: UITabBarController {
         homeViewController.iTabBarController = self
         
         let walletViewController = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "walletViewController") as! WalletViewController
+        //let walletViewController = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletWaitVC")
         walletViewController.iTabBarController = self
         
         let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as! MainVC
         
         let swapViewController = UIStoryboard(name: "Swap", bundle: nil).instantiateViewController(withIdentifier: "swapViewController") as! SwapViewController
+        //let swapViewController = UIStoryboard(name: "Swap", bundle: nil).instantiateViewController(withIdentifier: "SwapWaitVC")
         swapViewController.iTabBarController = self
         
         let accountViewController = UIStoryboard(name: "Account", bundle: nil).instantiateViewController(withIdentifier: "accountViewController") as! AccountViewController
@@ -36,5 +38,5 @@ class TabBarController: UITabBarController {
         self.tabBar.barTintColor = UIColor.init(hex: "#1C1C1C") // TabBar背景顏色
         
     }
-
+    
 }

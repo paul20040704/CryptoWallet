@@ -10,48 +10,109 @@ import PKHUD
 
 class DepositDetailVC: UIViewController {
 
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var copyBtn: UIButton!
-    @IBOutlet weak var qrcodeBtn: UIButton!
-    @IBOutlet weak var bscBtn: UIButton!
-    @IBOutlet weak var trcBtn: UIButton!
-    @IBOutlet weak var splBtn: UIButton!
+    @IBOutlet weak var supportLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
+    var coin = "USDT"
+    var addressDic = Dictionary<String, String?>()
+    var addressKey = Array<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
         setUI()
+        getAddress()
+        
     }
-    
 
     func setUI() {
         self.navigationItem.title = "deposit".localized
-        
-        copyBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: copyBtn.frame.height / 2)
-        copyBtn.addTarget(self, action: #selector(copyClick), for: UIControl.Event.touchUpInside)
-        
-        qrcodeBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: qrcodeBtn.frame.height / 2)
-        qrcodeBtn.addTarget(self, action: #selector(qrcodeClick), for: UIControl.Event.touchUpInside)
-        
-        bscBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: 10)
-        bscBtn.addTarget(self, action: #selector(qrcodeClick), for: UIControl.Event.touchUpInside)
-        
-        trcBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: 10)
-        trcBtn.addTarget(self, action: #selector(qrcodeClick), for: UIControl.Event.touchUpInside)
-        
-        splBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: 10)
-        splBtn.addTarget(self, action: #selector(qrcodeClick), for: UIControl.Event.touchUpInside)
+
     }
     
-    @objc func copyClick() {
-        UIPasteboard.general.string = addressLabel.text
-        HUD.flash(.label("copy_text".localized), delay: 1.0)
+    func getAddress() {
+        HUD.show(.systemActivity)
+        BN.getAssetAddress(coinId: coin) { [weak self] statusCode, dataObj, err in
+            HUD.hide()
+            guard let self = self else {return}
+            if (statusCode == 200) {
+                if let assets = dataObj?.addresses {
+                    for asset in assets {
+                        if let id = asset.networkId {
+                            self.addressDic[id] = asset.address
+                        }
+                    }
+                    self.addressKey = Array(self.addressDic.keys.sorted(by: <))
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    var supportStr = ""
+                    for key in self.addressKey {
+                        supportStr = supportStr + " . \(key)"
+                    }
+                    self.supportLabel.text = supportStr
+                }
+            }else{
+                FailView.failView.showMe(error: err?.exception ?? "network_fail".localized)
+            }
+        }
     }
     
-    @objc func qrcodeClick() {
-        QrcodeView.qrcodeView.showMe()
+    func postAddress(key: String) {
+        HUD.show(.systemActivity)
+        BN.postAssetAddress(coinId: coin, networkId: key) {[weak self] statusCode, dataObj, err in
+            HUD.hide()
+            guard let self = self else {return}
+            if (statusCode == 200) {
+                if let address = dataObj?.address {
+                    self.addressDic[key] = address
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }else{
+                HUD.flash(.label(err?.exception ?? "fail"), delay: 1)
+            }
+        }
     }
+    
     
 
+}
+
+
+extension DepositDetailVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return addressKey.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let addressCell = tableView.dequeueReusableCell(withIdentifier: "DepositAddressCell", for: indexPath) as! DepositAddressCell
+        let generateCell = tableView.dequeueReusableCell(withIdentifier: "DepositGenerateCell", for: indexPath) as! DepositGenerateCell
+        let key = addressKey[indexPath.row]
+        if let address = addressDic[key] {
+            if address == nil {
+                generateCell.coinImage.image = UIImage(named: "coin_\(coin.lowercased())")
+                generateCell.coinLable.text = "\(coin) \("generate_address_paragraph_two".localized) (\(key))"
+                generateCell.generateBtn.setTitle("\("generate_address_paragraph_one".localized) \(coin) \("generate_address_paragraph_two".localized) (\(key))", for: .normal)
+                generateCell.depositDetailVC = self
+                generateCell.key = key
+                
+                return generateCell
+            }else{
+                addressCell.coinImage.image = UIImage(named: "coin_\(coin.lowercased())")
+                addressCell.coinLabel.text = "\(coin) \("generate_address_paragraph_two".localized) (\(key))"
+                addressCell.addressLabel.text = address
+                addressCell.coin = coin
+                addressCell.key = key
+                return addressCell
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    
 }

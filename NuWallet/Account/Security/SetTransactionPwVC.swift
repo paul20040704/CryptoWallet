@@ -118,9 +118,9 @@ class SetTransactionPwVC: UIViewController {
                 if (statusCode == 200) {
                     self.counter = 120
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                    self.smsLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.mobileNumber ?? "your phone number"). " + "verification_code_placeholder".localized
+                    self.smsLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.mobileNumber ?? "your phone number").  " + "verification_code_placeholder".localized
                 }else{
-                    self.smsLabel.text = "Send verification code fail."
+                    self.smsLabel.text = err?.exception ?? "send_fail".localized
                 }
             }
         }
@@ -148,13 +148,12 @@ class SetTransactionPwVC: UIViewController {
             HUD.show(.systemActivity)
             BN.setTransactionPw(password: self.newTranPwTF.text ?? "", confirmPassword: self.confirmPwTF.text ?? "", verificationCode: self.smsTF.text ?? "" ) { statusCode, dataObj, err in
                 if (statusCode == 200) {
-                    BN.getMember { statusCode, dataObj, err in
-                        HUD.hide()
-                        let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
-                        FinishVC.setTransactionPwVC = self
-                        FinishVC.tag = 5
-                        self.present(FinishVC, animated: true, completion: nil)
-                    }
+                    HUD.hide()
+                    let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
+                    FinishVC.setTransactionPwVC = self
+                    FinishVC.tag = 5
+                    FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                    self.present(FinishVC, animated: true, completion: nil)
                 }else{
                     HUD.hide()
                     FailView.failView.showMe(error: err?.exception ?? "Setting transaction password api fail.")

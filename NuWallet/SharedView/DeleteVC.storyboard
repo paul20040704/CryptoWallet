@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--DeleteVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="DeleteVC" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="DeleteVC" customModule="NuWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbI-Ua-gbx">
+                                <rect key="frame" x="20" y="223" width="374" height="450"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmN-an-KPw">
+                                        <rect key="frame" x="87" y="30" width="200" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="yTN-FR-jq5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="delete_account"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64n-60-52s">
+                                        <rect key="frame" x="30" y="54" width="314" height="120"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="nfq-Sb-vjE"/>
+                                        </constraints>
+                                        <string key="text">Before you enter the login password and click the confirm button below, please confirm that your assets have been cleared. If you delete this account, you will no longer be able to log in and operate this account</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="delete_account_hint"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVc-wA-uSU">
+                                        <rect key="frame" x="30" y="212" width="107.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HNZ-OE-ijv">
+                                        <rect key="frame" x="30" y="240" width="314" height="50"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.44696186394091475" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mf8-02-mM2"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVX-Q8-oq8">
+                                        <rect key="frame" x="30" y="310" width="314" height="50"/>
+                                        <color key="backgroundColor" red="0.73725490196078436" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Sof-jt-NVu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biK-Du-RjM">
+                                        <rect key="frame" x="30" y="370" width="314" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="uQy-jH-bUm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.73725490196078436" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstItem="64n-60-52s" firstAttribute="top" secondItem="nmN-an-KPw" secondAttribute="bottom" id="6yD-1t-KFV"/>
+                                    <constraint firstAttribute="height" constant="450" id="B4i-bR-W8T"/>
+                                    <constraint firstAttribute="trailing" secondItem="NVX-Q8-oq8" secondAttribute="trailing" constant="30" id="DQb-Qc-YHc"/>
+                                    <constraint firstAttribute="trailing" secondItem="HNZ-OE-ijv" secondAttribute="trailing" constant="30" id="LqM-yD-t71"/>
+                                    <constraint firstItem="NVX-Q8-oq8" firstAttribute="top" secondItem="HNZ-OE-ijv" secondAttribute="bottom" constant="20" id="MRP-uI-Rpl"/>
+                                    <constraint firstItem="biK-Du-RjM" firstAttribute="leading" secondItem="LbI-Ua-gbx" secondAttribute="leading" constant="30" id="Shl-RR-ZRB"/>
+                                    <constraint firstItem="nmN-an-KPw" firstAttribute="top" secondItem="LbI-Ua-gbx" secondAttribute="top" constant="30" id="VrP-vh-F1x"/>
+                                    <constraint firstItem="biK-Du-RjM" firstAttribute="top" secondItem="NVX-Q8-oq8" secondAttribute="bottom" constant="10" id="YRG-ep-IeD"/>
+                                    <constraint firstItem="NVX-Q8-oq8" firstAttribute="leading" secondItem="LbI-Ua-gbx" secondAttribute="leading" constant="30" id="anK-pY-w3V"/>
+                                    <constraint firstAttribute="trailing" secondItem="64n-60-52s" secondAttribute="trailing" constant="30" id="bGZ-BB-5TZ"/>
+                                    <constraint firstItem="HNZ-OE-ijv" firstAttribute="top" secondItem="pVc-wA-uSU" secondAttribute="bottom" constant="10" id="dYA-V6-KAB"/>
+                                    <constraint firstAttribute="trailing" secondItem="biK-Du-RjM" secondAttribute="trailing" constant="30" id="jiy-KE-34i"/>
+                                    <constraint firstItem="pVc-wA-uSU" firstAttribute="leading" secondItem="LbI-Ua-gbx" secondAttribute="leading" constant="30" id="utw-bd-Nmf"/>
+                                    <constraint firstItem="64n-60-52s" firstAttribute="leading" secondItem="LbI-Ua-gbx" secondAttribute="leading" constant="30" id="v5E-JS-Kdc"/>
+                                    <constraint firstItem="HNZ-OE-ijv" firstAttribute="leading" secondItem="LbI-Ua-gbx" secondAttribute="leading" constant="30" id="wxw-O7-XaL"/>
+                                    <constraint firstItem="nmN-an-KPw" firstAttribute="centerX" secondItem="LbI-Ua-gbx" secondAttribute="centerX" id="yDP-Nt-btU"/>
+                                    <constraint firstAttribute="bottom" secondItem="biK-Du-RjM" secondAttribute="bottom" constant="30" id="yRm-jy-NlI"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.7027321114445364" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="LbI-Ua-gbx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="80h-N5-4F5"/>
+                            <constraint firstItem="LbI-Ua-gbx" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="E40-vI-cnK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="LbI-Ua-gbx" secondAttribute="trailing" constant="20" id="O6f-Yv-qOZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alertView" destination="LbI-Ua-gbx" id="duD-Yl-nnE"/>
+                        <outlet property="cancelBtn" destination="NVX-Q8-oq8" id="JxN-0m-pzK"/>
+                        <outlet property="deleteBtn" destination="biK-Du-RjM" id="1rx-3Z-vms"/>
+                        <outlet property="passwordTF" destination="HNZ-OE-ijv" id="CTh-0H-M3k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="77.678571428571431"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -14,6 +14,7 @@ struct KYCResoponse: Codable {
     let lastName: String?
     let firstName: String?
     let typeOfCertificate: String?
-    
+    let reasonsForRejection: String?
+    let typeOfRejection: Int?
     
 }

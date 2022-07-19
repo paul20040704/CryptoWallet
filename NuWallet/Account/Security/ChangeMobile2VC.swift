@@ -64,6 +64,8 @@ class ChangeMobile2VC: UIViewController {
         getCountryCodes(headers: nil) { statusCode, dataObj, err in
             if (statusCode == 200) {
                 self.countryCodesResponse = dataObj
+            }else{
+                FailView.failView.showMe(error: err?.exception ?? "network_fail".localized)
             }
             self.areaBtn.addTarget(self, action: #selector(self.showSelectAreaDialog), for: UIControl.Event.touchUpInside)
         }
@@ -80,6 +82,8 @@ class ChangeMobile2VC: UIViewController {
                     }
                 }
             }
+        }else{
+            downloadCountryCodesAndInitAreaBtn()
         }
         
         let selectVC = UIStoryboard(name: "SelectVC", bundle: nil).instantiateViewController(withIdentifier: "SelectVC") as! SelectVC
@@ -98,17 +102,17 @@ class ChangeMobile2VC: UIViewController {
     }
     
     @objc func sendBtnClick(_ btn: UIButton) {
-        
+        btn.isUserInteractionEnabled = false
         if (timer == nil) {
             BN.sendVerificationCode(countryId: self.countryCode?.countryId ?? "", phoneNumber: self.phoneNumberText.text ?? "", email: nil, verificationMethod: 2, verificationType: 4) { statusCode, dataObj, err in
-                
+                btn.isUserInteractionEnabled = true
                 if (statusCode == 200) {
-                    
                     self.counter = 120
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                    self.bottomLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.phoneNumberText.text ?? "your phone number"). " + "verification_code_placeholder".localized
+                    self.bottomLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.phoneNumberText.text ?? "your phone number"). " + "verification_code_placeholder".localized
+                }else{
+                    self.bottomLabel.text = err?.exception ?? "send_fail".localized
                 }
-                
             }
         }
     }
@@ -161,13 +165,12 @@ class ChangeMobile2VC: UIViewController {
             HUD.show(.systemActivity)
             BN.changeMobile(countryId: self.countryCode?.countryId ?? "", mobileNumber: self.phoneNumberText.text ?? "", verificationCode: oldVerCode, newVerificationCode: self.smsTextField.text ?? "") { statusCode, dataObj, err in
                 if (statusCode == 200) {
-                    BN.getMember { statusCode, dataObj, err in
-                        HUD.hide()
-                        let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
-                        FinishVC.changeMobile2VC = self
-                        FinishVC.tag = 0
-                        self.present(FinishVC, animated: true, completion: nil)
-                    }
+                    HUD.hide()
+                    let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
+                    FinishVC.changeMobile2VC = self
+                    FinishVC.tag = 0
+                    FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                    self.present(FinishVC, animated: true, completion: nil)
                 }else{
                     FailView.failView.showMe(error: err?.exception ?? "Change mobile number fail.")
                     HUD.hide()

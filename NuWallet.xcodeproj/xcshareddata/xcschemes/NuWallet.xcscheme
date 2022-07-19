@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D4BF564028573E7A00A28281"
+               BuildableName = "NuWalletTests.xctest"
+               BlueprintName = "NuWalletTests"
+               ReferencedContainer = "container:NuWallet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D4E59DF6288566A500B440BE"
+               BuildableName = "NuWalletTest.xctest"
+               BlueprintName = "NuWalletTest"
+               ReferencedContainer = "container:NuWallet.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

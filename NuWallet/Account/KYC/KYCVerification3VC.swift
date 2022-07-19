@@ -7,6 +7,7 @@
 
 import UIKit
 import PKHUD
+import AVFoundation
 
 class KYCVerification3VC: UIViewController, SelectDelegate {
 
@@ -57,6 +58,8 @@ class KYCVerification3VC: UIViewController, SelectDelegate {
     }
     
     func setUI() {
+        selectLabel.text = "Driver license card"
+        
         selectBtn.setBackgroundVerticalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: nil)
         selectBtn.addTarget(self, action: #selector(selectBtnClick), for: .touchUpInside)
         
@@ -116,17 +119,44 @@ class KYCVerification3VC: UIViewController, SelectDelegate {
     }
     
     @objc func uploadBtnClick(btn: UIButton) {
-
+        
         selectImageType = btn.tag
         let imagePicker = UIImagePickerController()
         
-
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
-        imagePicker.modalPresentationStyle = .overFullScreen
-        imagePicker.allowsEditing = true
         
-        present(imagePicker, animated: true, completion: nil)
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+                case .notDetermined:
+                    AVCaptureDevice.requestAccess(for: .video) { success in
+                        guard success == true else{return}
+                        self.present(imagePicker, animated: true, completion: nil)
+                    }
+                case .denied, .restricted:
+                    let alertVC = UIAlertController(title: "相機開啟失敗", message: "相機服務未啟用", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "去設定", style: .destructive) {(_) in
+                        guard let settingUrl = URL(string: UIApplication.openSettingsURLString) else {return}
+                        
+                        if UIApplication.shared.canOpenURL(settingUrl) {
+                            UIApplication.shared.open(settingUrl)
+                        }
+                    }
+                    alertVC.addAction(action)
+                    let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                    alertVC.addAction(cancel)
+                    self.present(alertVC, animated: true, completion: nil)
+                    
+                case .authorized:
+                    present(imagePicker, animated: true, completion: nil)
+                default:
+                    break
+                }
+        
+        
+//        imagePicker.modalPresentationStyle = .overFullScreen
+//        imagePicker.allowsEditing = true
+   //     imagePicker.showsCameraControls = false
+        
     }
     
     @objc func nextBtnClick() {
@@ -140,13 +170,12 @@ class KYCVerification3VC: UIViewController, SelectDelegate {
             HUD.show(.systemActivity)
             BN.addKycInfo(kycInfo: kycDic) { statusCode, dataObj, err in
                 if (statusCode == 200) {
-                    BN.getMember { statusCode, dataObj, err in
-                        HUD.hide()
-                        let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
-                        FinishVC.kycVerification3VC = self
-                        FinishVC.tag = 7
-                        self.present(FinishVC, animated: true, completion: nil)
-                    }
+                    HUD.hide()
+                    let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
+                    FinishVC.kycVerification3VC = self
+                    FinishVC.tag = 7
+                    FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                    self.present(FinishVC, animated: true, completion: nil)
                 }else{
                     HUD.hide()
                     FailView.failView.showMe(error: err?.exception ?? "Upload kyc info fail.")
@@ -173,11 +202,12 @@ class KYCVerification3VC: UIViewController, SelectDelegate {
     }
     
     func imageToBase64String(image: UIImage) -> String {
-        if let imageData = image.jpegData(compressionQuality: 1) {
+        let scaleImage = image.resizeImage()
+        if let imageData = scaleImage.jpegData(compressionQuality: 0.7) {
             let str = imageData.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 0))
             return "data:image/jpeg;base64," + str
         }
-        if let imageData = image.pngData() {
+        if let imageData = scaleImage.pngData() {
             let str = imageData.base64EncodedString(options: Data.Base64EncodingOptions.init(rawValue: 0))
             return "data:image/png;base64," + str
         }else{
@@ -206,15 +236,17 @@ class KYCVerification3VC: UIViewController, SelectDelegate {
         switch viewType {
         case 0:
             self.lastView.isHidden = false
-            self.viewHeightConstraint.constant = ScreenHeight * 1.8
+            self.viewHeightConstraint.constant = 1600
             self.exampleBtn.tag = 0
+            self.selectLabel.text = "Driver license card"
             self.firstLabel.text = "certificate_front".localized
             self.secondLabel.text = "certificate_back".localized
             self.threeLabel.text = "certificate_holding_photo".localized
         default:
             self.lastView.isHidden = true
-            self.viewHeightConstraint.constant = ScreenHeight * 1.5
+            self.viewHeightConstraint.constant = 1350
             self.exampleBtn.tag = 1
+            self.selectLabel.text = "Passport"
             self.firstLabel.text = "certificate_front_passport".localized
             self.secondLabel.text = "certificate_holding_photo".localized
             self.threeLabel.text = "certificate_address_proof".localized
@@ -226,7 +258,7 @@ class KYCVerification3VC: UIViewController, SelectDelegate {
 
 extension KYCVerification3VC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.editedImage] as? UIImage {
+        if let image = info[.originalImage] as? UIImage {
             
             let base64Str = imageToBase64String(image: image)
             switch selectImageType {

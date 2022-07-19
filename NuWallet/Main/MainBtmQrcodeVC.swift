@@ -11,10 +11,16 @@ import PKHUD
 class MainBtmQrcodeVC: UIViewController {
 
     @IBOutlet weak var qrcodeImage: UIImageView!
+    var currentBright = 0.5
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "btm".localized
         updateQrcode()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        UIScreen.main.brightness = currentBright
     }
     
 
@@ -24,8 +30,13 @@ class MainBtmQrcodeVC: UIViewController {
             HUD.hide()
             if (statusCode == 200) {
                 if let str = dataStr {
+                    self.currentBright = UIScreen.main.brightness
+                    UIScreen.main.brightness = 1.0
                     self.qrcodeImage.image = self.createQrcode(str: str)
                 }
+            }
+            else{
+                FailView.failView.showMe(error: err?.exception ?? "network_fail".localized)
             }
         }
     }

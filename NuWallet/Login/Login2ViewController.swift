@@ -30,7 +30,7 @@ class Login2ViewController: UIViewController {
         smsView.layer.cornerRadius = 10
         smsView.clipsToBounds = true
         
-        smsTextField.resetCustom(cornerRadius: nil, paddingLeft: 15, paddingRight: 15, placeholderText: "Please click the send button first", placeholderColorHex: "393939")
+        smsTextField.resetCustom(cornerRadius: nil, paddingLeft: 15, paddingRight: 15, placeholderText: "verification_code_placeholder".localized, placeholderColorHex: "393939")
         smsTextField.addTarget(self, action: #selector(smsTextFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         
         smsBtn.setTitle("send_btn".localized, for: UIControl.State.normal)
@@ -52,9 +52,9 @@ class Login2ViewController: UIViewController {
                 if (statusCode == 200) {
                     self.counter = 120
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                    self.bottomDescLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.mobileNumber ?? "your phone number")." + "verification_code_placeholder".localized
+                    self.bottomDescLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.mobileNumber ?? "your phone number"). " + "verification_code_placeholder".localized
                 }else{
-                    self.bottomDescLabel.text = err?.exception ?? "Send verification code fail."
+                    self.bottomDescLabel.text = err?.exception ?? "send_fail".localized
                 }
             }
         }
@@ -94,10 +94,8 @@ class Login2ViewController: UIViewController {
                         if let data = dataObj {
                             US.updateToken(token: data)
                         }
-                        BN.getMember { statusCode, dataObj, err in
-                            HUD.hide()
-                            goMain()
-                        }
+                        HUD.hide()
+                        goMain()
                     }else{
                         HUD.hide()
                         FailView.failView.showMe(error: err?.exception ?? "Fail to login")

@@ -12,7 +12,6 @@ class LunchVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //預設FaceID/TouchID關閉
         let faceId = UD.bool(forKey: "faceId")
         
@@ -60,7 +59,7 @@ class LunchVC: UIViewController {
                 }
             }
         }else {
-            let alertC = showAlert(title: "Failed", message: error?.localizedDescription)
+            let alertC = US.showAlert(title: "Failed", message: error?.localizedDescription)
             self.present(alertC, animated: true, completion: nil)
         }
         

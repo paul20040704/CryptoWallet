@@ -8,12 +8,32 @@
 import Foundation
 
 struct AssetResponse: Codable {
-    let estimatedBalance: Int?
-    let assets: [asset]?
+    let estimatedBalance: Double?
+    let assets: [Asset]?
 }
 
-struct asset: Codable {
+struct Asset: Codable {
     let coinId: String?
     let coinFullName: String?
-    let balance: Int?
+    let balance: Double?
+    let tradeEnabled: Bool?
+    let depositEnabled: Bool?
+    let withdrawalEnabled: Bool?
+}
+
+
+struct AssetAddress: Codable {
+    let coinId: String?
+    let addresses: [Address]?
+}
+
+
+struct Address: Codable {
+    let networkId: String?
+    let address: String?
+}
+
+
+struct PostAddress: Codable {
+    let address: String?
 }

@@ -68,6 +68,7 @@ class LanguageVC: UIViewController {
             accountViewController?.iAccountTableView.reloadData()
             self.setUI()
             changeImage()
+            goMain()
         }
     }
     

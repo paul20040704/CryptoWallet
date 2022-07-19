@@ -13,6 +13,7 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var languageBtn: UIButton!
+    @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,8 @@ class WelcomeViewController: UIViewController {
         helloLabel.text = "greet".localized
         loginBtn.setTitle("login".localized, for: .normal)
         registerBtn.setTitle("register".localized, for: .normal)
+        
+        versionLabel.text = "v" + localVersion
         
         changeLanguageBtn()
     }

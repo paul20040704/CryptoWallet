@@ -139,7 +139,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6q-PK-3Lu">
                                         <rect key="frame" x="0.0" y="74" width="294" height="17"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHf-bv-pJ3">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHf-bv-pJ3">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="H35-ig-6kp"/>
@@ -148,10 +148,10 @@
                                                 <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="fee"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="rate"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.000002 ETH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufj-IT-nbx">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufj-IT-nbx">
                                                 <rect key="frame" x="80" y="0.0" width="214" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -213,7 +213,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="9J8-Cn-YmU" id="shd-FL-Ua4"/>
+                        <outlet property="fromAmountLabel" destination="40s-By-SbU" id="RYR-Zl-wz2"/>
+                        <outlet property="fromFullLabel" destination="0eV-FT-4rf" id="hxc-t8-0Bu"/>
+                        <outlet property="fromImage" destination="RNM-9o-Eed" id="bIa-EF-hUR"/>
+                        <outlet property="fromLabel" destination="bmI-zf-p0d" id="i0p-vf-8Uq"/>
+                        <outlet property="rateLabel" destination="Ufj-IT-nbx" id="7UN-h7-Zxh"/>
                         <outlet property="swapImage" destination="uLk-kt-adY" id="jLm-g5-A3b"/>
+                        <outlet property="toAmountLabel" destination="0ua-ce-jbx" id="JMx-Yh-Rli"/>
+                        <outlet property="toFullLabel" destination="Qkz-HI-ppV" id="h0M-cJ-qTK"/>
+                        <outlet property="toImage" destination="sdu-6S-5s9" id="hGa-5J-VO0"/>
+                        <outlet property="toLabel" destination="KhT-wc-bsd" id="jW9-EC-gNH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

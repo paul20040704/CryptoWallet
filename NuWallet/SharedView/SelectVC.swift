@@ -63,11 +63,11 @@ class SelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         case 3:
             titleLabel.text = "type_of_certificate".localized
         case 4:
-            titleLabel.text = "Choose coin’s sort options"
+            titleLabel.text = "choose_coin_sort".localized
         case 5:
             titleLabel.text = "language_choose".localized
         case 6:
-            titleLabel.text = "Choose your area code"
+            titleLabel.text = "choose_area_code".localized
         case 7:
             titleLabel.text = "address_type_placeholder".localized
         default:

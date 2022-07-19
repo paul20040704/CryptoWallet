@@ -7,14 +7,6 @@
 
 import UIKit
 
-enum sort {
-    case defaultSort
-    case all
-    case lower
-    case upper
-}
-
-
 class HomeViewController: UIViewController, SelectDelegate {
     
     var iTabBarController: TabBarController?
@@ -22,21 +14,22 @@ class HomeViewController: UIViewController, SelectDelegate {
     @IBOutlet weak var notifyLabel: UILabel!
     @IBOutlet weak var notifyBtn: UIButton!
     
-    var highlightIdArr = Array<String>()
-    var allIdArr = Array<String>()
-    var cryptoSummaryDic = Dictionary<String, String>()
-    var cryptoPercentDic = Dictionary<String, Double>()
-    var cryptoPriceDic = Dictionary<String, String>()
-    var cryptoSymbolDic = Dictionary<String, String>()
-    
-    var sort = "Default"
+    var sort = "coin_sort_1".localized
+    var balance = "0"
     var searching = false
     var searchHighlightIdArr = Array<String>()
     var searchAllIdArr = Array<String>()
     
+    var crypcoModel = CryptoViewModel()
+    
+    var assetDic = Dictionary<String, DepositModel>()
+    var timer: DispatchSourceTimer?
+    
+    var notifyViewModel = NotifyViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notifyViewModel.getBoardList()
         
         iHomeTableView.iHomeViewController = self
     
@@ -46,104 +39,72 @@ class HomeViewController: UIViewController, SelectDelegate {
         notifyLabel.clipsToBounds = true
         notifyBtn.addTarget(self, action: #selector(notifyBtnClick), for: UIControl.Event.touchUpInside)
         
-        updateCryptoPrice()
     }
     
-    func updateCryptoPrice() {
-        let group: DispatchGroup = DispatchGroup()
-        
-        let queue1 = DispatchQueue(label: "queue1")
-        group.enter()
-        queue1.async(group: group) {
-            BN.getCryptocurrency(headers: nil) { statusCode, dataObj, err in
-                if (statusCode == 200) {
-                    self.setCryptoSummary(crypto: dataObj)
-                }
-                group.leave()
-            }
-        }
-        
-        let queue2 = DispatchQueue(label: "queue2")
-        group.enter()
-        queue2.async(group: group) {
-            BN.getCryptoMarket(headers: nil) { statusCode, dataObj, err in
-                if (statusCode == 200) {
-                    self.setCryptoMarket(market: dataObj)
-                }
-                group.leave()
-            }
-        }
-        
-        group.notify(queue: DispatchQueue.main) {
-            self.judgeCryptoMarket()
-            self.iHomeTableView.reloadData()
-            print("===========API全都完成")
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        getAsset()
+        getNotifyRead()
+        initVM()
     }
     
-    func setCryptoSummary(crypto: CryptoResponse?) {
-        if let highlights = crypto?.highlights {
-            highlightIdArr.removeAll()
-            allIdArr.removeAll()
-            cryptoSummaryDic.removeAll()
-            for highlight in highlights {
-                if let id = highlight.id, let fullName = highlight.fullName {
-                    highlightIdArr.append(id)
-                    cryptoSummaryDic[id] = fullName
-                }
-            }
-            highlightIdArr = Array(cryptoSummaryDic.keys)
-        }
-        
-        if let others = crypto?.others {
-            allIdArr = highlightIdArr
-            for other in others {
-                if let id = other.id, let fullName = other.fullName {
-                    cryptoSummaryDic[id] = fullName
-                }
-            }
-            allIdArr = Array(cryptoSummaryDic.keys.map{ $0 }.sorted(by: <))
-        }
+    override func viewDidDisappear(_ animated: Bool) {
+        timer?.cancel()
+        print("TimerCancel")
     }
     
-    func setCryptoMarket(market: CryptoMarketResponse?) {
-        if let markets = market?.marketTicker24hr {
-            cryptoPriceDic.removeAll()
-            cryptoPercentDic.removeAll()
-            cryptoSymbolDic.removeAll()
-            for market in markets {
-                if let id = market.coinId, let percent = market.priceChangePercent, let price = market.lastPrice, let symbol = market.symbol {
-                    cryptoPriceDic[id] = price
-                    cryptoPercentDic[id] = Double(percent)
-                    cryptoSymbolDic[id] = symbol
-                }
-            }
-        }
-    }
-    //判斷是否有幣種行情
-    func judgeCryptoMarket() {
-        let marketKeyArr = Array(cryptoPercentDic.keys)
-        for id in highlightIdArr {
-            if !(marketKeyArr.contains(id)) {
-                if let index = highlightIdArr.index(of: id) {
-                    highlightIdArr.remove(at: index)
-                }
+    func initVM() {
+        crypcoModel.reloadCrypto = {
+            DispatchQueue.main.async {
+                print("取得資料 更新行情")
+                self.iHomeTableView.reloadData()
             }
         }
         
-        for id in allIdArr {
-            if !(marketKeyArr.contains(id)) {
-                if let index = allIdArr.index(of: id) {
-                    allIdArr.remove(at: index)
+        timer = DispatchSource.makeTimerSource()
+        timer?.schedule(deadline: .now(), repeating: .seconds(10), leeway: .nanoseconds(1))
+        timer?.setEventHandler(handler: {
+            self.crypcoModel.getCyypto()
+        })
+        
+        timer?.activate()
+    }
+    
+    func getAsset() {
+        
+        BN.getAssets { statusCode, dataObj, err in
+            if (statusCode == 200) {
+                if let assets = dataObj?.assets {
+                    self.balance = String((dataObj?.estimatedBalance ?? 0).rounding(toDecimal: 2))
+                    DispatchQueue.main.async {
+                        self.iHomeTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                    }
+                    for asset in assets {
+                        let model = DepositModel(coinId: asset.coinId ?? "", coinFullName: asset.coinFullName ?? "", balance: String(asset.balance ?? 0), tradeEnabled: asset.tradeEnabled ?? false, depositEnabled: asset.depositEnabled ?? false, withdrawalEnabled: asset.withdrawalEnabled ?? false)
+                        self.assetDic[asset.coinId ?? ""] = model
+                    }
                 }
             }
         }
     }
     
+    func getNotifyRead() {
+        notifyViewModel.reloadData = {
+            DispatchQueue.main.async {
+                if self.notifyViewModel.unreadCount > 0 {
+                    self.notifyLabel.isHidden = false
+                    self.notifyLabel.text = String(self.notifyViewModel.unreadCount)
+                }else{
+                    self.notifyLabel.isHidden = true
+                }
+            }
+        }
+        notifyViewModel.getBoardList()
+    }
     
     @objc func notifyBtnClick() {
         
-        let notifyViewController = UIStoryboard(name: "Notify", bundle: nil).instantiateViewController(withIdentifier: "notifyViewController")
+        let notifyViewController = UIStoryboard(name: "Notify", bundle: nil).instantiateViewController(withIdentifier: "notifyViewController") as! NotifyViewController
+        notifyViewController.notifyViewModel = notifyViewModel
         self.navigationController?.show(notifyViewController, sender: nil)
         
     }
@@ -153,7 +114,6 @@ class HomeViewController: UIViewController, SelectDelegate {
         sort = condition
         self.iHomeTableView.reloadData()
     }
-
     
 }
 
@@ -162,17 +122,20 @@ extension HomeViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        let index = searchText.index(searchText.startIndex, offsetBy: searchText.count)
-        searchHighlightIdArr = highlightIdArr.filter({ name in
-            return name.lowercased().prefix(upTo: index) == searchText.lowercased()
-        })
+        if searchText.count < 4 {
+            let index = searchText.index(searchText.startIndex, offsetBy: searchText.count)
+            searchHighlightIdArr = crypcoModel.listModel?.defaultKey.filter({ name in
+                return name.lowercased().prefix(upTo: index) == searchText.lowercased()
+            }) ?? [""]
+            
+            searchAllIdArr = crypcoModel.listModel?.allKey.filter({ name in
+                return name.lowercased().prefix(upTo: index) == searchText.lowercased()
+            }) ?? [""]
+            
+            searching = true
+            iHomeTableView.reloadData()
+        }
         
-        searchAllIdArr = allIdArr.filter({ name in
-            return name.lowercased().prefix(upTo: index) == searchText.lowercased()
-        })
-        
-        searching = true
-        iHomeTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -32,7 +32,7 @@ class HomeSearchCell: UITableViewCell {
         let selectVC = UIStoryboard(name: "SelectVC", bundle: nil).instantiateViewController(withIdentifier: "SelectVC") as! SelectVC
         selectVC.tag = tag
         selectVC.page = 4
-        selectVC.selectArr = ["Default","All","漲幅由高至低","漲幅由低至高"]
+        selectVC.selectArr = ["coin_sort_1".localized,"coin_sort_2".localized,"coin_sort_3".localized,"coin_sort_4".localized]
         selectVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         selectVC.delegate = iHomeTableView?.iHomeViewController
         iHomeTableView?.iHomeViewController?.present(selectVC, animated: true, completion: nil)

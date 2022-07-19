@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import PKHUD
 
 class CandlestickChartViewController: UIViewController, WKNavigationDelegate, UIScrollViewDelegate {
 
@@ -15,6 +16,9 @@ class CandlestickChartViewController: UIViewController, WKNavigationDelegate, UI
     @IBOutlet weak var coinImage: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var percentLabel: UILabel!
+    
+    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var usdLabel: UILabel!
     
     
     @IBOutlet weak var m1Btn: UIButton!
@@ -31,13 +35,22 @@ class CandlestickChartViewController: UIViewController, WKNavigationDelegate, UI
     @IBOutlet weak var withdrawBtn: UIButton!
     
     var symbol = "BTC"
-    var price = "0"
-    var percent = 0.0
+    //var fullName = "BTC"
+    var balance = "0"
+    var tradeEnabled = false
+    var depositEnabled = false
+    var withdrawalEnabled = false
+//    var price = "0"
+//    var percent = 0.0
+    
+    var cryptoVM = CryptoViewModel()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        HUD.flash(.systemActivity, delay: 0.5)
+        
         if let nc = self.navigationController as? TabBarNavigationController {
             iTabBarNavigationController = nc
         }
@@ -48,21 +61,47 @@ class CandlestickChartViewController: UIViewController, WKNavigationDelegate, UI
         
         DispatchQueue.main.async {
             
-            self.htmlString = self.htmlString.replacingOccurrences(of: "1920", with: "\(Int(self.chartWeb.frame.size.height - 30))")
-            self.htmlString = self.htmlString.replacingOccurrences(of: "BTCUSDT", with: self.symbol + "USDT")
+            self.htmlString = self.htmlString.replacingOccurrences(of: "1920", with: "\(Int(self.chartWeb.frame.size.height))")
+            if (self.symbol == "USDT") {
+                self.htmlString = self.htmlString.replacingOccurrences(of: "BTCUSDT", with: "USDTUSD")
+                self.htmlString = self.htmlString.replacingOccurrences(of: "BINANCE", with: "COINBASE")
+            }else{
+                self.htmlString = self.htmlString.replacingOccurrences(of: "BTCUSDT", with: self.symbol + "USDT")
+            }
             self.chartWeb.loadHTMLString(self.htmlString, baseURL: nil)
             
         }
-    
+        initVM()
         setUI()
     }
     
+    deinit {
+        print("deinit")
+    }
+    
+    func initVM() {
+        cryptoVM.reloadCrypto = { [weak self] in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                self.navigationItem.title = "\(self.symbol) / USDT"
+                self.coinImage.image = UIImage(named: "coin_\(self.symbol.lowercased())")
+                let double = Double(self.cryptoVM.priceDic[self.symbol] ?? "0") ?? 0
+                self.priceLabel.text = double.round()
+                
+                self.percentLabel.text = String(format: "%.2f", self.cryptoVM.percentDic[self.symbol] ?? 0)
+                self.percentLabel.textColor()
+                
+                self.balanceLabel.text = self.balance + " " + self.symbol
+                let balance = Double(self.balance)
+                let usePrice = double * (balance ?? 0)
+                self.usdLabel.text = "$ " + usePrice.round()
+            }
+        }
+        cryptoVM.getCyypto()
+    }
+    
     func setUI() {
-        self.navigationItem.title = "\(symbol) / USDT"
-        coinImage.image = UIImage(named: "coin_\(symbol.lowercased())")
-        priceLabel.text = price
-        percentLabel.text = String(format: "%.2f", percent)
-        percentLabel.textColor()
+        self.navigationItem.backButtonTitle = ""
         
         m1Btn.addTarget(self, action: #selector(m1BtnClick), for: UIControl.Event.touchUpInside)
         m5Btn.addTarget(self, action: #selector(m5BtnClick), for: UIControl.Event.touchUpInside)
@@ -77,14 +116,22 @@ class CandlestickChartViewController: UIViewController, WKNavigationDelegate, UI
             self.bottomBackgroundImageView.image = getVerticalGradientImage(width: self.bottomBackgroundImageView.frame.size.width, height: self.bottomBackgroundImageView.frame.size.height, startColorHex: "343434", endColorHex: "141414", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: 12)
         }
         
-        swapBtn.setBackgroundHorizontalGradient("ffffff", "d8d8d8", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: swapBtn.frame.height / 2)
+        
         swapBtn.addTarget(self, action: #selector(swapBtnClick(_:)), for: UIControl.Event.touchUpInside)
         
-        depositBtn.setBackgroundHorizontalGradient("ffffff", "d8d8d8", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: depositBtn.frame.height / 2)
         depositBtn.addTarget(self, action: #selector(depositBtnClick(_:)), for: UIControl.Event.touchUpInside)
         
-        withdrawBtn.setBackgroundHorizontalGradient("ffffff", "d8d8d8", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: withdrawBtn.frame.height / 2)
-        withdrawBtn.addTarget(self, action: #selector(depositBtnClick(_:)), for: UIControl.Event.touchUpInside)
+        withdrawBtn.addTarget(self, action: #selector(withdrawBtnClick(_:)), for: UIControl.Event.touchUpInside)
+        
+        if !(tradeEnabled) {
+            swapBtn.isHidden = true
+        }
+        if !(depositEnabled) {
+            depositBtn.isHidden = true
+        }
+        if !(withdrawalEnabled) {
+            withdrawBtn.isHidden = true
+        }
         
     }
     
@@ -170,15 +217,66 @@ class CandlestickChartViewController: UIViewController, WKNavigationDelegate, UI
     }
     
     @objc func swapBtnClick(_ btn: UIButton) {
-        print("swapBtnClick")
+        
+        if let arr = self.navigationController?.viewControllers[0] as? TabBarMainViewController {
+            self.navigationController?.popToViewController(arr, animated: true)
+            arr.iTabBarController?.selectedIndex = 3
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "setFromCoin"), object: nil, userInfo: ["fromCoin":symbol, "balance":balance])
+//        let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeViewController")
+//        homeVC.tabBarController?.selectedIndex = 3
+        
+        
+        
     }
     
     @objc func depositBtnClick(_ btn: UIButton) {
-        print("depositBtnClick")
+        if depositEnabled {
+            let depositDetailVC = UIStoryboard(name: "Deposit", bundle: nil).instantiateViewController(withIdentifier: "DepositDetailVC") as! DepositDetailVC
+            depositDetailVC.coin = symbol
+            self.navigationController?.show(depositDetailVC, sender: nil)
+        }else{
+            let alertC = US.showAlert(title: "greet".localized, message: "not_support_deposit".localized)
+            self.present(alertC, animated: true, completion: nil)
+        }
+        
     }
     
     @objc func withdrawBtnClick(_ btn: UIButton) {
-        print("withdrawBtnClick")
+        if withdrawalEnabled {
+            HUD.show(.systemActivity, onView: self.view)
+            BN.getMember { statusCode, dataObj, err in
+                HUD.hide()
+                if (statusCode == 200) {
+                    let enable = dataObj?.withdrawalEnabled ?? false
+                    //let enable = false
+                    let level = dataObj?.memberLevel ?? 1
+                    //let level = 2
+                    let kycStatus = dataObj?.memberKycStatus ?? 0
+                    
+                    let setted = dataObj?.wasTransactionPasswordSetted ?? false
+                    //let setted = false
+                    if level != 2{
+                        FailGoView.failGoView.showMe(type: 0, status: kycStatus, vc: self)
+                    }
+                    else if !(enable) {
+                        FailGoView.failGoView.showMe(type: 1, status: 0, vc: self)
+                    }
+                    else if !(setted) {
+                        FailGoView.failGoView.showMe(type: 2, status: 0, vc: self)
+                    }
+                    else {
+                        let withdrawDetailVC = UIStoryboard(name: "Deposit", bundle: nil).instantiateViewController(withIdentifier: "WithdrawDetailVC") as! WithdrawDetailVC
+                        withdrawDetailVC.coin = self.symbol
+                        withdrawDetailVC.fullName = self.cryptoVM.fullDic[self.symbol] ?? ""
+                        self.navigationController?.show(withdrawDetailVC, sender: nil)
+                    }
+                }
+            }
+        }else{
+            FailGoView.failGoView.showMe(type: 3, status: 0, vc: self)
+        }
+        
     }
     
     
@@ -215,6 +313,6 @@ class CandlestickChartViewController: UIViewController, WKNavigationDelegate, UI
         </body>
     </html>
     """
-    
+
 
 }

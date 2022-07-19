@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,7 +12,7 @@
             <connections>
                 <outlet property="FAQBtn" destination="7FX-VX-lLo" id="32i-8D-uxR"/>
                 <outlet property="alertView" destination="Sta-SY-bP8" id="q5h-sb-NoU"/>
-                <outlet property="errorLabel" destination="OUR-3X-zca" id="wel-Df-vds"/>
+                <outlet property="errorTextView" destination="UU9-6j-JBg" id="QSL-IP-aM8"/>
                 <outlet property="parentView" destination="uSS-pH-suj" id="xQA-eq-xia"/>
                 <outlet property="retryBtn" destination="45i-BP-x47" id="bho-Pa-cIn"/>
             </connections>
@@ -24,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sta-SY-bP8">
-                    <rect key="frame" x="14" y="184" width="386" height="500"/>
+                    <rect key="frame" x="14" y="188.5" width="386" height="519"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oh! It’s something wrong!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8U-if-oGS">
-                            <rect key="frame" x="72" y="50" width="242.5" height="25"/>
+                            <rect key="frame" x="71.5" y="50" width="243" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="ALT-SY-wpl"/>
                             </constraints>
@@ -38,29 +37,19 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="failed_title"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The text here describes the reason for the failure." textAlignment="center" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OUR-3X-zca">
-                            <rect key="frame" x="30" y="85" width="326" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="1Ye-bA-ebg"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic_state_faild" translatesAutoresizingMaskIntoConstraints="NO" id="WN4-Wl-e5O">
-                            <rect key="frame" x="123" y="165" width="140" height="140"/>
+                            <rect key="frame" x="123" y="195" width="140" height="134"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="140" id="XTw-Uc-HvB"/>
                                 <constraint firstAttribute="width" constant="140" id="e74-gb-P04"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45i-BP-x47">
-                            <rect key="frame" x="30" y="345" width="326" height="50"/>
+                            <rect key="frame" x="30" y="369" width="326" height="50"/>
                             <color key="backgroundColor" red="0.039215686270000001" green="0.50196078430000002" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="d2n-4I-eG5"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Retry">
@@ -74,7 +63,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7FX-VX-lLo">
-                            <rect key="frame" x="30" y="405" width="326" height="50"/>
+                            <rect key="frame" x="30" y="429" width="326" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="fME-hx-SMF"/>
@@ -82,7 +71,7 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="FAQ">
-                                <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="17"/>
+                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="17"/>
                             </buttonConfiguration>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -97,32 +86,55 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="faq"/>
                             </userDefinedRuntimeAttributes>
                         </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UU9-6j-JBg">
+                            <rect key="frame" x="30" y="85" width="326" height="80"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="hWW-pU-q7b"/>
+                            </constraints>
+                            <attributedString key="attributedText">
+                                <fragment content="Authenticator Verification CodeAuthenticator Verification CodeAuthenticator Verification CodeAuthenticator Verification Code">
+                                    <attributes>
+                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" metaFont="system" size="17"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="45i-BP-x47" secondAttribute="trailing" constant="30" id="055-ol-DYM"/>
-                        <constraint firstAttribute="trailing" secondItem="OUR-3X-zca" secondAttribute="trailing" constant="30" id="8Ba-1H-dEJ"/>
                         <constraint firstItem="F8U-if-oGS" firstAttribute="centerX" secondItem="Sta-SY-bP8" secondAttribute="centerX" id="Cz9-qi-DXW"/>
-                        <constraint firstAttribute="height" constant="500" id="F6h-MH-p1Z"/>
-                        <constraint firstItem="OUR-3X-zca" firstAttribute="leading" secondItem="Sta-SY-bP8" secondAttribute="leading" constant="30" id="Fbd-VK-sFD"/>
+                        <constraint firstItem="UU9-6j-JBg" firstAttribute="top" secondItem="F8U-if-oGS" secondAttribute="bottom" constant="10" id="D8U-z3-S5b"/>
+                        <constraint firstItem="UU9-6j-JBg" firstAttribute="leading" secondItem="Sta-SY-bP8" secondAttribute="leading" constant="30" id="HGl-rR-p21"/>
+                        <constraint firstAttribute="bottom" secondItem="7FX-VX-lLo" secondAttribute="bottom" constant="40" id="LX9-c7-U4v"/>
                         <constraint firstItem="45i-BP-x47" firstAttribute="top" secondItem="WN4-Wl-e5O" secondAttribute="bottom" constant="40" id="Zgv-UB-frn"/>
-                        <constraint firstItem="OUR-3X-zca" firstAttribute="top" secondItem="F8U-if-oGS" secondAttribute="bottom" constant="10" id="ceE-Zq-2Qt"/>
+                        <constraint firstItem="WN4-Wl-e5O" firstAttribute="top" secondItem="UU9-6j-JBg" secondAttribute="bottom" constant="30" id="auS-OJ-yFu"/>
+                        <constraint firstItem="UU9-6j-JBg" firstAttribute="centerX" secondItem="Sta-SY-bP8" secondAttribute="centerX" id="c1a-Ig-Ml1"/>
                         <constraint firstItem="WN4-Wl-e5O" firstAttribute="centerX" secondItem="Sta-SY-bP8" secondAttribute="centerX" id="h3Y-lj-5ra"/>
                         <constraint firstItem="7FX-VX-lLo" firstAttribute="leading" secondItem="Sta-SY-bP8" secondAttribute="leading" constant="30" id="iFb-fL-OeQ"/>
+                        <constraint firstAttribute="trailing" secondItem="UU9-6j-JBg" secondAttribute="trailing" constant="30" id="igW-BP-USk"/>
                         <constraint firstItem="7FX-VX-lLo" firstAttribute="top" secondItem="45i-BP-x47" secondAttribute="bottom" constant="10" id="lBC-f1-Uqn"/>
                         <constraint firstItem="F8U-if-oGS" firstAttribute="top" secondItem="Sta-SY-bP8" secondAttribute="top" constant="50" id="nYf-l2-zoi"/>
-                        <constraint firstItem="OUR-3X-zca" firstAttribute="centerX" secondItem="Sta-SY-bP8" secondAttribute="centerX" id="r4A-Hq-5XU"/>
                         <constraint firstAttribute="trailing" secondItem="7FX-VX-lLo" secondAttribute="trailing" constant="30" id="tVi-mA-A6s"/>
-                        <constraint firstItem="WN4-Wl-e5O" firstAttribute="top" secondItem="OUR-3X-zca" secondAttribute="bottom" constant="30" id="v6s-1S-zdf"/>
                         <constraint firstItem="45i-BP-x47" firstAttribute="leading" secondItem="Sta-SY-bP8" secondAttribute="leading" constant="30" id="wmu-gp-yRK"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="H0d-u0-eyp"/>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.60373817495748294" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="WN4-Wl-e5O" firstAttribute="height" secondItem="uSS-pH-suj" secondAttribute="height" multiplier="0.15" id="EXI-eW-XtS"/>
                 <constraint firstItem="H0d-u0-eyp" firstAttribute="trailing" secondItem="Sta-SY-bP8" secondAttribute="trailing" constant="14" id="JPN-1E-qKA"/>
-                <constraint firstItem="Sta-SY-bP8" firstAttribute="top" secondItem="H0d-u0-eyp" secondAttribute="top" constant="140" id="fbD-se-kmm"/>
+                <constraint firstItem="Sta-SY-bP8" firstAttribute="centerY" secondItem="uSS-pH-suj" secondAttribute="centerY" id="LA3-Xe-Hjo"/>
                 <constraint firstItem="Sta-SY-bP8" firstAttribute="leading" secondItem="H0d-u0-eyp" secondAttribute="leading" constant="14" id="mSL-UL-16f"/>
             </constraints>
             <point key="canvasLocation" x="53.623188405797109" y="-569.19642857142856"/>
@@ -130,8 +142,5 @@
     </objects>
     <resources>
         <image name="pic_state_faild" width="140.00100708007812" height="140"/>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

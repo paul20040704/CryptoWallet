@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,6 +12,7 @@
             <connections>
                 <outlet property="alertView" destination="Sk6-yc-eOn" id="6HJ-0S-Rbc"/>
                 <outlet property="closeBtn" destination="i0r-pZ-Nbk" id="LhU-L3-2xd"/>
+                <outlet property="coinLabel" destination="bGx-IY-N1A" id="6wt-ua-zNf"/>
                 <outlet property="parentView" destination="iN0-l3-epB" id="9kq-kv-5Da"/>
             </connections>
         </placeholder>
@@ -46,7 +46,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="EF4-Ft-wHa"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="close">
@@ -60,7 +60,7 @@
                             </userDefinedRuntimeAttributes>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="bGx-IY-N1A" firstAttribute="top" secondItem="Sk6-yc-eOn" secondAttribute="top" constant="50" id="0mZ-Pf-WcU"/>
                         <constraint firstAttribute="bottom" secondItem="i0r-pZ-Nbk" secondAttribute="bottom" constant="50" id="IVg-m3-LdH"/>
@@ -71,6 +71,11 @@
                         <constraint firstItem="i0r-pZ-Nbk" firstAttribute="leading" secondItem="Sk6-yc-eOn" secondAttribute="leading" constant="30" id="rlv-g5-l2F"/>
                         <constraint firstItem="nsl-FR-vUd" firstAttribute="top" secondItem="bGx-IY-N1A" secondAttribute="bottom" constant="50" id="y3s-jH-Hgp"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -85,8 +90,5 @@
     </objects>
     <resources>
         <image name="pic_fakeqrcode" width="160" height="160"/>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>

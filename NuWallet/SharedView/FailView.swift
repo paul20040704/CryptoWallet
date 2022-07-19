@@ -9,10 +9,11 @@ import UIKit
 
 class FailView: UIView {
     static let failView = FailView()
-    
+
     @IBOutlet var parentView: UIView!
     @IBOutlet weak var alertView: UIView!
-    @IBOutlet weak var errorLabel: UILabel!
+
+    @IBOutlet weak var errorTextView: UITextView!
     @IBOutlet weak var retryBtn: UIButton!
     @IBOutlet weak var FAQBtn: UIButton!
     
@@ -39,17 +40,22 @@ class FailView: UIView {
         retryBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: retryBtn.frame.height / 2)
         retryBtn.addTarget(self, action: #selector(retryClick), for: UIControl.Event.touchUpInside)
         
-        
+        FAQBtn.addTarget(self, action: #selector(faqClick), for: .touchUpInside)
     }
     
     func showMe(error: String) {
-        errorLabel.text = error
+        
+        errorTextView.text = error
         UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.addSubview(parentView)
     }
     
-    @objc func retryClick () {
+    @objc func retryClick() {
         parentView.removeFromSuperview()
     }
     
+    @objc func faqClick() {
+        openUrlStr(urlStr: "https://numiner.zendesk.com/hc/en-001/sections/5319628035097-Common")
+        parentView.removeFromSuperview()
+    }
     
 }

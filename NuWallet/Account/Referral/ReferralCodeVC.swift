@@ -7,6 +7,7 @@
 
 import UIKit
 import PKHUD
+import AVFoundation
 
 class ReferralCodeVC: UIViewController, scanQrcodeDelegate {
 
@@ -36,9 +37,37 @@ class ReferralCodeVC: UIViewController, scanQrcodeDelegate {
     }
     
     @objc func scanClick() {
-        let scanQrcodeVC = ScanQrcodeVC()
-        scanQrcodeVC.delegate = self
-        self.present(scanQrcodeVC, animated: true, completion: nil)
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+                case .notDetermined:
+                    AVCaptureDevice.requestAccess(for: .video) { success in
+                        guard success == true else{return}
+                        DispatchQueue.main.async {
+                            let scanQrcodeVC = ScanQrcodeVC()
+                            scanQrcodeVC.delegate = self
+                            self.present(scanQrcodeVC, animated: true, completion: nil)
+                        }
+                    }
+                case .denied, .restricted:
+                    let alertVC = UIAlertController(title: "相機開啟失敗", message: "相機服務未啟用", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "去設定", style: .destructive) {(_) in
+                        guard let settingUrl = URL(string: UIApplication.openSettingsURLString) else {return}
+                        
+                        if UIApplication.shared.canOpenURL(settingUrl) {
+                            UIApplication.shared.open(settingUrl)
+                        }
+                    }
+                    alertVC.addAction(action)
+                    let cancel = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                    alertVC.addAction(cancel)
+                    self.present(alertVC, animated: true, completion: nil)
+                    
+                case .authorized:
+                    let scanQrcodeVC = ScanQrcodeVC()
+                    scanQrcodeVC.delegate = self
+                    self.present(scanQrcodeVC, animated: true, completion: nil)
+                default:
+                    break
+                }
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
@@ -69,7 +98,11 @@ class ReferralCodeVC: UIViewController, scanQrcodeDelegate {
             BN.setReferrer(invitationCode: codeTF.text ?? "") { statusCode, dataObj, err in
                 HUD.hide()
                 if (statusCode == 200) {
-                    print("成功")
+                    let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
+                    FinishVC.referralCodeVC = self
+                    FinishVC.tag = 11
+                    FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                    self.present(FinishVC, animated: true, completion: nil)
                 }else{
                     FailView.failView.showMe(error: err?.exception ?? "Fail to setReferral.")
                 }

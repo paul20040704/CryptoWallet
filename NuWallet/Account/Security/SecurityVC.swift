@@ -18,8 +18,8 @@ class SecurityVC: UIViewController {
         self.navigationItem.title = "security".localized
         self.navigationItem.backButtonTitle = ""
         // Do any additional setup after loading the view.
-        setData()
         initTV()
+        self.memberInfo = US.getMemberInfo()
     }
     
     func initTV() {
@@ -47,11 +47,7 @@ class SecurityVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        if let data = UD.data(forKey: "member"), let member = try? PDecoder.decode(MemberResponse.self, from: data){
-            self.memberInfo = member
-        }
-        
+        setData()
     }
     
     
@@ -197,6 +193,7 @@ extension SecurityVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as! UITableViewHeaderFooterView).contentView.backgroundColor = .init(hex: "#1C1C1C")
         (view as! UITableViewHeaderFooterView).textLabel?.font = UIFont.systemFont(ofSize: 13)
+        (view as! UITableViewHeaderFooterView).textLabel?.textColor = .init(hex: "#6A6A6A")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -257,10 +254,11 @@ extension SecurityVC: UpdateDelegate {
     func updateTwoAuthOption(type: Int, enable: Bool) {
         HUD.show(.systemActivity)
         BN.setTwoAuthLogin(type: type, enabled: enable) { statusCode, dataObj, err in
-            DispatchQueue.main.async {
-                HUD.hide()
-            }
+            HUD.hide()
             self.setData()
+            if (statusCode != 200) {
+                FailView.failView.showMe(error: err?.exception ?? "network_fail".localized)
+            }
         }
     }
     

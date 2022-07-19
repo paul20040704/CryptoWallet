@@ -30,8 +30,9 @@ class ReferralVC: UIViewController {
     func setUI() {
         self.navigationItem.title = "referral_reward".localized
         self.navigationItem.backButtonTitle = ""
-        //qrcodeImage.image = UIImage(named: "coin_btc")
-        qrcodeImage.image = createQrcode(str: invitationCode)
+        
+        //qrcodeImage.image = createQrcode(str: invitationCode)
+        createQrcode(str: invitationCode)
         if let data = qrcodeImage.image?.jpegData(compressionQuality: 0.7) {
             qrcodeImage.image = UIImage.init(data: data)
         }
@@ -41,19 +42,22 @@ class ReferralVC: UIViewController {
         saveBtn.addTarget(self, action: #selector(saveClick), for: UIControl.Event.touchUpInside)
     }
     
-    func createQrcode(str: String) -> UIImage? {
-        let strData = str.data(using: .utf8, allowLossyConversion: false)
-        let qrFilter = CIFilter(name: "CIQRCodeGenerator")
-        qrFilter?.setValue(strData, forKey: "inputMessage")
-        qrFilter?.setValue("H", forKey: "inputCorrectionLevel")
-        if let qrCIImage = qrFilter?.outputImage {
-            let scaleX = qrcodeImage.frame.size.width / qrCIImage.extent.size.width
-            let scaleY = qrcodeImage.frame.size.height / qrCIImage.extent.size.height
-            let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
-            let output = qrCIImage.transformed(by: transform)
-            return UIImage(ciImage: output)
+    func createQrcode(str: String) {
+        DispatchQueue.main.async {
+            let strData = str.data(using: .utf8, allowLossyConversion: false)
+            let qrFilter = CIFilter(name: "CIQRCodeGenerator")
+            qrFilter?.setValue(strData, forKey: "inputMessage")
+            qrFilter?.setValue("H", forKey: "inputCorrectionLevel")
+            if let qrCIImage = qrFilter?.outputImage {
+                let scaleX = self.qrcodeImage.frame.size.width / qrCIImage.extent.size.width
+                let scaleY = self.qrcodeImage.frame.size.height / qrCIImage.extent.size.height
+                let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+                let output = qrCIImage.transformed(by: transform)
+                
+                self.qrcodeImage.image = UIImage(ciImage: output)
+            
+            }
         }
-        return nil
     }
     
     @objc func saveClick() {

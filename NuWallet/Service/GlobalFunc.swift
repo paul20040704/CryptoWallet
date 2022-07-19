@@ -10,7 +10,8 @@ import UIKit
 
 func getCenterBtnImage64x64() -> UIImage? {
     
-    UIGraphicsBeginImageContext(CGSize.init(width: 64, height: 64))
+    //UIGraphicsBeginImageContext(CGSize.init(width: 64, height: 64))
+    UIGraphicsBeginImageContextWithOptions(CGSize(width: 64, height: 64), false, 0)
     
     // draw circle
     let gradientLayer = CAGradientLayer()
@@ -161,6 +162,7 @@ func getGradientImage(width: CGFloat, height: CGFloat, startColorHex: String, en
     
     let gradientLayer = CAGradientLayer()
     
+    
     if let paddingLeftRight = paddingLeftRight {
         if let paddingTopBottom = paddingTopBottom {
             gradientLayer.bounds = CGRect.init(x: paddingLeftRight, y: paddingTopBottom, width: width - paddingLeftRight * 2, height: height - paddingTopBottom * 2)
@@ -197,7 +199,8 @@ func getGradientImage(width: CGFloat, height: CGFloat, startColorHex: String, en
         }
     }
     gradientLayer.masksToBounds = true
-    UIGraphicsBeginImageContext(CGSize.init(width: width, height: height))
+    //UIGraphicsBeginImageContext(CGSize.init(width: width, height: height))
+    UIGraphicsBeginImageContextWithOptions(CGSize.init(width: width, height: height), false, 0)
     gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
     let gradientImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
@@ -205,7 +208,7 @@ func getGradientImage(width: CGFloat, height: CGFloat, startColorHex: String, en
     return gradientImage
 }
 
-func getCountryCodes(headers: [String: String]?, response: ((_ statusCode: Int, _ dataObj: CountryCodesResponse?, _ err: Error?) -> Void)?) {
+func getCountryCodes(headers: [String: String]?, response: ((_ statusCode: Int, _ dataObj: CountryCodesResponse?, _ err: ErrorResponse?) -> Void)?) {
 
     if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/country-codes") {
         
@@ -221,6 +224,7 @@ func getCountryCodes(headers: [String: String]?, response: ((_ statusCode: Int, 
             
             var statusCode = 0
             var dataObj: CountryCodesResponse? = nil
+            var errorObj: ErrorResponse? = nil
             
             if let httpResponse = urlResponse as? HTTPURLResponse {
                 statusCode = httpResponse.statusCode
@@ -229,12 +233,12 @@ func getCountryCodes(headers: [String: String]?, response: ((_ statusCode: Int, 
             if let data = data {
                 do {
                     dataObj = try JSONDecoder().decode(CountryCodesResponse.self, from: data)
+                    errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
                 } catch {
-                    
                 }
             }
             DispatchQueue.main.async {
-                response?(statusCode, dataObj, error)
+                response?(statusCode, dataObj, errorObj)
             }
         }
         
@@ -416,8 +420,12 @@ func isPassword(text:String) -> Bool {
     }
 }
 
-
-
+//地址判斷
+func validateAddress(address: String, addressRegex: String) -> Bool {
+    
+    let addressTest:NSPredicate = NSPredicate(format: "SELF MATCHES %@", addressRegex)
+    return addressTest.evaluate(with: address)
+}
 
 //電話號碼隱藏處理
 func mobileStrFormat(id: String, number: String, type: Int) -> String{
@@ -444,6 +452,15 @@ func mobileStrFormat(id: String, number: String, type: Int) -> String{
     }
 }
 
+//開啟外部連結
+func openUrlStr(urlStr: String) {
+    if let url = URL(string: urlStr) {
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+}
+
 func emailStrFormat(email: String) -> String {
     var finalStr = email
     if (finalStr.count > 5){
@@ -465,14 +482,6 @@ func emailStrFormat(email: String) -> String {
     }else{
         return finalStr
     }
-}
-
-//顯示AlertView
-func showAlert(title: String, message: String?) -> UIAlertController {
-    let alertC = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-    let okAction = UIAlertAction(title: "OK", style: .cancel)
-    alertC.addAction(okAction)
-    return alertC
 }
 
 extension StringProtocol where Self: RangeReplaceableCollection {

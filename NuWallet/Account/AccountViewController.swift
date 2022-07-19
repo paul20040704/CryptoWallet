@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class AccountViewController: UIViewController {
 
@@ -19,12 +20,19 @@ class AccountViewController: UIViewController {
         
         iAccountTableView.iAccountViewController = self
         //iTabBarController?.iTabBarMainViewController?.navigationItem.title = "Account"
-        setData()
-        
+        self.memberInfo = US.getMemberInfo()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setData()
+    }
+    
     func setData() {
-        if let data = UD.data(forKey: "member"), let member = try? PDecoder.decode(MemberResponse.self, from: data){
-            self.memberInfo = member
+        BN.getMember { statusCode, dataObj, err in
+            self.memberInfo = dataObj
+            DispatchQueue.main.async {
+                self.iAccountTableView.reloadData()
+            }
         }
     }
     

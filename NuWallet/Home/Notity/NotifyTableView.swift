@@ -19,7 +19,7 @@ class NotifyTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 14
+        return iNotifyViewController?.notifyViewModel.sortBoardKey.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -27,6 +27,7 @@ class NotifyTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "notifyTableViewCell", for: indexPath) as? NotifyTableViewCell {
             
             cell.iNotifyTableView = self
+            cell.setup(vm: iNotifyViewController?.notifyViewModel.notifyList[iNotifyViewController?.notifyViewModel.sortBoardKey[indexPath.row] ?? 0] ?? BoardModel(id: 0,title: "", article: "", postOn: ""))
             
             return cell
         } else {
@@ -37,10 +38,12 @@ class NotifyTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
+        let board = iNotifyViewController?.notifyViewModel.notifyList[iNotifyViewController?.notifyViewModel.sortBoardKey[indexPath.row] ?? 0 ] ?? BoardModel(id: 0, title: "", article: "", postOn: "")
+        let notifyDetailVC = UIStoryboard(name: "NotifyDetail", bundle: nil).instantiateViewController(withIdentifier: "notifyDetailViewController") as! NotifyDetailViewController
+        notifyDetailVC.boardModel = board
         
-        let notifyDetailViewController = UIStoryboard(name: "NotifyDetail", bundle: nil).instantiateViewController(withIdentifier: "notifyDetailViewController")
-        iNotifyViewController?.iTabBarNavigationController?.pushViewController(notifyDetailViewController, animated: true)
+        iNotifyViewController?.iTabBarNavigationController?.pushViewController(notifyDetailVC, animated: true)
         
     }
     

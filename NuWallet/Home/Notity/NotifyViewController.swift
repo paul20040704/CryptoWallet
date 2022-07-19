@@ -12,7 +12,9 @@ class NotifyViewController: UIViewController {
     var iTabBarNavigationController: TabBarNavigationController?
     @IBOutlet weak var iNotifyTableView: NotifyTableView!
     
-
+    var notifyViewModel = NotifyViewModel()
+    var unreadKey = Array<Int>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +24,10 @@ class NotifyViewController: UIViewController {
         iNotifyTableView.iNotifyViewController = self
         
         setUI()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        iNotifyTableView.reloadData()
     }
     
     func setUI() {
@@ -32,8 +37,20 @@ class NotifyViewController: UIViewController {
     }
     
     @objc func edit() {
+        if let readArray = UD.object(forKey: "boardRead") as? Array<Int> {
+            self.unreadKey.removeAll()
+            for key in notifyViewModel.sortBoardKey {
+                if !(readArray.contains(key)) {
+                    unreadKey.append(key)
+                }
+            }
+        }
+
         let notifyEditVC = UIStoryboard(name: "Notify", bundle: nil).instantiateViewController(withIdentifier: "NotifyEditVC") as! NotifyEditVC
+        notifyEditVC.unreadKey = unreadKey
+        notifyEditVC.notifyViewModel = notifyViewModel
         self.navigationController?.show(notifyEditVC, sender: nil)
+        
     }
 
 }

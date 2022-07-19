@@ -31,6 +31,7 @@ class TabBarMainViewController: UIViewController {
         }
         
         centerBtn.backgroundColor = UIColor.clear
+        //centerBtn.setImage(UIImage.init(named: "icon_tabbar_btm"), for: .normal)
         centerBtn.setBackgroundImage(getCenterBtnImage64x64(), for: UIControl.State.normal)
         centerBtn.addTarget(self, action: #selector(centerClick), for: .touchUpInside)
         self.navigationItem.backButtonTitle = ""
@@ -47,6 +48,7 @@ class TabBarMainViewController: UIViewController {
     
     @objc func centerClick() {
         iTabBarController?.selectedIndex = 2
+        //iTabBarController?.selectedIndex = 1
     }
     
 }

@@ -44,13 +44,16 @@ class ChangeMobileVC: UIViewController {
     }
     
     @objc func sendBtnClick(_ btn: UIButton) {
+        btn.isUserInteractionEnabled = false
         if (timer == nil) {
             BN.getVerificationCode(verificationMethod: 2, verificationType: 4) { statusCode, dataObj, err in
+                btn.isUserInteractionEnabled = true
                 if (statusCode == 200) {
-                    
                     self.counter = 120
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                    self.bottomLab.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.mobileNumber ?? "your phone number"). " + "verification_code_placeholder".localized
+                    self.bottomLab.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.mobileNumber ). " + "verification_code_placeholder".localized
+                }else{
+                    self.bottomLab.text = err?.exception ?? "send_fail".localized
                 }
             }
         }

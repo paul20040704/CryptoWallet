@@ -23,6 +23,11 @@ class AccountTableViewCellNext: UITableViewCell {
         cellView.clipsToBounds = true
         
     }
+    
+    override func prepareForReuse() {
+        //cellView.backgroundColor = UIColor.init(hex: "#242424")
+        titleLabel.textColor = UIColor.white
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

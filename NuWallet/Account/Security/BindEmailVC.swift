@@ -51,27 +51,26 @@ class BindEmailVC: UIViewController {
     }
     
     @objc func sendBtnClick(_ btn: UIButton) {
-        
+        btn.isUserInteractionEnabled = false
         if (timer == nil) {
             BN.sendVerificationCode(countryId: "", phoneNumber: "", email: self.emailTextField.text ?? "", verificationMethod: 1, verificationType: 6) { statusCode, dataObj, err in
+                btn.isUserInteractionEnabled = true
                 if (statusCode == 200) {
-                    
                     self.counter = 120
                     self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                    self.bottomLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.emailTextField.text ?? "your email"). " + "verification_code_placeholder".localized
+                    self.bottomLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.emailTextField.text ?? "your email"). " + "verification_code_placeholder".localized
                 }else{
-                    self.bottomLabel.text = "Sned verification code Fail."
+                    self.bottomLabel.text = err?.exception ?? "send_fail".localized
                 }
             }
         }
-
     }
     
     @objc func countDownHandler() {
         counter = counter - 1
         if (counter <= 0) {
             bottomLabel.text = "sms_verification_code_hint".localized
-            smsBtn.setTitle("send_btn", for: UIControl.State.normal)
+            smsBtn.setTitle("send_btn".localized, for: UIControl.State.normal)
             smsBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
             smsBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: smsBtn.frame.height / 2)
             timer?.invalidate()
@@ -126,13 +125,12 @@ class BindEmailVC: UIViewController {
                 HUD.show(.systemActivity)
                 BN.bindEmail(email: self.emailTextField.text ?? "", verificationCode: self.smsTextField.text ?? "") { statusCode, dataObj, err in
                     if (statusCode == 200) {
-                        BN.getMember { statusCode, dataObj, err in
-                            HUD.hide()
-                            let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
-                            FinishVC.bindEmailVC = self
-                            FinishVC.tag = 1
-                            self.present(FinishVC, animated: true, completion: nil)
-                        }
+                        HUD.hide()
+                        let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
+                        FinishVC.bindEmailVC = self
+                        FinishVC.tag = 1
+                        FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                        self.present(FinishVC, animated: true, completion: nil)
                     }else{
                         HUD.hide()
                         FailView.failView.showMe(error: err?.exception ?? "Bind Email Fail.")

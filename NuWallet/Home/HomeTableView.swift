@@ -27,17 +27,17 @@ class HomeTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
             return 2
         case 1:
             switch iHomeViewController?.sort {
-            case "Default":
+            case "coin_sort_1".localized :
                 if (iHomeViewController.searching){
                     return iHomeViewController?.searchHighlightIdArr.count ?? 0
                 }else{
-                    return iHomeViewController?.highlightIdArr.count ?? 0
+                    return iHomeViewController?.crypcoModel.listModel?.defaultKey.count ?? 0
                 }
             default:
                 if (iHomeViewController.searching) {
                     return iHomeViewController?.searchAllIdArr.count ?? 0
                 }else{
-                    return iHomeViewController?.allIdArr.count ?? 0
+                    return iHomeViewController?.crypcoModel.listModel?.allKey.count ?? 0
                 }
             }
         default:
@@ -49,6 +49,9 @@ class HomeTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "homeTableViewCellTitle", for: indexPath) as! HomeTableViewCellTitle
+                let security = UD.bool(forKey: "balanceSecurity") 
+                cell.cellBalanceTextField.isSecureTextEntry = security
+                cell.cellBalanceTextField.text = "$ " + iHomeViewController.balance
                 cell.iHomeTableView = self
                 return cell
             }else{
@@ -62,25 +65,22 @@ class HomeTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
                 cell.iHomeTableView = self
                 var id = String()
                 switch iHomeViewController?.sort {
-                case "Default":
+                case "coin_sort_1".localized :
                     if (iHomeViewController.searching) {
                         id = iHomeViewController.searchHighlightIdArr[indexPath.row]
                     }else{
-                        id = iHomeViewController.highlightIdArr[indexPath.row]
+                        id = iHomeViewController.crypcoModel.listModel?.defaultKey[indexPath.row] ?? ""
                     }
                     
-                case "All":
+                case "coin_sort_2".localized :
                     if (iHomeViewController.searching) {
                         id = iHomeViewController.searchAllIdArr[indexPath.row]
                     }else{
-                        id = iHomeViewController.allIdArr[indexPath.row]
+                        id = iHomeViewController.crypcoModel.listModel?.allKey[indexPath.row] ?? ""
                     }
                     
-                case "漲幅由高至低":
-                    var idArr = Array<String>()
-                    for item in iHomeViewController!.cryptoPercentDic.sorted(by: {$0.1 > $1.1}) {
-                        idArr.append(item.key)
-                    }
+                case "coin_sort_3".localized :
+                    var idArr = iHomeViewController.crypcoModel.sortId(sort: 0)
                     if (iHomeViewController.searching) {
                         for id in idArr {
                             if !(iHomeViewController.searchAllIdArr.contains(id)) {
@@ -95,10 +95,7 @@ class HomeTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
                     }
                     
                 default:
-                    var idArr = Array<String>()
-                    for item in iHomeViewController!.cryptoPercentDic.sorted(by: {$0.1 < $1.1}) {
-                        idArr.append(item.key)
-                    }
+                    var idArr = iHomeViewController.crypcoModel.sortId(sort: 1)
                     if (iHomeViewController.searching) {
                         for id in idArr {
                             if !(iHomeViewController.searchAllIdArr.contains(id)) {
@@ -115,12 +112,11 @@ class HomeTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
                 
                 cell.cellCoinImageView.image = UIImage(named: "coin_\(id.lowercased())")
                 cell.cellCoinShortNameLabel.text = id
-                cell.cellCoinFullNameLabel.text = iHomeViewController?.cryptoSummaryDic[id]
-                cell.cellCoinPercentLabel.text = String(format: "%.2f", iHomeViewController?.cryptoPercentDic[id] ?? 0)
+                cell.cellCoinFullNameLabel.text = iHomeViewController?.crypcoModel.fullDic[id]
+                cell.cellCoinPercentLabel.text = String(format: "%.2f", iHomeViewController?.crypcoModel.percentDic[id] ?? 0)
                 cell.cellCoinPercentLabel.textColor()
-                let double = Double(iHomeViewController?.cryptoPriceDic[id] ?? "0")
-                cell.cellCoinValueLabel.text = String(format: "%.2f", double ?? 0)
-                
+                let double = Double(iHomeViewController?.crypcoModel.priceDic[id] ?? "0") ?? 0
+                cell.cellCoinValueLabel.text = double.round()
                 
                 var values: [CGFloat] = [CGFloat]()
                 for _ in 1...10 {
@@ -146,9 +142,15 @@ class HomeTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
             if let cell = tableView.cellForRow(at: indexPath) as? HomeTableViewCellCoin {
                 if let id = cell.cellCoinShortNameLabel.text {
                     let candlestickChartViewController = UIStoryboard(name: "CandlestickChart", bundle: nil).instantiateViewController(withIdentifier: "candlestickChartViewController") as! CandlestickChartViewController
+                    
+                    let model: DepositModel? = iHomeViewController.assetDic[id]
                     candlestickChartViewController.symbol = id
-                    candlestickChartViewController.price = cell.cellCoinValueLabel.text ?? ""
-                    candlestickChartViewController.percent = iHomeViewController?.cryptoPercentDic[id] ?? 0
+                    //candlestickChartViewController.fullName = model?.coinFullName ?? ""
+                    candlestickChartViewController.tradeEnabled = model?.tradeEnabled ?? false
+                    candlestickChartViewController.withdrawalEnabled = model?.withdrawalEnabled ?? false
+                    candlestickChartViewController.depositEnabled = model?.depositEnabled ?? false
+                    candlestickChartViewController.balance = model?.balance ?? "0"
+                    
                     self.iHomeViewController?.iTabBarController?.iTabBarMainViewController?.iTabBarNavigationController?.pushViewController(candlestickChartViewController, animated: true)
                 }
             }

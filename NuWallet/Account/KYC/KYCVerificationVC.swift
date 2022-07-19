@@ -10,7 +10,7 @@ import UIKit
 class KYCVerificationVC: UIViewController, SelectDelegate, dateDelegate{
 
     @IBOutlet var selectBtns: [UIButton]!
-    @IBOutlet var selectLabels: [PaddingLabel]!
+    @IBOutlet var selectTFs: [UITextField]!
     @IBOutlet weak var idNumberTF: UITextField!
     @IBOutlet weak var addressTF: UITextField!
     @IBOutlet weak var firstNameTF: UITextField!
@@ -41,6 +41,21 @@ class KYCVerificationVC: UIViewController, SelectDelegate, dateDelegate{
             btn.setBackgroundVerticalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: nil)
             btn.addTarget(self, action: #selector(selectBtnClick(btn:)), for: .touchUpInside)
         }
+        
+        for tf in selectTFs {
+            switch tf.tag {
+            case 0:
+                tf.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "nationality_placeholder".localized, placeholderColorHex: "393939")
+            case 1:
+                tf.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "residential_address_placeholder".localized, placeholderColorHex: "393939")
+            case 2:
+                tf.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "gender_placeholder".localized, placeholderColorHex: "393939")
+            default:
+                break
+            }
+        }
+
+        
         idNumberTF.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "passport_idcard_number_placeholder".localized, placeholderColorHex: "393939")
         idNumberTF.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         
@@ -116,8 +131,8 @@ class KYCVerificationVC: UIViewController, SelectDelegate, dateDelegate{
     
     func judgeCanNext() {
         
-        for label in selectLabels {
-            label.judgeRemind()
+        for tf in selectTFs {
+            tf.judgeRemind()
         }
         idNumberTF.judgeRemind()
         addressTF.judgeRemind()
@@ -128,8 +143,8 @@ class KYCVerificationVC: UIViewController, SelectDelegate, dateDelegate{
         if (birthdayLabel.text!.count) < 1 {
             isLabelSelect = false
         }
-        for label in selectLabels {
-            if (label.text!.count < 1) {
+        for tf in selectTFs {
+            if (tf.text!.count < 1) {
                 isLabelSelect = false
                 break
             }
@@ -168,9 +183,9 @@ class KYCVerificationVC: UIViewController, SelectDelegate, dateDelegate{
     
     //Delegate
     func updateOption(tag: Int, condition: String) {
-        for label in selectLabels {
-            if (label.tag == tag) {
-                label.text = condition
+        for tf in selectTFs {
+            if (tf.tag == tag) {
+                tf.text = condition
             }
         }
         switch tag {

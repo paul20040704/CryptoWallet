@@ -18,7 +18,7 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 13
+        return 15
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -26,7 +26,6 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellTitle", for: indexPath) as? AccountTableViewCellTitle {
                 
                 cell.iAccountTableView = self
-                
                 cell.titleLabel.text = mobileStrFormat(id: iAccountViewController?.memberInfo?.countryCode ?? "", number:iAccountViewController?.memberInfo?.mobileNumber ?? "", type: 0)
                 
                 return cell
@@ -49,6 +48,7 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellNext", for: indexPath) as? AccountTableViewCellNext {
                 
                 cell.iAccountTableView = self
+                cell.nextImageView.isHidden = false
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_accountverification")
                 cell.titleLabel.text = "account_verification".localized
                 
@@ -61,9 +61,9 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellNext", for: indexPath) as? AccountTableViewCellNext {
                 
                 cell.iAccountTableView = self
+                cell.nextImageView.isHidden = false
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_referralreward")
                 cell.titleLabel.text = "referral_reward".localized
-                
                 
                 return cell
             } else {
@@ -74,6 +74,7 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellNext", for: indexPath) as? AccountTableViewCellNext {
                 
                 cell.iAccountTableView = self
+                cell.nextImageView.isHidden = false
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_security")
                 cell.titleLabel.text = "security".localized
                 
@@ -97,6 +98,7 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellSwitch", for: indexPath) as? AccountTableViewCellSwitch {
                 
                 cell.iAccountTableView = self
+                cell.checkNotification()
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_notification")
                 cell.titleLabel.text = "notifications".localized
                 
@@ -109,6 +111,7 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellNext", for: indexPath) as? AccountTableViewCellNext {
                 
                 cell.iAccountTableView = self
+                cell.nextImageView.isHidden = false
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_language")
                 cell.titleLabel.text = "language".localized
                 
@@ -132,6 +135,7 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellNext", for: indexPath) as? AccountTableViewCellNext {
                 
                 cell.iAccountTableView = self
+                cell.nextImageView.isHidden = false
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_faq")
                 cell.titleLabel.text = "faq".localized
                 
@@ -145,6 +149,7 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellNext", for: indexPath) as? AccountTableViewCellNext {
                 
                 cell.iAccountTableView = self
+                cell.nextImageView.isHidden = false
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_contact")
                 cell.titleLabel.text = "contact_us".localized
                 
@@ -170,8 +175,31 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
                 cell.iAccountTableView = self
                 cell.titleImageView.image = UIImage.init(named: "icon_toolbar_logout")
                 cell.titleLabel.text = "logout".localized
-                cell.titleLabel.textColor = UIColor.init(hex: "575757")
+                //cell.titleLabel.textColor = UIColor.init(hex: "575757")
                 cell.nextImageView.isHidden = true
+                
+                return cell
+            } else {
+                return UITableViewCell()
+            }
+        } else if (indexPath.row == 13) {
+            // Logout
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "accountTableViewCellNext", for: indexPath) as? AccountTableViewCellNext {
+                
+                cell.iAccountTableView = self
+                cell.titleImageView.image = UIImage.init(named: "icon_toolbar_deleteaccount")
+                cell.titleLabel.text = "delete_account".localized
+                cell.titleLabel.textColor = UIColor.init(hex: "#D93F3F")
+                cell.nextImageView.isHidden = true
+                
+                return cell
+            } else {
+                return UITableViewCell()
+            }
+        } else if (indexPath.row == 14) {
+            // Logout
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "AccountVersionCell", for: indexPath) as? AccountVersionCell {
+                cell.versionLabel.text = "v" + localVersion
                 
                 return cell
             } else {
@@ -219,11 +247,17 @@ class AccountTableView: UITableView, UITableViewDataSource, UITableViewDelegate 
             let languageVC = UIStoryboard(name: "LanguageVC", bundle: nil).instantiateViewController(withIdentifier: "LanguageVC") as! LanguageVC
             languageVC.accountViewController = iAccountViewController
             iAccountViewController?.navigationController?.show(languageVC, sender: nil)
+        case 9:
+            openUrlStr(urlStr: "https://numiner.zendesk.com/hc/en-001/sections/5319628035097-Common")
         case 10:
-            let contactVC = UIStoryboard(name: "ContactVC", bundle: nil).instantiateViewController(withIdentifier: "ContactVC")
-            iAccountViewController?.navigationController?.show(contactVC, sender: nil)
+            let contactListVC = UIStoryboard(name: "Contact", bundle: nil).instantiateViewController(withIdentifier: "ContactListVC")
+            iAccountViewController?.navigationController?.show(contactListVC, sender: nil)
         case 12:
             LogoutView.logoutView.showMe()
+        case 13:
+            let deleteVC = UIStoryboard(name: "DeleteVC", bundle: nil).instantiateViewController(withIdentifier: "DeleteVC")
+            deleteVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+            iAccountViewController?.present(deleteVC, animated: true, completion: nil)
         default:
             break
         }

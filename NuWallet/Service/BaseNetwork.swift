@@ -51,9 +51,6 @@ class BaseNetwork {
                 if let data = data {
                     do {
                         dataObj = try JSONDecoder().decode(TokenResponse.self, from: data)
-                    } catch {
-                    }
-                    do {
                         errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
                     } catch {
                     }
@@ -260,7 +257,7 @@ class BaseNetwork {
         }
     }
     //發送驗證碼根據驗證方式
-    func sendVerificationCode(countryId: String, phoneNumber: String?, email: String?, verificationMethod: Int, verificationType: Int, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: Error?) -> Void)?) {
+    func sendVerificationCode(countryId: String, phoneNumber: String?, email: String?, verificationMethod: Int, verificationType: Int, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: ErrorResponse?) -> Void)?) {
         
         // verificationType => 0 = Undefined, 1 = Register
         // verificationMethod => 0 = Undefined, 1 = Email, 2 = SMS, 3 = GoogleAuthenticator
@@ -313,12 +310,20 @@ class BaseNetwork {
             let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
                 
                 var statusCode = 0
-
+                var errorObj: ErrorResponse? = nil
+                
                 if let httpResponse = urlResponse as? HTTPURLResponse {
                     statusCode = httpResponse.statusCode
                 }
+                if let data = data {
+                    do {
+                        errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                    } catch {
+                    }
+                }
+                
                 DispatchQueue.main.async {
-                    response?(statusCode, nil, error)
+                    response?(statusCode, nil, errorObj)
                 }
             }
             
@@ -333,7 +338,7 @@ class BaseNetwork {
     }
 
     //舊手機請求驗證碼(使用token)
-    func getVerificationCode(verificationMethod: Int, verificationType: Int, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: Error?) -> ())?){
+    func getVerificationCode(verificationMethod: Int, verificationType: Int, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: ErrorResponse?) -> ())?){
         
         getToken { success, token in
             if (success) {
@@ -359,13 +364,20 @@ class BaseNetwork {
                     let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
 
                         var statusCode = 0
-
+                        var errorObj: ErrorResponse? = nil
+                        
                         if let httpResponse = urlResponse as? HTTPURLResponse {
                             statusCode = httpResponse.statusCode
                         }
+                        if let data = data {
+                            do {
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
                         
                         DispatchQueue.main.async {
-                            response?(statusCode, nil, error)
+                            response?(statusCode, nil, errorObj)
                         }
                     }
                     
@@ -661,7 +673,6 @@ class BaseNetwork {
                     } catch {
                         
                     }
-                    
                     let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
                         
                         var statusCode = 0
@@ -857,7 +868,7 @@ class BaseNetwork {
         }
     }
     //設定登入與交易兩步驗證開關
-    func setTwoAuthLogin(type: Int, enabled: Bool, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: Error?) -> ())?) {
+    func setTwoAuthLogin(type: Int, enabled: Bool, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: ErrorResponse?) -> ())?) {
         getToken { success, token in
             if (success) {
                 var params: [String: Any] = [String: Any]()
@@ -886,13 +897,21 @@ class BaseNetwork {
                     let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
                         
                         var statusCode = 0
+                        var errorObj: ErrorResponse? = nil
                         
                         if let httpResponse = urlResponse as? HTTPURLResponse {
                             statusCode = httpResponse.statusCode
                         }
                         
+                        if let data = data {
+                            do {
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+                        
                         DispatchQueue.main.async {
-                            response?(statusCode, nil, error)
+                            response?(statusCode, nil, errorObj)
                         }
                     }
                     task.resume()
@@ -1018,7 +1037,7 @@ class BaseNetwork {
     func getKYCSummary(response: ((_ statusCode: Int, _ dataObj: KYCResoponse?, _ err: Error?) -> ())?) {
         getToken { success, token in
             if (success) {
-                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/member/authenticator") {
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/member/kyc/summary") {
                     
                     var request = URLRequest(url: url)
                     request.httpMethod = "GET"
@@ -1055,7 +1074,7 @@ class BaseNetwork {
     }
     
     //取得會員登入BTM Qrcode
-    func getLoginQrcode(response: ((_ statusCode: Int, _ dataStr: String?, _ err: Error?) -> ())?) {
+    func getLoginQrcode(response: ((_ statusCode: Int, _ dataStr: String?, _ err: ErrorResponse?) -> ())?) {
         getToken { success, token in
             if (success) {
                 if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/member/qr-code") {
@@ -1067,6 +1086,7 @@ class BaseNetwork {
                         
                         var statusCode = 0
                         var dataStr: String? = nil
+                        var errorObj: ErrorResponse? = nil
                         
                         if let httpResponse = urlResponse as? HTTPURLResponse {
                             statusCode = httpResponse.statusCode
@@ -1076,12 +1096,13 @@ class BaseNetwork {
                             do {
                                 //let data1 = try JSONSerialization.data(withJSONObject: data , options: .prettyPrinted)
                                 dataStr = String(data: data, encoding: .utf8)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
                             } catch {
 
                             }
                         }
                         DispatchQueue.main.async {
-                            response?(statusCode, dataStr, error)
+                            response?(statusCode, dataStr, errorObj)
                         }
                     }
                     task.resume()
@@ -1135,18 +1156,19 @@ class BaseNetwork {
         }
     }
     
-    //取得首頁幣種行情
-    func getCryptoMarket(headers: [String: String]?, response: ((_ statusCode: Int, _ dataObj: CryptoMarketResponse?, _ err: Error?) -> Void)?) {
-
-        if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/market/ticker24hr") {
+    //取得指定幣種的美金漲跌幅，最後價格
+    func getCryptoMarketUsd(coins: [String], response: ((_ statusCode: Int, _ dataObj: CryptoMarketResponse?, _ err: Error?) -> Void)?) {
+        
+        var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/market/latest-quotes/usd")
+        var value = ""
+        for coin in coins {
+            value += coin + ","
+        }
+        urlCompoent?.queryItems = [URLQueryItem(name: "Coin", value: value)]
+        
+        if let url = urlCompoent?.url {
+            let request = URLRequest(url: url)
             
-            var request = URLRequest(url: url)
-            
-            if let headers = headers {
-                for (key, value) in headers {
-                    request.addValue(value, forHTTPHeaderField: key)
-                }
-            }
             let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
                 
                 var statusCode = 0
@@ -1309,7 +1331,7 @@ class BaseNetwork {
     }
     
     //新增BTM賣出交易
-    func getSellingOrder(dataStr: String, response: ((_ statusCode: Int, _ dataObj: SellingDetail?, _ err: ErrorResponse?) -> ())?) {
+    func getSellingOrder(sellDic: [String: String], response: ((_ statusCode: Int, _ dataObj: SellingDetail?, _ err: ErrorResponse?) -> ())?) {
         getToken { success, token in
             if (success) {
             
@@ -1317,14 +1339,14 @@ class BaseNetwork {
                     
                     var request = URLRequest(url: url)
                     request.httpMethod = "POST"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
                     
                     do{
-                        let data = dataStr.data(using: .utf8)
-                        request.httpBody = data
+                        request.httpBody = try JSONSerialization.data(withJSONObject: sellDic, options: JSONSerialization.WritingOptions())
                     } catch {
-                        
                     }
+                    
                     let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
                         
                         var statusCode = 0
@@ -1337,9 +1359,6 @@ class BaseNetwork {
                         if let data = data {
                             do {
                                 dataObj = try JSONDecoder().decode(SellingDetail.self, from: data)
-                            } catch {
-                            }
-                            do {
                                 errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
                             } catch {
                             }
@@ -1362,11 +1381,12 @@ class BaseNetwork {
     }
     
     //確認BTM賣出交易
-    func setSellingOrder(orderId: String, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: ErrorResponse?) -> ())?) {
+    func putSellingOrder(orderId: String, transactionPassword: String, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: ErrorResponse?) -> ())?) {
         getToken { success, token in
             if (success) {
                 var params: [String: Any] = [String: Any]()
                 params["orderId"] = orderId
+                params["transactionPassword"] = transactionPassword
             
                 if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/orders/selling") {
                     
@@ -1414,7 +1434,763 @@ class BaseNetwork {
         }
     }
     
+    //取得會員資產地址清單
+    func getAssetAddress(coinId: String, response: ((_ statusCode: Int, _ dataObj: AssetAddress?, _ err: ErrorResponse?) -> ())?){
+        getToken { success, token in
+            if (success) {
+                var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/addresses")
+                urlCompoent?.queryItems = [URLQueryItem(name: "CoinId", value: coinId)]
+                
+                if let url = urlCompoent?.url {
+                    
+                    var request = URLRequest(url: url)
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: AssetAddress? = nil
+                        var errorObj: ErrorResponse? = nil
+
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(AssetAddress.self, from: data)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                                
+                            } catch {
+
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
     
+    //請求會員資產地址
+    func postAssetAddress(coinId: String, networkId: String, response: ((_ statusCode: Int, _ dataObj: PostAddress?, _ err: ErrorResponse?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                
+                var params: [String: Any] = [String: Any]()
+                params["coinId"] = coinId
+                params["networkId"] = networkId
+            
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/address") {
+                    
+                    var request = URLRequest(url: url)
+
+                    request.httpMethod = "POST"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    do{
+                        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions())
+                    } catch {
+                        
+                    }
+
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: PostAddress? = nil
+                        var errorObj: ErrorResponse? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(PostAddress.self, from: data)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    
+    //取得出金配置訊息
+    func getAssetWithdrawal(coinId: String, response: ((_ statusCode: Int, _ dataObj: WithdrawalResponse?, _ err: ErrorResponse?) -> ())?){
+        getToken { success, token in
+            if (success) {
+                var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/withdrawal/configurations")
+                urlCompoent?.queryItems = [URLQueryItem(name: "CoinId", value: coinId)]
+                
+                if let url = urlCompoent?.url {
+                    
+                    var request = URLRequest(url: url)
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: WithdrawalResponse? = nil
+                        var errorObj: ErrorResponse? = nil
+
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(WithdrawalResponse.self, from: data)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //建立出金請求
+    func postWithdrawal(withdrawDic: [String: Any], response: ((_ statusCode: Int, _ transactionId: Transaction?, _ err: ErrorResponse?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/withdrawal") {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    do{
+                        request.httpBody = try JSONSerialization.data(withJSONObject: withdrawDic, options: JSONSerialization.WritingOptions())
+                    } catch {
+                        
+                    }
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var transactionId: Transaction? = nil
+                        var errorObj: ErrorResponse? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        
+                        if let data = data {
+                            do {
+                                transactionId = try JSONDecoder().decode(Transaction.self, from: data)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+
+                        DispatchQueue.main.async {
+                            response?(statusCode, transactionId, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得入金歷史紀錄
+    func getDepositHistory(response: ((_ statusCode: Int, _ dataObj: TransactionHistory?, _ err: Error?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/deposits") {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "GET"
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: TransactionHistory? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(TransactionHistory.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, error)
+                        }
+                    }
+                    task.resume()
+                }else{
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    
+    //取得出金歷史紀錄
+    func getWithdrawHistory(response: ((_ statusCode: Int, _ dataObj: TransactionHistory?, _ err: Error?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/withdrawals") {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "GET"
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: TransactionHistory? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(TransactionHistory.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, error)
+                        }
+                    }
+                    task.resume()
+                }else{
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得入金明細
+    func getDepositList(transactionId: String, response: ((_ statusCode: Int, _ dataObj: DepositList?, _ err: Error?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/deposit")
+                urlCompoent?.queryItems = [URLQueryItem(name: "transactionId", value: transactionId)]
+                
+                if let url = urlCompoent?.url {
+                    
+                    var request = URLRequest(url: url)
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: DepositList? = nil
+
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(DepositList.self, from: data)
+                            } catch {
+
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, error)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得出金明細
+    func getWithdrawList(transactionId: String, response: ((_ statusCode: Int, _ dataObj: WithdrawList?, _ err: Error?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/withdrawal")
+                urlCompoent?.queryItems = [URLQueryItem(name: "transactionId", value: transactionId)]
+                
+                if let url = urlCompoent?.url {
+                    
+                    var request = URLRequest(url: url)
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: WithdrawList? = nil
+
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(WithdrawList.self, from: data)
+                            } catch {
+
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, error)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得BTM入金明細
+    func getBtmDeposit(transactionId: String, response: ((_ statusCode: Int, _ dataObj: BtmTransactionList?, _ err: ErrorResponse?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/btm/deposit")
+                urlCompoent?.queryItems = [URLQueryItem(name: "transactionId", value: transactionId)]
+                
+                if let url = urlCompoent?.url {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "GET"
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: BtmTransactionList? = nil
+                        var errorObj: ErrorResponse? = nil
+
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(BtmTransactionList.self, from: data)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得BTM出金明細
+    func getBtmWithdrawal(transactionId: String, response: ((_ statusCode: Int, _ dataObj: BtmTransactionList?, _ err: ErrorResponse?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/asset/btm/withdrawal")
+                urlCompoent?.queryItems = [URLQueryItem(name: "transactionId", value: transactionId)]
+                
+                if let url = urlCompoent?.url {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "GET"
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: BtmTransactionList? = nil
+                        var errorObj: ErrorResponse? = nil
+
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(BtmTransactionList.self, from: data)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得Swap幣種清單
+    func getSwapCoins(response: ((_ statusCode: Int, _ dataObj: SwapResponse?, _ err: Error?) -> ())?) {
+        if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/swap/coins") {
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                
+                var statusCode = 0
+                var dataObj: SwapResponse? = nil
+                
+                if let httpResponse = urlResponse as? HTTPURLResponse {
+                    statusCode = httpResponse.statusCode
+                }
+                
+                if let data = data {
+                    do {
+                        dataObj = try JSONDecoder().decode(SwapResponse.self, from: data)
+                    } catch {
+                    }
+                }
+                DispatchQueue.main.async {
+                    response?(statusCode, dataObj, error)
+                }
+            }
+            task.resume()
+        }else{
+            DispatchQueue.main.async {
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得Swap交易匯率
+    func getSwapRate(fromCoin: String, toCoin: String, response: ((_ statusCode: Int, _ dataObj: SwapRate?, _ err: ErrorResponse?) -> ())?) {
+        
+        var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/swap/exchange-rate")
+        urlCompoent?.queryItems = [URLQueryItem(name: "FromCoinId", value: fromCoin), URLQueryItem(name: "ToCoinId", value: toCoin)]
+        
+        if let url = urlCompoent?.url {
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            
+            let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                
+                var statusCode = 0
+                var dataObj: SwapRate? = nil
+                var errorObj: ErrorResponse? = nil
+
+                if let httpResponse = urlResponse as? HTTPURLResponse {
+                    statusCode = httpResponse.statusCode
+                }
+
+                if let data = data {
+                    do {
+                        dataObj = try JSONDecoder().decode(SwapRate.self, from: data)
+                        errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                    } catch {
+                    }
+                }
+                DispatchQueue.main.async {
+                    response?(statusCode, dataObj, errorObj)
+                }
+            }
+            task.resume()
+        } else {
+            DispatchQueue.main.async {
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //建立Swap交易
+    func postSwapOrder(fromCoinId: String, toCoinId: String, quantity: String, response: ((_ statusCode: Int, _ dataObj: SwapOrder?, _ err: ErrorResponse?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                var params: [String: Any] = [String: Any]()
+                
+                params["fromCoinId"] = fromCoinId
+                params["toCoinId"] = toCoinId
+                params["quantity"] = quantity
+                
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/swap") {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    do{
+                        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions())
+                    } catch {
+                    }
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: SwapOrder? = nil
+                        var errorObj: ErrorResponse? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(SwapOrder.self, from: data)
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //確認Swap交易
+    func postSwapCompletion(transactionId: String, transactionPassword: String, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: ErrorResponse?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                var params: [String: Any] = [String: Any]()
+                
+                params["transactionId"] = transactionId
+                params["transactionPassword"] = transactionPassword
+                
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/swap/completion") {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    do{
+                        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions())
+                    } catch {
+                    }
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var errorObj: ErrorResponse? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        if let data = data {
+                            do {
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, nil, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得Swap歷史紀錄
+    func getSwapHistory(response: ((_ statusCode: Int, _ dataObj: SwapHistory?, _ err: Error?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/swap/histories") {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "GET"
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: SwapHistory? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(SwapHistory.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, error)
+                        }
+                    }
+                    task.resume()
+                }else{
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //取得公布欄清單
+    func getBoardList(startOn: String,endOn: String ,response: ((_ statusCode: Int, _ dataObj: BoardList?, _ err: Error?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                
+                var urlCompoent = URLComponents(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/bulletin-board")
+                urlCompoent?.queryItems = [URLQueryItem(name: "StartOn", value: startOn), URLQueryItem(name: "EndOn", value: endOn)]
+                
+                if let url = urlCompoent?.url { 
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "GET"
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var dataObj: BoardList? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        
+                        if let data = data {
+                            do {
+                                dataObj = try JSONDecoder().decode(BoardList.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, dataObj, error)
+                        }
+                    }
+                    task.resume()
+                }else{
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
+    //刪除帳號
+    func postDeleteMember(loginPassword: String, response: ((_ statusCode: Int, _ dataObj: Any?, _ err: ErrorResponse?) -> ())?) {
+        getToken { success, token in
+            if (success) {
+                var params: [String: Any] = [String: Any]()
+                
+                params["loginPassword"] = loginPassword
+                
+                if let url = URL(string: "https://dev-numiner-wallet.azurewebsites.net/api/v1/member/deletion") {
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = "POST"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.setValue( "Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    do{
+                        request.httpBody = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions())
+                    } catch {
+                    }
+                    let task = URLSession.shared.dataTask(with: request) { data, urlResponse, error in
+                        
+                        var statusCode = 0
+                        var errorObj: ErrorResponse? = nil
+                        
+                        if let httpResponse = urlResponse as? HTTPURLResponse {
+                            statusCode = httpResponse.statusCode
+                        }
+                        if let data = data {
+                            do {
+                                errorObj = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                            } catch {
+                            }
+                        }
+                        DispatchQueue.main.async {
+                            response?(statusCode, nil, errorObj)
+                        }
+                    }
+                    task.resume()
+                } else {
+                    DispatchQueue.main.async {
+                        response?(0, nil, nil)
+                    }
+                }
+            }else{
+                response?(0, nil, nil)
+            }
+        }
+    }
     
     
 }

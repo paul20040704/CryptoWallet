@@ -10,7 +10,7 @@ import UIKit
 class KYCVerification2VC: UIViewController, SelectDelegate {
 
     @IBOutlet var selectBtns: [UIButton]!
-    @IBOutlet var selectLabels: [PaddingLabel]!
+    @IBOutlet var selectTFs: [UITextField]!
     @IBOutlet weak var nextBtn: UIButton!
     
     var kycOptionsResponse: KYCOptionsResponse?
@@ -37,6 +37,22 @@ class KYCVerification2VC: UIViewController, SelectDelegate {
             btn.setBackgroundVerticalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: nil)
             btn.addTarget(self, action: #selector(selectBtnClick(btn:)), for: .touchUpInside)
         }
+        
+        for tf in selectTFs {
+            switch tf.tag {
+            case 0:
+                tf.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "employment_status_placeholder".localized, placeholderColorHex: "393939")
+            case 1:
+                tf.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "industry_placeholder".localized, placeholderColorHex: "393939")
+            case 2:
+                tf.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "total_annual_income_placeholder".localized, placeholderColorHex: "393939")
+            case 3:
+                tf.resetCustom(cornerRadius: 10, paddingLeft: 15, paddingRight: 15, placeholderText: "source_of_funds_placeholder".localized, placeholderColorHex: "393939")
+            default:
+                break
+            }
+        }
+
         
         nextBtn.setBackgroundHorizontalGradient("555555", "363636", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: self.nextBtn.frame.height / 2)
         nextBtn.addTarget(self, action: #selector(nextBtnClick), for: UIControl.Event.touchUpInside)
@@ -89,20 +105,20 @@ class KYCVerification2VC: UIViewController, SelectDelegate {
     }
     
     func judgeCanNext() {
-        for label in selectLabels {
-            if (label.tag != 0) {
-                label.judgeRemind()
+        for tf in selectTFs {
+            if (tf.tag != 0) {
+                tf.judgeRemind()
             }
         }
         
-        var isLabelSelect = true
-        for label in selectLabels {
-            if (label.text!.count < 1 && label.tag != 0) {
-                isLabelSelect = false
+        var isTFSelect = true
+        for tf in selectTFs {
+            if (tf.text!.count < 1 && tf.tag != 0) {
+                isTFSelect = false
                 break
             }
         }
-        if (isLabelSelect) {
+        if (isTFSelect) {
             isCanNext = true
             self.nextBtn.setBackgroundHorizontalGradient("1F892B", "11681B", "222222", paddingLeftRight: nil, paddingTopBottom: nil, borderWidth: nil, borderColorHex: nil, cornerRadius: self.nextBtn.frame.height / 2)
         } else {
@@ -114,9 +130,9 @@ class KYCVerification2VC: UIViewController, SelectDelegate {
     
     //Delegate
     func updateOption(tag: Int, condition: String) {
-        for label in selectLabels {
-            if (label.tag == tag) {
-                label.text = condition
+        for tf in selectTFs {
+            if (tf.tag == tag) {
+                tf.text = condition
             }
         }
         switch tag {

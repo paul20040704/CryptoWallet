@@ -23,8 +23,8 @@
                                     <constraint firstAttribute="width" constant="32" id="lzW-UF-Cz5"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="43,000.95" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIN-qU-oUQ">
-                                <rect key="frame" x="67" y="69" width="133" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIN-qU-oUQ">
+                                <rect key="frame" x="67" y="69" width="17.5" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -126,81 +126,85 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Esl-ak-Obk">
-                                <rect key="frame" x="0.0" y="671" width="414" height="237"/>
+                                <rect key="frame" x="0.0" y="698" width="414" height="210"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BnA-CQ-yXT">
-                                <rect key="frame" x="0.0" y="671" width="414" height="191"/>
+                                <rect key="frame" x="0.0" y="698" width="414" height="164"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elo-O1-buP">
-                                        <rect key="frame" x="15" y="123" width="121.5" height="48"/>
-                                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="WEG-6a-IWE">
+                                        <rect key="frame" x="15" y="96" width="384" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elo-O1-buP">
+                                                <rect key="frame" x="0.0" y="0.0" width="121.5" height="48"/>
+                                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="vdO-g5-Gxl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Swap">
+                                                    <color key="titleColor" red="0.10980392160000001" green="0.28235294119999998" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="swap"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg8-ZI-t37">
+                                                <rect key="frame" x="131.5" y="0.0" width="121" height="48"/>
+                                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="p4n-pl-xLn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Deposit">
+                                                    <color key="titleColor" red="0.10980392160000001" green="0.28235294119999998" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="deposit"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTH-bz-PaU">
+                                                <rect key="frame" x="262.5" y="0.0" width="121.5" height="48"/>
+                                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="lqD-Zd-npI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Withdraw">
+                                                    <color key="titleColor" red="0.10980392160000001" green="0.28235294119999998" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="withdraw"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="vdO-g5-Gxl"/>
+                                            <constraint firstAttribute="height" constant="48" id="Lge-N6-vMl"/>
+                                            <constraint firstItem="RTH-bz-PaU" firstAttribute="width" secondItem="sg8-ZI-t37" secondAttribute="width" id="QSS-CC-HCP"/>
+                                            <constraint firstItem="sg8-ZI-t37" firstAttribute="width" secondItem="elo-O1-buP" secondAttribute="width" id="rWk-Uy-hcN"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Swap">
-                                            <color key="titleColor" red="0.10980392160000001" green="0.28235294119999998" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="swap"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sg8-ZI-t37">
-                                        <rect key="frame" x="146.5" y="123" width="121" height="48"/>
-                                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="p4n-pl-xLn"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Deposit">
-                                            <color key="titleColor" red="0.10980392160000001" green="0.28235294119999998" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="deposit"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTH-bz-PaU">
-                                        <rect key="frame" x="277.5" y="123" width="121.5" height="48"/>
-                                        <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="lqD-Zd-npI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Withdraw">
-                                            <color key="titleColor" red="0.10980392160000001" green="0.28235294119999998" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="withdraw"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
+                                    </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eu-sZ-8MH">
-                                        <rect key="frame" x="15" y="106" width="384" height="2"/>
+                                        <rect key="frame" x="15" y="79" width="384" height="2"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="165-xX-bd8"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s5-OQ-ycd">
-                                        <rect key="frame" x="15" y="74" width="116" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="available_balance"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" text="$ 1,234,567,89 BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nc4-i1-zNM">
-                                        <rect key="frame" x="136" y="74" width="263" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD Value:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGB-a1-uZX">
                                         <rect key="frame" x="15" y="47" width="72.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -210,7 +214,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="usd_value"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" text="$ 1,234,567,89" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fi9-SP-DZZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" text="$ 0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fi9-SP-DZZ">
                                         <rect key="frame" x="92.5" y="47" width="306.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -225,7 +229,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="balance"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" text="$ 1,234,567,89 BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlC-Z4-RMX">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" text="0 BTC" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlC-Z4-RMX">
                                         <rect key="frame" x="75.5" y="20" width="323.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,37 +239,26 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9uA-BB-BtY" firstAttribute="top" secondItem="BnA-CQ-yXT" secondAttribute="top" constant="20" id="0xV-Tl-Av2"/>
-                                    <constraint firstItem="4s5-OQ-ycd" firstAttribute="top" secondItem="EGB-a1-uZX" secondAttribute="bottom" constant="10" id="4IV-9n-Isd"/>
-                                    <constraint firstItem="RTH-bz-PaU" firstAttribute="leading" secondItem="sg8-ZI-t37" secondAttribute="trailing" constant="10" id="9Cx-hs-0Nl"/>
                                     <constraint firstItem="Fi9-SP-DZZ" firstAttribute="centerY" secondItem="EGB-a1-uZX" secondAttribute="centerY" id="9S3-4D-WHe"/>
-                                    <constraint firstAttribute="trailing" secondItem="Nc4-i1-zNM" secondAttribute="trailing" constant="15" id="9fn-Nk-9bG"/>
-                                    <constraint firstAttribute="bottom" secondItem="RTH-bz-PaU" secondAttribute="bottom" constant="20" id="C0V-X5-k89"/>
-                                    <constraint firstItem="elo-O1-buP" firstAttribute="leading" secondItem="BnA-CQ-yXT" secondAttribute="leading" constant="15" id="DSJ-Z7-HOT"/>
-                                    <constraint firstItem="sg8-ZI-t37" firstAttribute="width" secondItem="elo-O1-buP" secondAttribute="width" id="EBY-kV-bAf"/>
-                                    <constraint firstAttribute="bottom" secondItem="elo-O1-buP" secondAttribute="bottom" constant="20" id="HQW-Ad-S0o"/>
-                                    <constraint firstAttribute="trailing" secondItem="RTH-bz-PaU" secondAttribute="trailing" constant="15" id="NAe-La-cM4"/>
+                                    <constraint firstItem="9eu-sZ-8MH" firstAttribute="top" secondItem="EGB-a1-uZX" secondAttribute="bottom" constant="15" id="9na-sI-8LF"/>
+                                    <constraint firstAttribute="bottom" secondItem="WEG-6a-IWE" secondAttribute="bottom" constant="20" id="N6W-XJ-W2P"/>
                                     <constraint firstItem="9eu-sZ-8MH" firstAttribute="leading" secondItem="BnA-CQ-yXT" secondAttribute="leading" constant="15" id="Ojm-l1-K67"/>
                                     <constraint firstItem="EGB-a1-uZX" firstAttribute="top" secondItem="9uA-BB-BtY" secondAttribute="bottom" constant="10" id="ULh-Gq-Vdc"/>
                                     <constraint firstItem="RlC-Z4-RMX" firstAttribute="leading" secondItem="9uA-BB-BtY" secondAttribute="trailing" constant="5" id="Uch-H4-bSV"/>
-                                    <constraint firstAttribute="bottom" secondItem="sg8-ZI-t37" secondAttribute="bottom" constant="20" id="Wbw-iX-qvi"/>
-                                    <constraint firstItem="sg8-ZI-t37" firstAttribute="leading" secondItem="elo-O1-buP" secondAttribute="trailing" constant="10" id="X9G-gY-Uiv"/>
+                                    <constraint firstItem="WEG-6a-IWE" firstAttribute="top" secondItem="9eu-sZ-8MH" secondAttribute="bottom" constant="15" id="VOb-zi-ivh"/>
                                     <constraint firstItem="RlC-Z4-RMX" firstAttribute="centerY" secondItem="9uA-BB-BtY" secondAttribute="centerY" id="Ya9-hg-nFF"/>
                                     <constraint firstAttribute="trailing" secondItem="RlC-Z4-RMX" secondAttribute="trailing" constant="15" id="aC6-wS-jNu"/>
                                     <constraint firstItem="9uA-BB-BtY" firstAttribute="leading" secondItem="BnA-CQ-yXT" secondAttribute="leading" constant="15" id="bwr-gl-lxf"/>
-                                    <constraint firstItem="9eu-sZ-8MH" firstAttribute="top" secondItem="4s5-OQ-ycd" secondAttribute="bottom" constant="15" id="cwr-df-4sI"/>
+                                    <constraint firstAttribute="trailing" secondItem="WEG-6a-IWE" secondAttribute="trailing" constant="15" id="eGk-og-C7s"/>
                                     <constraint firstItem="EGB-a1-uZX" firstAttribute="leading" secondItem="BnA-CQ-yXT" secondAttribute="leading" constant="15" id="fN4-B5-qMu"/>
                                     <constraint firstAttribute="trailing" secondItem="9eu-sZ-8MH" secondAttribute="trailing" constant="15" id="kop-eP-Cys"/>
-                                    <constraint firstItem="RTH-bz-PaU" firstAttribute="width" secondItem="sg8-ZI-t37" secondAttribute="width" id="lDm-Fy-j5N"/>
-                                    <constraint firstItem="Nc4-i1-zNM" firstAttribute="leading" secondItem="4s5-OQ-ycd" secondAttribute="trailing" constant="5" id="mgt-cO-3na"/>
+                                    <constraint firstItem="WEG-6a-IWE" firstAttribute="leading" secondItem="BnA-CQ-yXT" secondAttribute="leading" constant="15" id="ny2-L3-RxQ"/>
                                     <constraint firstAttribute="trailing" secondItem="Fi9-SP-DZZ" secondAttribute="trailing" constant="15" id="r9p-7a-FuD"/>
-                                    <constraint firstItem="Nc4-i1-zNM" firstAttribute="centerY" secondItem="4s5-OQ-ycd" secondAttribute="centerY" id="rdN-lP-6ub"/>
                                     <constraint firstItem="Fi9-SP-DZZ" firstAttribute="leading" secondItem="EGB-a1-uZX" secondAttribute="trailing" constant="5" id="tx6-AX-KFS"/>
-                                    <constraint firstItem="elo-O1-buP" firstAttribute="top" secondItem="9eu-sZ-8MH" secondAttribute="bottom" constant="15" id="wal-ZH-DgE"/>
-                                    <constraint firstItem="4s5-OQ-ycd" firstAttribute="leading" secondItem="BnA-CQ-yXT" secondAttribute="leading" constant="15" id="xdB-Wa-psq"/>
                                 </constraints>
                             </view>
                             <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dYs-b3-IRT">
-                                <rect key="frame" x="0.0" y="154" width="414" height="517"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="544"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -316,6 +309,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="BTC / USD" id="F8a-Uf-c5r"/>
                     <connections>
+                        <outlet property="balanceLabel" destination="RlC-Z4-RMX" id="n5t-8d-YxG"/>
                         <outlet property="bottomBackgroundImageView" destination="Esl-ak-Obk" id="NJ6-Io-3dh"/>
                         <outlet property="bottomView" destination="BnA-CQ-yXT" id="re3-Nm-jBJ"/>
                         <outlet property="chartWeb" destination="dYs-b3-IRT" id="1vv-Hb-0Gi"/>
@@ -329,6 +323,7 @@
                         <outlet property="percentLabel" destination="AMG-Q2-Rb1" id="gAr-nk-iFJ"/>
                         <outlet property="priceLabel" destination="tIN-qU-oUQ" id="Hvz-zT-ARc"/>
                         <outlet property="swapBtn" destination="elo-O1-buP" id="Q81-lM-ryY"/>
+                        <outlet property="usdLabel" destination="Fi9-SP-DZZ" id="DYF-4p-pkA"/>
                         <outlet property="w1Btn" destination="i9k-oY-tlg" id="hD8-dY-mc2"/>
                         <outlet property="withdrawBtn" destination="RTH-bz-PaU" id="Z6J-E4-XoT"/>
                     </connections>

@@ -66,28 +66,30 @@ class ChangeEmailVC: UIViewController {
     
     @objc func sendBtnClick(_ btn: UIButton) {
         if (btn.tag == 0) {
+            btn.isUserInteractionEnabled = false
             if (timer == nil) {
                 BN.getVerificationCode(verificationMethod: 1, verificationType: 7) { statusCode, dataObj, err in
+                    btn.isUserInteractionEnabled = true
                     if (statusCode == 200) {
                         self.counter = 120
                         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler), userInfo: nil, repeats: true)
-                        self.bottomLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.emailLabel.text ?? "your email"). " + "verification_code_placeholder".localized
+                        self.bottomLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  " \(self.emailLabel.text ?? "your email"). " + "verification_code_placeholder".localized
                     }else{
-                        self.bottomLabel.text = "Send verification code fail."
+                        self.bottomLabel.text = err?.exception ?? "send_fail".localized
                     }
                 }
             }
         }else{
+            btn.isUserInteractionEnabled = false
             if (timer1 == nil) {
                 BN.sendVerificationCode(countryId: "", phoneNumber: "", email: self.newEmailTextField.text ?? "", verificationMethod: 1, verificationType: 7) { statusCode, dataObj, err in
-                    
+                    btn.isUserInteractionEnabled = true
                     if (statusCode == 200) {
-                        
                         self.counter1 = 120
                         self.timer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDownHandler1), userInfo: nil, repeats: true)
                         self.newBottomLabel.text = "sms_verification_code_hint_text_paragraph_one".localized +  "\(self.newEmailTextField.text ?? "your email"). " + "verification_code_placeholder".localized
                     }else{
-                        self.newBottomLabel.text = "Send verification code fail."
+                        self.newBottomLabel.text = err?.exception ?? "send_fail".localized
                     }
                 }
             }
@@ -168,13 +170,12 @@ class ChangeEmailVC: UIViewController {
                 HUD.show(.systemActivity)
                 BN.changeEmail(email: self.newEmailTextField.text ?? "", verificationCode: self.smsTextField.text ?? "", newVerificationCode: self.newSmsTextField.text ?? "") { statusCode, obj, err in
                     if (statusCode == 200) {
-                        BN.getMember { statusCode, dataObj, err in
-                            HUD.hide()
-                            let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
-                            FinishVC.changeEmailVC = self
-                            FinishVC.tag = 2
-                            self.present(FinishVC, animated: true, completion: nil)
-                        }
+                        HUD.hide()
+                        let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
+                        FinishVC.changeEmailVC = self
+                        FinishVC.tag = 2
+                        FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                        self.present(FinishVC, animated: true, completion: nil)
                     }else{
                         HUD.hide()
                         FailView.failView.showMe(error: err?.exception ?? "Change email fail.")

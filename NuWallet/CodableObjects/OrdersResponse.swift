@@ -13,10 +13,10 @@ struct SellingDetail: Codable {
     let orderId: String?
     let coinName: String?
     let coinFullName: String?
-    let coinQuantity: Int?
+    let coinQuantity: Double?
     let currencyName: String?
     let currencyFullName: String?
-    let currencyAmount: Int?
+    let currencyAmount: Double?
     let date: String?
 
 }

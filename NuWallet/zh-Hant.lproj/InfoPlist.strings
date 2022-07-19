@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  NuWallet
+
+  Created by paul.chen-mini on 2022/6/9.
+  
+*/
+
+NSCameraUsageDescription = "需要使用拍照功能與掃描Qrcode，請問是否開啟相機";

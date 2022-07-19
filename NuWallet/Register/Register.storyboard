@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,13 +32,22 @@
                                     <constraint firstItem="vZu-MA-Fzn" firstAttribute="leading" secondItem="Zhx-gC-Vlx" secondAttribute="leading" id="foT-pj-dbh"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must make sure to read the Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Tq-4h-uF1">
+                                <rect key="frame" x="40" y="723" width="334" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedKey" value="privacy_read"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ux-rt-ysg">
                                 <rect key="frame" x="52" y="794" width="310.5" height="48"/>
                                 <color key="backgroundColor" red="0.21176470589999999" green="0.21176470589999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="u1d-BL-oQn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Next">
@@ -58,7 +68,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brA-oj-0A6">
-                                <rect key="frame" x="20" y="64" width="374" height="666"/>
+                                <rect key="frame" x="20" y="64" width="374" height="649"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -72,7 +82,10 @@
                             <constraint firstItem="UD4-At-OwG" firstAttribute="trailing" secondItem="brA-oj-0A6" secondAttribute="trailing" constant="20" id="0KK-f6-YIk"/>
                             <constraint firstItem="HyW-lp-JT7" firstAttribute="centerX" secondItem="UD4-At-OwG" secondAttribute="centerX" id="1LR-0A-GFE"/>
                             <constraint firstItem="8Ux-rt-ysg" firstAttribute="width" secondItem="jaE-K3-9YX" secondAttribute="width" multiplier="0.75" id="4PJ-4C-XXK"/>
+                            <constraint firstItem="UD4-At-OwG" firstAttribute="trailing" secondItem="6Tq-4h-uF1" secondAttribute="trailing" constant="40" id="7OH-SZ-p0V"/>
                             <constraint firstItem="HyW-lp-JT7" firstAttribute="width" secondItem="jaE-K3-9YX" secondAttribute="width" multiplier="0.85" id="82W-4a-RJv"/>
+                            <constraint firstItem="HyW-lp-JT7" firstAttribute="top" secondItem="6Tq-4h-uF1" secondAttribute="bottom" constant="10" id="A2c-Ic-dl8"/>
+                            <constraint firstItem="6Tq-4h-uF1" firstAttribute="top" secondItem="brA-oj-0A6" secondAttribute="bottom" constant="10" id="BTr-z8-gg2"/>
                             <constraint firstItem="8Ux-rt-ysg" firstAttribute="centerX" secondItem="UD4-At-OwG" secondAttribute="centerX" id="FSp-Sq-WYO"/>
                             <constraint firstItem="Zhx-gC-Vlx" firstAttribute="leading" secondItem="jaE-K3-9YX" secondAttribute="leading" id="Kgi-dC-YNd"/>
                             <constraint firstAttribute="bottom" secondItem="Zhx-gC-Vlx" secondAttribute="bottom" id="Rfd-bz-ifF"/>
@@ -80,7 +93,7 @@
                             <constraint firstItem="UD4-At-OwG" firstAttribute="bottom" secondItem="8Ux-rt-ysg" secondAttribute="bottom" constant="20" id="csx-sV-ok5"/>
                             <constraint firstItem="brA-oj-0A6" firstAttribute="leading" secondItem="UD4-At-OwG" secondAttribute="leading" constant="20" id="kgj-uF-zmL"/>
                             <constraint firstItem="Zhx-gC-Vlx" firstAttribute="top" secondItem="jaE-K3-9YX" secondAttribute="top" id="pB3-UG-URX"/>
-                            <constraint firstItem="HyW-lp-JT7" firstAttribute="top" secondItem="brA-oj-0A6" secondAttribute="bottom" constant="20" id="v4w-8R-hY5"/>
+                            <constraint firstItem="6Tq-4h-uF1" firstAttribute="leading" secondItem="UD4-At-OwG" secondAttribute="leading" constant="40" id="rfp-01-hEP"/>
                             <constraint firstItem="brA-oj-0A6" firstAttribute="top" secondItem="UD4-At-OwG" secondAttribute="top" constant="20" id="z8t-gD-Xxn"/>
                             <constraint firstItem="8Ux-rt-ysg" firstAttribute="top" secondItem="HyW-lp-JT7" secondAttribute="bottom" constant="20" id="zfP-ny-XHP"/>
                         </constraints>
@@ -88,17 +101,21 @@
                     <navigationItem key="navigationItem" title="Register" id="uqN-GX-L2I"/>
                     <connections>
                         <outlet property="checkBtn" destination="HyW-lp-JT7" id="gjn-vp-YqN"/>
+                        <outlet property="checkLabel" destination="6Tq-4h-uF1" id="4LK-yB-ZSH"/>
                         <outlet property="nextBtn" destination="8Ux-rt-ysg" id="SkJ-Im-dV4"/>
                         <outlet property="termsWeb" destination="brA-oj-0A6" id="Tou-PA-8pi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uv5-kH-iX8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1642" y="-19"/>
+            <point key="canvasLocation" x="1640.5797101449277" y="-19.419642857142858"/>
         </scene>
     </scenes>
     <resources>
         <image name="check_off" width="24" height="24"/>
         <image name="pic_bg2" width="2048" height="2732"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

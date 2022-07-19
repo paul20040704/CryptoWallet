@@ -56,13 +56,12 @@ class GoogleAuth2VC: UIViewController {
             HUD.show(.systemActivity)
             BN.bindAuthenticator(verificationCode: self.codeTextField.text ?? "") { statusCode, dataObj, err in
                 if (statusCode == 200) {
-                    BN.getMember { statusCode, dataObj, err in
-                        HUD.hide()
-                        let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
-                        FinishVC.googleAuth2VC = self
-                        FinishVC.tag = 3
-                        self.present(FinishVC, animated: true, completion: nil)
-                    }
+                    HUD.hide()
+                    let FinishVC = UIStoryboard(name: "FinishVC", bundle: nil).instantiateViewController(withIdentifier: "FinishVC") as! FinishVC
+                    FinishVC.googleAuth2VC = self
+                    FinishVC.tag = 3
+                    FinishVC.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+                    self.present(FinishVC, animated: true, completion: nil)
                 }else{
                     HUD.hide()
                     FailView.failView.showMe(error: err?.exception ?? "Bind Authenticator Fail.")
